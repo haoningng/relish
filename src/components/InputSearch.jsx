@@ -1,0 +1,94 @@
+import { useState } from "react";
+import { useOutletContext, useNavigate } from "react-router-dom";
+import "../styles/index.css";
+import dishList from "../dishList"
+import { PropTypes } from 'prop-types'
+
+export default function InputSearch({ page }) {
+  const {
+    setLocation,
+    setPlaceName,
+    setSelectedCuisine
+  } = useOutletContext(); //from Layout.jsx
+
+  InputSearch.propTypes = {
+    page: PropTypes.object.isRequired,
+  };
+
+  const navigate = useNavigate();
+
+  const [inputValue, setInputValue] = useState('');
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const form = document.getElementById('form');
+
+  // handle pressing enter instead of selecting from dropdown suggestions
+  function handleSubmit(event) {
+    event.preventDefault(); // Prevent default form submission
+    if (page.name !== 'location') {
+      setSelectedCuisine(inputValue.toLowerCase());
+      setInputValue('');
+      form.reset();
+      navigate('/Home');
+    } 
+    else {
+      setLocation(inputValue.toLowerCase());
+      setPlaceName(inputValue.toLowerCase());
+      setInputValue('');
+      form.reset();
+      navigate('/Quiz');
+    }
+  }
+
+  // handle selecting from dropdown suggestions (for cuisine options)
+  function handleClick(suggestion) {
+    setSelectedCuisine(suggestion);
+    setInputValue('');
+    form.reset();
+    navigate('/Home');
+  }
+ 
+  function handleChange(event){
+    const {value} = event.target;
+    setInputValue(value);
+    // Prioritize top 5 suggestions that start with the input
+    const newFilteredSuggestions = dishList.filter(suggestion =>
+      suggestion.toLowerCase().startsWith(value.toLowerCase())
+    ).slice(0, 5);
+    setFilteredSuggestions(newFilteredSuggestions);
+  }
+
+  return (
+    <form id="form" onSubmit={(event) => handleSubmit(event)} className="input-container">
+      <h1 className='input-title'>{page.title}</h1>
+      <div>
+        <input
+          ref={page.ref}
+          onChange={handleChange}
+          className="input-field"
+          type='search'
+          placeholder={page.placeholder}
+        ></input>
+
+        {/* this part below only works in non-location page */}
+        {page.name!=='location' && inputValue && (
+          <ul className="pac-container">
+            <li 
+              onClick={() => handleClick(inputValue)}
+              className="pac-item"
+              key={inputValue}
+            >{inputValue}</li>
+
+            {/* if the query matches the dishList, show top 5 matches */}
+            {filteredSuggestions.map((suggestion) => (
+              <li
+                onClick={() => handleClick(suggestion)}
+                className="pac-item"
+                key={suggestion}
+              >{suggestion}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </form>
+  )
+}

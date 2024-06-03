@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relish</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/index.jsx"></script>
+    <script>
+      function initMap() {
+          var options = {
+          zoom: 3,
+          center: { lat: -38.1828007, lng: 144.458746 },
+          }
+          var map = new google.maps.Map(document.getElementById("root"), options);
+      }
+    </script>
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpnSeEh0N-f5Sl-JSjEVUAXM37fSe2XNI&loading=async&libraries=places&callback=initMap" >
+    </script>
+  </body>
+</html>
