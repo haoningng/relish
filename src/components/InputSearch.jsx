@@ -58,7 +58,7 @@ export default function InputSearch({ page }) {
   }
 
   return (
-    <form id="form" onSubmit={(event) => handleSubmit(event)} className="input-container">
+    <form id="form" onSubmit={(event) => handleSubmit(event)} className={page.name === 'home' ? 'input-container-home' : `input-container`}>
       <h1 className='input-title'>{page.title}</h1>
       <div>
         <input
@@ -71,7 +71,7 @@ export default function InputSearch({ page }) {
 
         {/* this part below only works in non-location page */}
         {page.name!=='location' && inputValue && (
-          <ul className="pac-container">
+          <ul className={page.name === 'home' ? 'pac-container-home' : `pac-container`}>
             <li 
               onClick={() => handleClick(inputValue)}
               className="pac-item"
