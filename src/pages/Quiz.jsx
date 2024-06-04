@@ -11,7 +11,9 @@ export default function Quiz() {
     setSelectedCuisine,
     setRadius,
     setPriceLevel,
-    setSort
+    setSort,
+    setOffset,
+    setFilteredListing
   } = useOutletContext(); //from Layout.jsx
   console.log(coordinate, selectedCuisine)
 
@@ -21,7 +23,9 @@ export default function Quiz() {
     setSelectedCuisine('');
     setRadius(4000);
     setPriceLevel(null);
-    setSort('best_match')
+    setSort('best_match');
+    setOffset(0);
+    setFilteredListing([]);
   }, [])
 
   function handleRandom(event) {

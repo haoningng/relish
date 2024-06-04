@@ -8,7 +8,8 @@ export default function InputSearch({ page }) {
   const {
     setLocation,
     setPlaceName,
-    setSelectedCuisine
+    setSelectedCuisine,
+    setOffset
   } = useOutletContext(); //from Layout.jsx
 
   InputSearch.propTypes = {
@@ -26,6 +27,7 @@ export default function InputSearch({ page }) {
     event.preventDefault(); // Prevent default form submission
     if (page.name !== 'location') {
       setSelectedCuisine(inputValue.toLowerCase());
+      setOffset(0);
       setInputValue('');
       form.reset();
       navigate('/Home');

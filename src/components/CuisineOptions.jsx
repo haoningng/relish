@@ -6,7 +6,8 @@ export default function CuisineOptions({ page }) {
   const {
     cuisineList,
     selectedCuisine,
-    setSelectedCuisine
+    setSelectedCuisine,
+    setOffset
   } = useOutletContext(); //from Layout.jsx
 
   const navigate = useNavigate()
@@ -18,7 +19,8 @@ export default function CuisineOptions({ page }) {
   function handleRadio(event) {
     const {value} = event.target;
     setSelectedCuisine(value);
-    navigate('/Home')
+    setOffset(0);
+    navigate('/Home');
   }
 
   return (

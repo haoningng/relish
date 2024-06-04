@@ -13,7 +13,9 @@ export default function Location() {
     setRadius,
     setPriceLevel,
     setSort,
-    setSelectedCuisine
+    setSelectedCuisine,
+    setOffset,
+    setFilteredListing
   } = useOutletContext(); //from Layout.jsx
 
   const [permissionStatus, setPermissionStatus] = useState('prompt');
@@ -47,6 +49,8 @@ export default function Location() {
     setRadius(4000);
     setPriceLevel(null);
     setSort('best_match');
+    setOffset(0);
+    setFilteredListing([]);
   }, [])
 
   // request for permission to retrieve coordinate via Geolocation API
