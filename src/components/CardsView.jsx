@@ -55,7 +55,7 @@ export default function CardsView({ listing }) {
           <div className='listing-desc-text-3'>
             <p>
               {/* <span className={!each.is_closed ? 'opening-green' : 'closing-red'}>{!each.is_closed ? `Open` : `Closed`}</span> */}
-              <span>{` • < ${parseFloat(each.distance/1000).toFixed(1)} km`}</span>
+              <span>{`< ${parseFloat(each.distance/1000).toFixed(1)} km`}</span>
             </p>
           </div>
         </div>

@@ -84,7 +84,7 @@ export default function MapView({ listing }) {
                 </div>
                 <p>
                   {/* <span className={!each.is_closed ? 'opening-green' : 'closing-red'}>{!each.is_closed ? `Open` : `Closed`}</span> */}
-                  <span>{` • < ${parseFloat(each.distance/1000).toFixed(1)} km`}</span>
+                  <span>{`< ${parseFloat(each.distance/1000).toFixed(1)} km`}</span>
                 </p>
             </InfoWindow>
           </div>
