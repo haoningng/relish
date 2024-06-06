@@ -64,8 +64,8 @@ body {
 }
 
 .input-title {
-  font-weight: 700;
-  font-size: 1.9em;
+  font-weight: 600;
+  font-size: 30px;
   line-height: 1.1;
 }
 
@@ -76,6 +76,13 @@ body {
   padding-right: 10px;
   border-radius: 18px;
   border: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+::placeholder {
+  color: #BDBDBD;
+  opacity: 1; /* Firefox */
 }
 
 .pac-container {
@@ -321,6 +328,7 @@ input[type="radio"]:checked + .radio-label {
   border: none;
   cursor: pointer;
   font-weight: 600;
+  font-size: 16px;
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -332,11 +340,12 @@ input[type="radio"]:checked + .radio-label {
 .menu-button {
   background-color: #EDF1D6;
   color: #000000;
-  width: 6.7em;
-  height: 2em;
+  width: 104px;
+  height: 26px;
   border: none;
   cursor: pointer;
   font-weight: 600;
+  font-size: 16px;
   border-radius: 20px;
 }
 
@@ -360,6 +369,7 @@ input[type="radio"]:checked + .radio-label {
   border: none;
   border-radius: 18px;
   width: 90%;
+  opacity: 0.7;
 }
 
 .menu-item {
@@ -372,6 +382,8 @@ input[type="radio"]:checked + .radio-label {
   justify-content: center;
   align-items: center;
   user-select: none;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .reset-menu-item {
