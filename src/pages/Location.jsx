@@ -15,7 +15,7 @@ export default function Location() {
     setSort,
     setSelectedCuisine,
     setOffset,
-    setFilteredListing
+    setListing
   } = useOutletContext(); //from Layout.jsx
 
   const [permissionStatus, setPermissionStatus] = useState('prompt');
@@ -50,7 +50,7 @@ export default function Location() {
     setPriceLevel(null);
     setSort('best_match');
     setOffset(0);
-    setFilteredListing([]);
+    setListing([]);
   }, [])
 
   // request for permission to retrieve coordinate via Geolocation API
@@ -71,6 +71,7 @@ export default function Location() {
           if (error.code === error.PERMISSION_DENIED) {
             setPermissionStatus('denied');
             setCoordinate({lat: -37.8136, lng: 144.9631}); // Default to Melbourne Coordinate
+            setPlaceName('Melbourne CBD');
           } else {
             setPermissionStatus('error'); // Other errors
           }
