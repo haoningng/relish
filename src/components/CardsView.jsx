@@ -1,6 +1,7 @@
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { PropTypes } from 'prop-types'
 import StaticMap from "./StaticMap";
+import BeenToButton from "./BeenToButton";
 
 export default function CardsView({ listing }) {
   const {
@@ -18,27 +19,6 @@ export default function CardsView({ listing }) {
     if (event.target.closest('.listing-restaurant-photo')) {
       setSelectedRestaurant(restaurant);
       navigate(`./${restaurant.id}`)
-    }
-  }
-
-  function handleBeenToClick(restaurant) {
-    try {  
-      // 1. Retrieve and Update
-      const savedRestaurants = JSON.parse(localStorage.getItem("been-to")) || [];
-      savedRestaurants.push(restaurant);
-
-      // 2. Serialise the array for Storage
-      const serializedData = JSON.stringify(savedRestaurants);
-  
-      // 3. Store in localStorage
-      localStorage.setItem("been-to", serializedData);
-  
-      console.log("Restaurant saved to localStorage!");
-      navigate('/Home', { state: { savedRestaurants }})
-  
-    } catch (error) {
-      console.error("Error saving restaurant to localStorage:", error);
-      // Handle the error (e.g., display an error message to the user)
     }
   }
   
@@ -70,7 +50,12 @@ export default function CardsView({ listing }) {
               name: 'cardsview'
             }}
             />}
-            <img onClick={() => handleBeenToClick(each)} className='listing-been-to-button' src={`/tomato-slice.png`} alt={`Relish icon`} width='20px' height='20px'/>
+            <BeenToButton 
+              page={{
+                name: 'listing',
+                restaurant: each,
+              }}
+            />
         </div>
         <div className='listing-desc'>
           <h3 className='listing-desc-text-1'>{each.name}</h3>

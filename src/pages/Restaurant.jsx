@@ -1,6 +1,7 @@
 import { useOutletContext } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import StaticMap from '../components/StaticMap';
+import BeenToButton from '../components/BeenToButton';
 
 export default function Restaurant() {
   const {
@@ -53,18 +54,26 @@ export default function Restaurant() {
   return ( selectedRestaurant ?
       <div className='restaurant-desc'>
         <div>
-          {selectedRestaurant.image_url ? <img
-            className='restaurant-img'
-            width='100vw'
-            height='250px'
-            alt={`The restaurant photo of ${selectedRestaurant.name}`}
-            src={selectedRestaurant.image_url}
-          /> :  <StaticMap
-                  coordinate={coordinate}
-                  page={{
-                    name: 'restaurant-img'
-                  }}
-                />}
+          <div className="restaurant-img-container">
+            {selectedRestaurant.image_url ? <img
+              className='restaurant-img'
+              width='100vw'
+              height='250px'
+              alt={`The restaurant photo of ${selectedRestaurant.name}`}
+              src={selectedRestaurant.image_url}
+            /> :  <StaticMap
+                    coordinate={coordinate}
+                    page={{
+                      name: 'restaurant-img'
+                    }}
+                  />}
+            <BeenToButton 
+              page={{
+                name: 'restaurant',
+                restaurant: selectedRestaurant,
+              }}
+            />
+          </div>
           <h3 className='restaurant-text-1'>{selectedRestaurant.name}</h3>
           <div className='restaurant-text-2'>
             <p>{`${selectedRestaurant.rating} ★ (${selectedRestaurant.review_count}+)`}</p>
