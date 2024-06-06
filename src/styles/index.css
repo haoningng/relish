@@ -159,7 +159,8 @@ li.pac-item {
   margin-bottom: 170px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
+  padding-bottom: 20px;
 }
 
 .quiz-cuisine-container::-webkit-scrollbar {
@@ -194,6 +195,8 @@ input[type="radio"] {
   justify-content: start;
   gap: 16px;
   align-items: center;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 input[type="radio"]:checked + .radio-label {
@@ -213,6 +216,7 @@ input[type="radio"]:checked + .radio-label {
 
 .i-am-feeling-hungry{
   margin-top: 45px;
+  margin-bottom: 10px;
   width: 240px;
   height: 60px;
   border-radius: 100px;
@@ -222,6 +226,8 @@ input[type="radio"]:checked + .radio-label {
   font-size: 20px;
   font-weight: 500;
   text-align: center;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 /* (P) HomeLayout page */
@@ -235,7 +241,7 @@ input[type="radio"]:checked + .radio-label {
 .home-location-link {
   font-size: 0.8em;
   font-weight: 200;
-  /* text-decoration: underline; */
+  cursor: pointer;
 }
 
 .home-cuisine-container {
@@ -269,6 +275,7 @@ input[type="radio"]:checked + .radio-label {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  cursor: pointer;
 }
 
 .cuisine-img {
@@ -420,6 +427,8 @@ input[type="radio"]:checked + .radio-label {
   height: 40px;
   border-radius: 50%;
   border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 .listing-restaurant-photo, .cardsview-map {
@@ -427,6 +436,8 @@ input[type="radio"]:checked + .radio-label {
   height: 180px;
   border-radius: 8px;
   object-fit: cover;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .listing-desc {
@@ -466,6 +477,8 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .listing-see-more{
+  cursor: pointer;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   position: absolute;
   margin-top: 110%;
   margin-bottom: 0px;
@@ -487,6 +500,7 @@ input[type="radio"]:checked + .radio-label {
   visibility: visible;
   opacity: 1 !important; 
   transform: translateY(0) !important;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 /* (C) MapView component */
@@ -545,11 +559,28 @@ input[type="radio"]:checked + .radio-label {
   scrollbar-width: none;  /* Firefox */
 }
 
+.restaurant-img-container {
+  margin-bottom: -30px;
+}
+
 .restaurant-img {
   width: 100%;
   height: 250px;
   margin: 0 auto;
   object-fit: cover;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.restaurant-been-to-button {
+  position: relative;
+  top: -40px;
+  left: 290px;
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 .restaurant-text-1 {
@@ -590,6 +621,8 @@ input[type="radio"]:checked + .radio-label {
   color: #ffffff;
   font-size: 1.5em;
   font-weight: 800;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 .restaurant-map {
@@ -599,6 +632,8 @@ input[type="radio"]:checked + .radio-label {
   width: 100%;
   object-fit: cover;
   margin-bottom: 10%;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 /* (P) Footer page */
