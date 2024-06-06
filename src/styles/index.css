@@ -96,7 +96,6 @@ body {
   width: 360px;
   position: relative;
   top: -13px;
-  z-index: 4;
 }
 
 .pac-item,
@@ -105,7 +104,7 @@ body {
   height: 2.4em;
   font-size: 1em;
   width: 360px;
-  list-style-type: none
+  list-style-type: none;
 }
 
 .pac-item:hover {
@@ -413,6 +412,16 @@ input[type="radio"]:checked + .radio-label {
   margin-bottom: 2px;
 }
 
+.listing-been-to-button {
+  position: relative;
+  top: -180px;
+  left: 310px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+}
+
 .listing-restaurant-photo, .cardsview-map {
   width: 360px;
   height: 180px;
@@ -425,7 +434,7 @@ input[type="radio"]:checked + .radio-label {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  margin-top: -11px;
+  margin-top: -64px;
 }
 
 .listing-desc-text-1{

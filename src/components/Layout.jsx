@@ -39,7 +39,7 @@ export default function Layout() {
   const [selectedCuisine, setSelectedCuisine] = useState(''); // selected cuisine option
   const [selectedRestaurant, setSelectedRestaurant] = useState('') // selected restaurant's details to be shown on Restaurant page
   const [offset, setOffset] = useState(0) // offset parameter to be used in Yelp Api Business Search
-  const [filteredListing, setFilteredListing] = useState([]) // listing after filtering out 'been to' and appending the new ones
+  const [listing, setListing] = useState([]) // listing after filtering out 'been to' and appending the new ones
   return (
     <div className="site-wrapper">
       <main>
@@ -64,8 +64,8 @@ export default function Layout() {
             setSelectedRestaurant,
             offset,
             setOffset,
-            filteredListing,
-            setFilteredListing
+            listing,
+            setListing
           }} />
       </main>
       <Footer/>

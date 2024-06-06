@@ -9,7 +9,8 @@ export default function InputSearch({ page }) {
     setLocation,
     setPlaceName,
     setSelectedCuisine,
-    setOffset
+    setOffset,
+    setListing
   } = useOutletContext(); //from Layout.jsx
 
   InputSearch.propTypes = {
@@ -29,6 +30,7 @@ export default function InputSearch({ page }) {
       setSelectedCuisine(inputValue.toLowerCase());
       setOffset(0);
       setInputValue('');
+      setListing([]);
       form.reset();
       navigate('/Home');
     } 
@@ -44,7 +46,9 @@ export default function InputSearch({ page }) {
   // handle selecting from dropdown suggestions (for cuisine options)
   function handleClick(suggestion) {
     setSelectedCuisine(suggestion);
+    setOffset(0);
     setInputValue('');
+    setListing([]);
     form.reset();
     navigate('/Home');
   }

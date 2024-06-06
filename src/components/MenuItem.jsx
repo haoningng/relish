@@ -7,7 +7,8 @@ export default function MenuItem({ children, value, name }) {
     setPriceLevel,
     setRadius,
     setSort,
-    setOffset
+    setOffset,
+    setListing
   } = useOutletContext(); //from Layout.jsx
 
   MenuItem.propTypes = {
@@ -27,25 +28,31 @@ export default function MenuItem({ children, value, name }) {
       if (value == 0) {
         setPriceLevel(null);
         setOffset(0);
+        setListing([]);
       } else {
         setPriceLevel(value);
         setOffset(0);
+        setListing([]);
       }
     } else if (name === 'Distance') {
       if (value == 0) {
         setRadius(4000);
         setOffset(0);
+        setListing([]);
       } else {
         setRadius(value);
         setOffset(0);
+        setListing([]);
       }
     } else if (name === 'Sort By') {
       if (value == 0) {
         setSort('best_match');
         setOffset(0);
+        setListing([]);
       } else {
         setSort(value);
         setOffset(0);
+        setListing([]);
       }
     }
     navigate('/Home')
