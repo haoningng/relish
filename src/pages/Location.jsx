@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState, useMemo } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, Link } from "react-router-dom";
 import "../styles/index.css";
 import StaticMap from "../components/StaticMap";
 import InputSearch from "../components/InputSearch";
@@ -120,7 +120,9 @@ export default function Location() {
           name: 'location'
         }}
       /> : 'searching'}
-      <p>Tap on the map to proceed</p>
+      <Link to="/Quiz">
+        <button className='location-proceed-btn'>Proceed</button>
+      </Link>
     </div>
   ) : permissionStatus === 'granted' ? (
     <div className="input-outer-container">
@@ -139,7 +141,9 @@ export default function Location() {
           name: 'location'
         }}
       /> : 'searching'}
-      <p>Tap on the map to proceed</p>
+      <Link to="/Quiz">
+        <button className='location-proceed-btn'>Proceed</button>
+      </Link>
     </div>
   ) : (
     // this block runs when the browser is checking permissionStatus
