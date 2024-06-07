@@ -6,9 +6,7 @@ import MenuItem from "../components/MenuItem";
 
 export default function FilterMenu() {
   const {
-    priceLevel,
-    radius,
-    sort
+    filterObj
   } = useOutletContext(); //from Layout.jsx
 
   const defaultState = useMemo(() => {
@@ -94,10 +92,10 @@ export default function FilterMenu() {
   }, [defaultState]);
 
   // Dynamic label for the filter button
-  const dspPriceLevel = priceLevel !== null ?
-  ` ${'$'.repeat(priceLevel)}` : 'Price';
-  const dspRadius = radius !== 4000 ? `<${radius/1000}km` : 'Distance';
-  const dspSort = sort === 'review_count' ? 'Review' : sort === 'rating' ?  'Ratings' : sort === 'distance' ? `Distance` : 'Sort By';
+  const dspPriceLevel = filterObj.priceLevel !== null ?
+  ` ${'$'.repeat(filterObj.priceLevel)}` : 'Price';
+  const dspRadius = filterObj.radius !== 4000 ? `<${filterObj.radius/1000}km` : 'Distance';
+  const dspSort = filterObj.sort === 'review_count' ? 'Review' : filterObj.sort === 'rating' ?  'Ratings' : filterObj.sort === 'distance' ? `Distance` : 'Sort By';
   
   return (
     <div className="home-filter-container" ref={dropdownRef}>

@@ -8,7 +8,7 @@ import FilterMenu from "../components/FilterMenu";
 
 export default function Home() {
   const {
-    placeName
+    locationObj,
   } = useOutletContext(); //from Layout.jsx
 
   const [toggleMapView, setToggleMapView] = useState(false)
@@ -48,7 +48,7 @@ export default function Home() {
   return (
       <div className="input-outer-container">
         <h3 onClick={handleClick} className='home-location-link-container'>
-          <span className='home-location-link'>{placeName} ▼</span>
+          <span className='home-location-link'>{locationObj.placeName} ▼</span>
         </h3>
         <InputSearch 
           page={{

@@ -6,12 +6,9 @@ import InputSearch from "../components/InputSearch";
 
 export default function Location() {
   const {
-    coordinate,
-    setCoordinate,
-    setPlaceName,
-    setRadius,
-    setPriceLevel,
-    setSort,
+    locationObj,
+    setLocationObj,
+    setFilterObj,
     setSelectedCuisine,
     setOffset,
     setListing
@@ -24,12 +21,12 @@ export default function Location() {
   // default to 0.1 degree in coordinate i.e. approx +/-11km
   const defaultBounds = useMemo(() => {
     return {
-      north: coordinate.lat + 0.1,
-      south: coordinate.lat - 0.1,
-      east: coordinate.lng + 0.1,
-      west: coordinate.lng - 0.1,
+      north: locationObj.coordinate.lat + 0.1,
+      south: locationObj.coordinate.lat - 0.1,
+      east: locationObj.coordinate.lng + 0.1,
+      west: locationObj.coordinate.lng - 0.1,
     };
-  }, [coordinate.lat, coordinate.lng]) 
+  }, [locationObj.coordinate.lat, locationObj.coordinate.lng]) 
 
   // restricted to Australia
   const options = useMemo(() => {
@@ -43,10 +40,16 @@ export default function Location() {
   // reset the cuisine choice, placeName and filters
   useEffect(() => {
     setSelectedCuisine('');
-    setPlaceName('');
-    setRadius(4000);
-    setPriceLevel(null);
-    setSort('best_match');
+    setLocationObj((locationObj) => ({
+      ...locationObj,
+      placeName: ''
+    }));
+    setFilterObj((filterObj) => ({
+      ...filterObj,
+      priceLevel: null,
+      radius: 4000,
+      sort: 'best_match'
+    })),
     setOffset(0);
     setListing([]);
   }, [])
@@ -58,18 +61,27 @@ export default function Location() {
         // permission granted
         (position) => {
           setPermissionStatus('granted');
-          setCoordinate({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          })
-          setPlaceName('Discovering Nearby')
+          setLocationObj((locationObj) => ({
+            ...locationObj,
+            coordinate: {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            },
+            placeName:'Discovering Nearby'
+          }))
         },
         (error) => {
           // if denied
           if (error.code === error.PERMISSION_DENIED) {
             setPermissionStatus('denied');
-            setCoordinate({lat: -37.8136, lng: 144.9631}); // Default to Melbourne Coordinate
-            setPlaceName('Melbourne CBD');
+            setLocationObj((locationObj) => ({
+              ...locationObj,
+              coordinate: {
+                lat: -37.8136,
+                lng: 144.9631
+              },
+              placeName: 'Melbourne CBD'
+            })); // Default to Melbourne Coordinate
           } else {
             setPermissionStatus('error'); // Other errors
           }
@@ -91,11 +103,14 @@ export default function Location() {
       autoCompleteRef.current.addListener("place_changed", async function () {
         const place = await autoCompleteRef.current.getPlace();
         if (place) {
-          setPlaceName(place.name)
-          setCoordinate({
-            lat: place.geometry?.location.lat(),
-            lng: place.geometry?.location.lng(),
-          })
+          setLocationObj((locationObj) => ({
+            ...locationObj,
+            coordinate: {
+              lat: place.geometry?.location.lat(),
+              lng: place.geometry?.location.lng(),
+            },
+            placeName: place.name
+          }))
         }
       });
     }
@@ -112,10 +127,10 @@ export default function Location() {
         }}
       />
       <br />
-      {coordinate.lat ? 
+      {locationObj.coordinate.lat ? 
       <>
         <StaticMap
-          coordinate={coordinate}
+          coordinate={locationObj.coordinate}
           page={{
             name: 'location'
           }}
@@ -150,8 +165,8 @@ export default function Location() {
         }}
       />
       <br />
-      {coordinate.lat ? <StaticMap
-        coordinate={coordinate}
+      {locationObj.coordinate.lat ? <StaticMap
+        coordinate={locationObj.coordinate}
         page={{
           name: 'location'
         }}

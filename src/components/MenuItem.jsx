@@ -4,9 +4,7 @@ import { PropTypes } from 'prop-types'
 
 export default function MenuItem({ children, value, name }) {
   const {
-    setPriceLevel,
-    setRadius,
-    setSort,
+    setFilterObj,
     setOffset,
     setListing
   } = useOutletContext(); //from Layout.jsx
@@ -26,31 +24,49 @@ export default function MenuItem({ children, value, name }) {
     const {value} = event.target
     if (name === 'Price') {
       if (value == 0) {
-        setPriceLevel(null);
+        setFilterObj((filterObj) => ({
+          ...filterObj,
+          price: null
+        }));
         setOffset(0);
         setListing([]);
       } else {
-        setPriceLevel(value);
+        setFilterObj((filterObj) => ({
+          ...filterObj,
+          price: value
+        }));
         setOffset(0);
         setListing([]);
       }
     } else if (name === 'Distance') {
       if (value == 0) {
-        setRadius(4000);
+        setFilterObj((filterObj) => ({
+          ...filterObj,
+          radius: 4000
+        }));
         setOffset(0);
         setListing([]);
       } else {
-        setRadius(value);
+        setFilterObj((filterObj) => ({
+          ...filterObj,
+          radius: value
+        }));
         setOffset(0);
         setListing([]);
       }
     } else if (name === 'Sort By') {
       if (value == 0) {
-        setSort('best_match');
+        setFilterObj((filterObj) => ({
+          ...filterObj,
+          sort: 'best_match'
+        }));
         setOffset(0);
         setListing([]);
       } else {
-        setSort(value);
+        setFilterObj((filterObj) => ({
+          ...filterObj,
+          sort: value
+        }));
         setOffset(0);
         setListing([]);
       }

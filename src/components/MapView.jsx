@@ -13,8 +13,8 @@ const MAP_ID = import.meta.env.VITE_MAP_ID
 
 export default function MapView({ listing }) {
   const {
-    coordinate,
-    radius,
+    locationObj,
+    filterObj,
     setSelectedRestaurant
   } = useOutletContext(); //from Layout.jsx
 
@@ -24,12 +24,12 @@ export default function MapView({ listing }) {
 
   const navigate = useNavigate();
   const [activeMarkerId, setActiveMarkerId] = useState(null); // Track the active marker
-  const [zoomLevel, setZoomLevel] = useState(calculateZoomLevel(radius)); // Initial calculation
+  const [zoomLevel, setZoomLevel] = useState(calculateZoomLevel(filterObj.radius)); // Initial calculation
   const markerRefs = useRef([]); // Array to store marker refs
 
   useEffect(() => {
-    setZoomLevel(calculateZoomLevel(radius)); // Recalculate when radius changes
-  }, [radius]);
+    setZoomLevel(calculateZoomLevel(filterObj.radius)); // Recalculate when radius changes
+  }, [filterObj.radius]);
 
   function calculateZoomLevel(radius) {
     return radius <= 1000 ? 14 : radius <= 5000 ? 12 : radius <= 10000 ? 11 : 10;
@@ -41,8 +41,8 @@ export default function MapView({ listing }) {
   }
 
   const userPosition = {
-    lat: coordinate.lat,
-    lng: coordinate.lng
+    lat: locationObj.coordinate.lat,
+    lng: locationObj.coordinate.lng
   };
   
   const listingMarkers = listing.map((each, index) => {

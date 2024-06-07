@@ -6,24 +6,25 @@ import CuisineOptions from "../components/CuisineOptions";
 
 export default function Quiz() {
   const {
-    coordinate,
+    locationObj,
+    setFilterObj,
     selectedCuisine,
     setSelectedCuisine,
-    setRadius,
-    setPriceLevel,
-    setSort,
     setOffset,
     setListing
   } = useOutletContext(); //from Layout.jsx
-  console.log(coordinate, selectedCuisine)
+  console.log(locationObj.coordinate, selectedCuisine)
 
   const navigate = useNavigate();
 
   useEffect(() => {
     setSelectedCuisine('');
-    setRadius(4000);
-    setPriceLevel(null);
-    setSort('best_match');
+    setFilterObj((filterObj) => ({
+      ...filterObj,
+      priceLevel: null,
+      radius: 4000,
+      sort: 'best_match'
+    })),
     setOffset(0);
     setListing([]);
   }, [])
@@ -38,7 +39,7 @@ export default function Quiz() {
     navigate('/Home');
   }
 
-  return coordinate ? (
+  return locationObj.coordinate ? (
     <div className="input-outer-container">
       <InputSearch 
         page={{

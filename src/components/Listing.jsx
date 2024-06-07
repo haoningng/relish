@@ -6,13 +6,10 @@ import MapView from './MapView';
 
 export default function Listing({ mapOn }) {
   const {
-    coordinate,
-    setCoordinate,
-    location,
+    locationObj,
+    setLocationObj,
+    filterObj,
     selectedCuisine,
-    priceLevel,
-    radius,
-    sort,
     offset,
     setOffset,
     listing,
@@ -71,7 +68,7 @@ export default function Listing({ mapOn }) {
           'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-          "endpoint": (`https://api.yelp.com/v3/businesses/search?term=${selectedCuisine}${priceLevel ? `&price=` + `${String(priceLevel)}` :''}&categories=${selectedCuisine}&sort_by=${sort}&radius=${radius}${location ? `&location=` + location + ' VIC Australia' : `&latitude=${coordinate.lat}&longitude=${coordinate.lng}` }&locale=en_AU&offset=${offset}&limit=20`),
+          "endpoint": (`https://api.yelp.com/v3/businesses/search?term=${selectedCuisine}${filterObj.priceLevel ? `&price=` + `${String(filterObj.priceLevel)}` :''}&categories=${selectedCuisine}&sort_by=${filterObj.sort}&radius=${filterObj.radius}${`&latitude=${locationObj.coordinate.lat}&longitude=${locationObj.coordinate.lng}`}&locale=en_AU&offset=${offset}&limit=20`),
           "id": `django-insecure-0ezwicnx+&u=g+d3e2&9-u!c9un559($jq7--dpd*8p-bshh4$`
       })
     }
@@ -114,10 +111,16 @@ export default function Listing({ mapOn }) {
             })
           }
         })
-      setCoordinate({lat: data.region.center.latitude, lng: data.region.center.longitude});
+      setLocationObj((locationObj) => ({
+        ...locationObj,
+        coordinate: {
+          lat: data.region.center.latitude,
+          lng: data.region.center.longitude
+        }
+      }));
       })
       .catch(err => console.error(err));
-  }, [coordinate.lat, coordinate.lng, location, offset, priceLevel, radius, saved.state?.savedRestaurants, selectedCuisine, setCoordinate, sort]);
+  }, [saved.state?.savedRestaurants, filterObj.priceLevel, filterObj.radius, filterObj.sort, locationObj.coordinate.lat, locationObj.coordinate.lng, offset, selectedCuisine, setListing, setLocationObj]);
 
   return ( mapOn 
     ? <MapView listing={ listing }/> 
