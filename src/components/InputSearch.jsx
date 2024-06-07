@@ -6,8 +6,6 @@ import { PropTypes } from 'prop-types'
 
 export default function InputSearch({ page }) {
   const {
-    setLocation,
-    setPlaceName,
     setSelectedCuisine,
     setOffset,
     setListing
@@ -34,13 +32,6 @@ export default function InputSearch({ page }) {
       form.reset();
       navigate('/Home');
     } 
-    else {
-      setLocation(inputValue.toLowerCase());
-      setPlaceName(inputValue.toLowerCase());
-      setInputValue('');
-      form.reset();
-      navigate('/Quiz');
-    }
   }
 
   // handle selecting from dropdown suggestions (for cuisine options)

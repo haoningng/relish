@@ -8,7 +8,6 @@ export default function Layout() {
     lat: -38.1828007,
     lng: 144.458746,
   }); // search location coordinate when available
-  const [location, setLocation] = useState('') // location query when user pressed enter OR when coordinate is not available
   const [placeName, setPlaceName] = useState('') // placeName to be shown as link on top left corner home page
   const [priceLevel, setPriceLevel] = useState(null) // price level filter
   const [radius, setRadius] = useState(4000) // distance filter in meters
@@ -47,8 +46,6 @@ export default function Layout() {
           context={{
             coordinate,
             setCoordinate,
-            location,
-            setLocation,
             placeName,
             setPlaceName,
             priceLevel,

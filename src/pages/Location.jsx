@@ -9,7 +9,6 @@ export default function Location() {
     coordinate,
     setCoordinate,
     setPlaceName,
-    setLocation,
     setRadius,
     setPriceLevel,
     setSort,
@@ -45,7 +44,6 @@ export default function Location() {
   useEffect(() => {
     setSelectedCuisine('');
     setPlaceName('');
-    setLocation('');
     setRadius(4000);
     setPriceLevel(null);
     setSort('best_match');
@@ -103,7 +101,7 @@ export default function Location() {
     }
   }, []);
 
-  return permissionStatus === 'denied' ? (
+  return permissionStatus === 'granted' || permissionStatus === 'denied' ? (
     <div className="input-outer-container">
       <InputSearch 
         page={{
@@ -114,36 +112,30 @@ export default function Location() {
         }}
       />
       <br />
-      {coordinate.lat ? <StaticMap
-        coordinate={coordinate}
-        page={{
-          name: 'location'
+      {coordinate.lat ? 
+      <>
+        <StaticMap
+          coordinate={coordinate}
+          page={{
+            name: 'location'
+          }}
+        /> 
+        <Link to="/Quiz">
+          <button className='location-proceed-btn'>Proceed</button>
+        </Link>
+      </>
+      : 
+      <>
+        <StaticMap
+          coordinate={{
+            lat: -38.1828007,
+            lng: 144.458746,
+          }}
+          page={{
+            name: 'location'
         }}
-      /> : 'searching'}
-      <Link to="/Quiz">
-        <button className='location-proceed-btn'>Proceed</button>
-      </Link>
-    </div>
-  ) : permissionStatus === 'granted' ? (
-    <div className="input-outer-container">
-      <InputSearch 
-        page={{
-          name: 'location',
-          ref: inputRef,
-          title: 'Where to eat?',
-          placeholder: 'Suburb / Postcode'
-        }}
-      />
-      <br />
-      {coordinate.lat ? <StaticMap
-        coordinate={coordinate}
-        page={{
-          name: 'location'
-        }}
-      /> : 'searching'}
-      <Link to="/Quiz">
-        <button className='location-proceed-btn'>Proceed</button>
-      </Link>
+        /> 
+      </>}
     </div>
   ) : (
     // this block runs when the browser is checking permissionStatus
