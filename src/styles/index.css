@@ -174,11 +174,18 @@ li.pac-item {
 
 /* (P) Quiz page */
 
+.quiz-subtitle-1 {
+  margin-top: -300px;
+  position: absolute;
+  font-weight: 300;
+  font-size: 14px;
+}
+
 .quiz-cuisine-container {
-  height: 420px;
+  height: 360px;
   overflow-y: scroll;
   position: relative;
-  top: 180px; 
+  top: 200px; 
   margin-bottom: 170px;
   display: flex;
   flex-direction: column;
@@ -237,8 +244,15 @@ input[type="radio"]:checked + .radio-label {
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
 }
 
+.quiz-subtitle-2 {
+  margin-top: 550px;
+  position: absolute;
+  font-weight: 300;
+  font-size: 14px;
+}
+
 .i-am-feeling-hungry{
-  margin-top: 45px;
+  margin-top: 90px;
   margin-bottom: 10px;
   width: 240px;
   height: 60px;

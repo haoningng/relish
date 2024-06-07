@@ -44,10 +44,11 @@ export default function Quiz() {
         page={{
           name: 'quiz',
           title: 'What to eat?',
-          placeholder: 'Dish (e.g. beef pho...)'
+          placeholder: 'Search Dish (e.g. beef pho...)'
         }}
       />
       <br />
+      <h3 className='quiz-subtitle-1'>-- Pick a cuisine --</h3>
       <div className="quiz-cuisine-container">
         <CuisineOptions 
           page={{
@@ -57,6 +58,7 @@ export default function Quiz() {
           }}
         />
       </div>
+      <h3 className='quiz-subtitle-2'> -- Try your luck --</h3>
       <button className="i-am-feeling-hungry" onClick={handleRandom}>I&#39;m Feeling Hungry</button>
     </div>
   ) : (
