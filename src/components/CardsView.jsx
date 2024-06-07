@@ -1,6 +1,7 @@
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { PropTypes } from 'prop-types'
 import StaticMap from "./StaticMap";
+import BeenToButton from "./BeenToButton";
 
 export default function CardsView({ listing }) {
   const {
@@ -9,14 +10,16 @@ export default function CardsView({ listing }) {
   } = useOutletContext(); //from Layout.jsx
 
   CardsView.propTypes = {
-    listing: PropTypes.array.isRequired 
+    listing: PropTypes.array.isRequired
   };
 
   const navigate = useNavigate();
 
-  function handleClick(restaurant) {
-    setSelectedRestaurant(restaurant);
-    navigate(`./${restaurant.id}`)
+  function handleClick(event, restaurant) {
+    if (event.target.closest('.listing-restaurant-photo')) {
+      setSelectedRestaurant(restaurant);
+      navigate(`./${restaurant.id}`)
+    }
   }
   
   const cards = listing.map(each => {
@@ -31,21 +34,29 @@ export default function CardsView({ listing }) {
         className='listing-card'
         to={each.id}
         key={each.id}
-        onClick={() => handleClick(each)}
+        onClick={(event) => handleClick(event, each)}
         style={{textDecoration: 'none', color: 'white'}}
       >
-        {imageUrl ? <img
-          className='listing-restaurant-photo'
-          width='360px'
-          height='180px'
-          alt={`The restaurant photo of ${each.name}`}
-          src={imageUrl}
-        /> :  <StaticMap
-                coordinate={coordinate}
-                page={{
-                  name: 'cardsview'
-                }}
-              />}
+        <div className='listing-photo-container'>
+          {imageUrl ? <img
+            className='listing-restaurant-photo'
+            width='360px'
+            height='180px'
+            alt={`The restaurant photo of ${each.name}`}
+            src={imageUrl}
+            /> :  <StaticMap
+            coordinate={coordinate}
+            page={{
+              name: 'cardsview'
+            }}
+            />}
+            <BeenToButton 
+              page={{
+                name: 'listing',
+                restaurant: each,
+              }}
+            />
+        </div>
         <div className='listing-desc'>
           <h3 className='listing-desc-text-1'>{each.name}</h3>
           <div className='listing-desc-text-2'>
@@ -55,7 +66,7 @@ export default function CardsView({ listing }) {
           <div className='listing-desc-text-3'>
             <p>
               {/* <span className={!each.is_closed ? 'opening-green' : 'closing-red'}>{!each.is_closed ? `Open` : `Closed`}</span> */}
-              <span>{` • < ${parseFloat(each.distance/1000).toFixed(1)} km`}</span>
+              <span>{`< ${parseFloat(each.distance/1000).toFixed(1)} km`}</span>
             </p>
           </div>
         </div>

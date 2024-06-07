@@ -6,7 +6,9 @@ export default function MenuItem({ children, value, name }) {
   const {
     setPriceLevel,
     setRadius,
-    setSort
+    setSort,
+    setOffset,
+    setListing
   } = useOutletContext(); //from Layout.jsx
 
   MenuItem.propTypes = {
@@ -24,21 +26,33 @@ export default function MenuItem({ children, value, name }) {
     const {value} = event.target
     if (name === 'Price') {
       if (value == 0) {
-        setPriceLevel(null)
+        setPriceLevel(null);
+        setOffset(0);
+        setListing([]);
       } else {
         setPriceLevel(value);
+        setOffset(0);
+        setListing([]);
       }
     } else if (name === 'Distance') {
       if (value == 0) {
-        setRadius(4000)
+        setRadius(4000);
+        setOffset(0);
+        setListing([]);
       } else {
-        setRadius(value)
+        setRadius(value);
+        setOffset(0);
+        setListing([]);
       }
     } else if (name === 'Sort By') {
       if (value == 0) {
-        setSort('best_match')
+        setSort('best_match');
+        setOffset(0);
+        setListing([]);
       } else {
-        setSort(value)
+        setSort(value);
+        setOffset(0);
+        setListing([]);
       }
     }
     navigate('/Home')

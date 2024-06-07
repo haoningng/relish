@@ -31,8 +31,8 @@ export default function Home() {
         <InputSearch 
           page={{
             name: 'home',
-            title: 'Recommendation',
-            placeholder: 'Dish (e.g. beef pho...)'
+            title: '',
+            placeholder: 'Search Relish'
           }}
         />
         <div className="home-cuisine-container">
