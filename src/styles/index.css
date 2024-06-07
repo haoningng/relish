@@ -294,6 +294,7 @@ input[type="radio"]:checked + .radio-label {
   justify-content: space-around;
   align-items: start;
   gap: 15px;
+  white-space: nowrap;
 }
 
 .home-cuisine-container::-webkit-scrollbar {
@@ -327,6 +328,47 @@ input[type="radio"]:checked + .radio-label {
   margin-top: 2px;
 }
 
+.chevron {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1; /* Ensure chevrons are above content */
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent */
+  clip-path: polygon(100% 0, 0 50%, 100% 100%); /* Chevron shape */
+}
+
+.left-chevron {
+  position: fixed;
+  top: 170px;
+  left: 10px;
+}
+
+.right-chevron {
+  position: fixed;
+  top: 170px;
+  right: 10px;
+  transform: translateY(-50%) rotate(180deg); /* Flip chevron */
+}
+
+/* Hide chevrons when not needed */
+.home-cuisine-container .chevron.hidden {
+  opacity: 0;
+  pointer-events: none; /* Disable clicks when hidden */
+}
+
+/* Show/hide based on scroll position (using JavaScript) */
+.home-cuisine-container.scrollable-left .left-chevron { 
+  opacity: 1;
+  pointer-events: auto; 
+}
+.home-cuisine-container.scrollable-right .right-chevron { 
+  opacity: 1;
+  pointer-events: auto; 
+}
+
 .home-filter-container {
   width: 368px;
   position: relative;
@@ -353,7 +395,7 @@ input[type="radio"]:checked + .radio-label {
 .map-button {
   background-color: #EDF1D6;
   color: #000000;
-  width: 67px;
+  width: 130px;
   height: 26px;
   border: none;
   cursor: pointer;

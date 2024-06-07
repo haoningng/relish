@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useOutletContext, useNavigate } from "react-router-dom";
 import "../styles/index.css";
 import Listing from "../components/Listing";
@@ -23,6 +23,28 @@ export default function Home() {
     setToggleMapView(prevToggleMapView => !prevToggleMapView);
   }
 
+  useEffect(() => {
+    const scrollableContainer = document.querySelector('.home-cuisine-container');
+    const leftChevron = scrollableContainer.querySelector('.left-chevron');
+    const rightChevron = scrollableContainer.querySelector('.right-chevron');
+  
+    const updateChevronVisibility = () => {
+      const isScrolledLeft = scrollableContainer.scrollLeft > 0;
+      const isScrolledRight = scrollableContainer.scrollWidth - scrollableContainer.scrollLeft - scrollableContainer.clientWidth <= 1; // Adjust this threshold as needed
+      leftChevron.classList.toggle('hidden', !isScrolledLeft);
+      rightChevron.classList.toggle('hidden', isScrolledRight);
+    };
+  
+    updateChevronVisibility(); 
+  
+    const handleScroll = () => {
+      updateChevronVisibility();
+    };
+  
+    scrollableContainer.addEventListener('scroll', handleScroll);
+    return () => scrollableContainer.removeEventListener('scroll', handleScroll);
+  }, [])
+
   return (
       <div className="input-outer-container">
         <h3 onClick={handleClick} className='home-location-link-container'>
@@ -36,6 +58,7 @@ export default function Home() {
           }}
         />
         <div className="home-cuisine-container">
+          <div className="chevron left-chevron"></div>
           <CuisineOptions 
             page={{
               name: 'home',
@@ -43,6 +66,7 @@ export default function Home() {
               descClassName: 'horizontal-radio-label-desc'
             }}
           />
+          <div className="chevron right-chevron"></div>
         </div>
         <br />
         <FilterMenu/>
@@ -53,13 +77,12 @@ export default function Home() {
                   to="map"
                   className="map-button"
                   onClick={handleToggle}
-                  // end
                   style={toggleMapView ? {
                     backgroundColor: '#8DA656',
                     color: 'white',
                     border: '1px solid #6FBD6E'} : {}}
               >
-                Map
+                View in {toggleMapView ? 'List' : 'Map'}
               </button>
           </div>
           <Listing mapOn={toggleMapView}/>
