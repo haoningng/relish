@@ -1,33 +1,33 @@
-import { NavLink } from 'react-router-dom';
-import profileImage from '../assets/profile.png';
-import awardImage from '../assets/award.svg';
-import searchImage from '../assets/search.svg';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
     <footer>
       <nav className="footer-container">
-        <NavLink to="/">
-          <img
-              src={searchImage}
-              alt='Navigation icon to search page'
-              className="footer-icon"
-            />
-        </NavLink>
-        <NavLink to="/award">
-          <img
-            src={awardImage}
-            alt='Navigation icon to award page'
-            className="footer-icon"
-          />
-        </NavLink>
-        <NavLink to="/profile">
-          <img
-              src={profileImage}
-              alt='Navigation icon to profile page'
-              className="footer-icon"
-            />
-        </NavLink>
+        <Link className='footer-link' to="/">
+          <div className='footer-btn'>
+            <span className="material-symbols-outlined">
+            location_on
+            </span>
+            <p className='footer-icon-text'>Location</p>
+          </div>
+        </Link>
+        <Link className='footer-link' to="/home">
+          <div className='footer-btn'>
+            <span className="material-symbols-outlined">
+            home
+            </span>
+            <p className='footer-icon-text'>Home</p>
+          </div>
+        </Link>
+        <Link className='footer-link' to="/profile">
+          <div className='footer-btn'>
+            <span className="material-symbols-outlined">
+            account_circle
+            </span>
+            <p className='footer-icon-text'>Profile</p>
+          </div>
+        </Link>
       </nav>
     </footer>
   )
