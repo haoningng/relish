@@ -22,7 +22,7 @@ export default function CardsView({ listing }) {
     }
   }
   
-  const cards = listing.map(each => {
+  const cards = listing?.map(each => {
     const imageUrl = each.image_url;
     const coordinate = {
       lat: each.coordinates.latitude,
@@ -73,6 +73,9 @@ export default function CardsView({ listing }) {
     )
   })
 return (
-    listing.length ? cards : `0 Results of ${selectedCuisine} at this range or price level\nTry again`
+    listing?.length ? cards 
+    : <p className='error-message'>
+        {`0 Results of ${selectedCuisine} at this range or price level\nTry again`}
+      </p>
   )
 }

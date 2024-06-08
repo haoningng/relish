@@ -20,6 +20,7 @@ export default function Listing({ mapOn }) {
   };
 
   const [showSeeMore, setShowSeeMore] = useState(false);
+  const [errorCode, setErrorCode] = useState(0)
 
   const saved = useLocation();
   
@@ -73,7 +74,22 @@ export default function Listing({ mapOn }) {
     }
     
     fetch(`https://proxy-server-amber-two.vercel.app/api/yelp/`, options)
-      .then(response => response.json())
+      .then(response => {   
+        if (response.status === 429) {
+          // Handle rate limiting error
+          throw new Error('Too many requests');
+        }
+        if (response.ok) {
+          // Get the RateLimit-Remaining header value
+          const rateLimitRemaining = response.headers.get('RateLimit-Remaining');
+  
+          // Check if the header exists and log the value
+          if (rateLimitRemaining) {
+            console.log('Rate Limit Remaining:', rateLimitRemaining);
+          }          
+          response.json()
+        }
+      })
       .then(data => {
         // 2. Filter the data to remove the been-to restaurants, if there are any been-to restaurants
         const filteredNewListing = beenToRestaurants ?  (data.businesses?.filter((each) => {
@@ -83,38 +99,52 @@ export default function Listing({ mapOn }) {
 
         setListing(prevListing => {
           // 3. Before pressing the see more button / been-to button, render the filtered list straighaway
-          if (prevListing.length === 0) {
+          if (prevListing?.length === 0) {
             return filteredNewListing;
           }
 
           // If see more button is pressed, new data (offset by 20) will need to be be checked against previous Listing
           // If been-to button is pressed, the same data (minus one been-to) will need to be checked against previous Listing
-          const uniqueNewListing = filteredNewListing.filter((each) => {
+          const uniqueNewListing = filteredNewListing?.filter((each) => {
             const isNotInPrevListing = !prevListing?.some((prev) => prev.id == each.id)
             return isNotInPrevListing;
           });
 
           // If see more button is pressed, uniqueNewListing will be filled with new items to be appened to previous Listing
-          if (uniqueNewListing.length > 0) {
+          if (uniqueNewListing?.length > 0) {
             return prevListing.concat(uniqueNewListing);
           } else {
             // If been-to button is pressed, uniqueNewListing will be empty
             // if see more button was not pressed at all i.e offet = 0, we can return the filtered list straigtaway
-            if (prevListing.length === 0) {
+            if (prevListing?.length === 0) {
               return filteredNewListing;
             }
             // if see more button was pressed at least once i.e. offset > 20, we need to filter the previous List one more time
-            return prevListing.filter((each) => {
+            return prevListing?.filter((each) => {
               const isNotInBeenTo = !beenToRestaurants?.some(been => been.id === each.id);
               return isNotInBeenTo;
             })
           }
         })
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        if (err.message === 'Too many requests') {
+          console.error(err.message);
+          setErrorCode(() => 429);
+        } else {
+          // Handle network errors or other exceptions
+          console.error('Fetch Error:', err);
+        }
+        });
   }, [saved.state?.savedRestaurants, filterObj.priceLevel, filterObj.radius, filterObj.sort, lsLocationObj, offset, selectedCuisine, setListing]);
 
-  return ( mapOn 
+  return ( errorCode == 429 ? 
+  <p className='error-message'>
+    <strong>You have reached the access limit for Yelp API</strong><br/>
+    As this is currently a non-for-profit project, there is a daily rate limit of 300 call (Starter Plan) to Yelp Fusion API which powers this application.<br/>
+    Please try again tomorrow when rate limit is reset (after midnight UTC).
+  </p> :
+    mapOn 
     ? <MapView listing={ listing }/> 
     : <div className="listing-container" ref={listingContainerRef}>
         <CardsView listing={ listing }/>

@@ -28,6 +28,12 @@ body {
   padding: 0px;
 }
 
+.error-message {
+  text-wrap: wrap;
+  width: 300px;
+  margin: 100px auto 0;
+}
+
 /* (C) InputSearch Component */
 
 .input-outer-container {
