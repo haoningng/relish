@@ -77,7 +77,7 @@ export default function Listing({ mapOn }) {
       .then(data => {
         // 2. Filter the data to remove the been-to restaurants, if there are any been-to restaurants
         const filteredNewListing = beenToRestaurants ?  (data.businesses?.filter((each) => {
-          const isNotInBeenTo = !beenToRestaurants.some(been => been.id === each.id);
+          const isNotInBeenTo = !beenToRestaurants?.some(been => been.id === each.id);
           return isNotInBeenTo;
         })) : data.businesses;
 
@@ -90,7 +90,7 @@ export default function Listing({ mapOn }) {
           // If see more button is pressed, new data (offset by 20) will need to be be checked against previous Listing
           // If been-to button is pressed, the same data (minus one been-to) will need to be checked against previous Listing
           const uniqueNewListing = filteredNewListing.filter((each) => {
-            const isNotInPrevListing = !prevListing.some((prev) => prev.id == each.id)
+            const isNotInPrevListing = !prevListing?.some((prev) => prev.id == each.id)
             return isNotInPrevListing;
           });
 
@@ -105,7 +105,7 @@ export default function Listing({ mapOn }) {
             }
             // if see more button was pressed at least once i.e. offset > 20, we need to filter the previous List one more time
             return prevListing.filter((each) => {
-              const isNotInBeenTo = !beenToRestaurants.some(been => been.id === each.id);
+              const isNotInBeenTo = !beenToRestaurants?.some(been => been.id === each.id);
               return isNotInBeenTo;
             })
           }
