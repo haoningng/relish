@@ -1,33 +1,40 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function Footer() {
+  const activeStyles = {
+      fontWeight: 800,
+      backgroundColor: '#4C7054',
+      width: '100px',
+      borderRadius: '18px',
+  }
+
   return (
     <footer>
       <nav className="footer-container">
-        <Link className='footer-link' to="/">
+        <NavLink className='footer-link' to="/location" style={({ isActive }) => isActive ? activeStyles : null}>
           <div className='footer-btn'>
-            <span className="material-symbols-outlined">
+            <span className="material-symbols-outlined footer-icon">
             location_on
             </span>
             <p className='footer-icon-text'>Location</p>
           </div>
-        </Link>
-        <Link className='footer-link' to="/home">
+        </NavLink>
+        <NavLink className='footer-link' to="/" style={({ isActive }) => isActive ? activeStyles : null}>
           <div className='footer-btn'>
-            <span className="material-symbols-outlined">
+            <span className="material-symbols-outlined footer-icon">
             home
             </span>
             <p className='footer-icon-text'>Home</p>
           </div>
-        </Link>
-        <Link className='footer-link' to="/profile">
+        </NavLink>
+        <NavLink className='footer-link' to="/profile" style={({ isActive }) => isActive ? activeStyles : null}>
           <div className='footer-btn'>
-            <span className="material-symbols-outlined">
+            <span className="material-symbols-outlined footer-icon">
             account_circle
             </span>
             <p className='footer-icon-text'>Profile</p>
           </div>
-        </Link>
+        </NavLink>
       </nav>
     </footer>
   )
