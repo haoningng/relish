@@ -6,8 +6,7 @@ import MapView from './MapView';
 
 export default function Listing({ mapOn }) {
   const {
-    locationObj,
-    setLocationObj,
+    lsLocationObj,
     filterObj,
     selectedCuisine,
     offset,
@@ -28,7 +27,7 @@ export default function Listing({ mapOn }) {
   
   function handleSeeMoreClick() {
     setOffset(prevOffset => prevOffset + 20) // show the next 20 listing from Yelp API
-    navigate('/Home');
+    navigate('/');
   }
   
   const listingContainerRef = useRef(null); // Add ref to the scrollable div
@@ -68,7 +67,7 @@ export default function Listing({ mapOn }) {
           'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-          "endpoint": (`https://api.yelp.com/v3/businesses/search?term=${selectedCuisine}${filterObj.priceLevel ? `&price=` + `${String(filterObj.priceLevel)}` :''}&categories=${selectedCuisine}&sort_by=${filterObj.sort}&radius=${filterObj.radius}${`&latitude=${locationObj.coordinate.lat}&longitude=${locationObj.coordinate.lng}`}&locale=en_AU&offset=${offset}&limit=20`),
+          "endpoint": (`https://api.yelp.com/v3/businesses/search?term=${selectedCuisine}${filterObj.priceLevel ? `&price=` + `${String(filterObj.priceLevel)}` :''}&categories=${selectedCuisine}&sort_by=${filterObj.sort}&radius=${filterObj.radius}${`&latitude=${parseFloat(lsLocationObj[0])}&longitude=${parseFloat(lsLocationObj[1])}`}&locale=en_AU&offset=${offset}&limit=20`),
           "id": `django-insecure-0ezwicnx+&u=g+d3e2&9-u!c9un559($jq7--dpd*8p-bshh4$`
       })
     }
@@ -111,16 +110,9 @@ export default function Listing({ mapOn }) {
             })
           }
         })
-      setLocationObj((locationObj) => ({
-        ...locationObj,
-        coordinate: {
-          lat: data.region.center.latitude,
-          lng: data.region.center.longitude
-        }
-      }));
       })
       .catch(err => console.error(err));
-  }, [saved.state?.savedRestaurants, filterObj.priceLevel, filterObj.radius, filterObj.sort, locationObj.coordinate.lat, locationObj.coordinate.lng, offset, selectedCuisine, setListing, setLocationObj]);
+  }, [saved.state?.savedRestaurants, filterObj.priceLevel, filterObj.radius, filterObj.sort, lsLocationObj, offset, selectedCuisine, setListing]);
 
   return ( mapOn 
     ? <MapView listing={ listing }/> 

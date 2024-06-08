@@ -22,7 +22,7 @@ export default function CuisineOptions({ page }) {
     setSelectedCuisine(value);
     setOffset(0);
     setListing([]);
-    navigate('/Home');
+    navigate('/');
   }
 
   return (

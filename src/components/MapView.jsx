@@ -13,7 +13,7 @@ const MAP_ID = import.meta.env.VITE_MAP_ID
 
 export default function MapView({ listing }) {
   const {
-    locationObj,
+    lsLocationObj,
     filterObj,
     setSelectedRestaurant
   } = useOutletContext(); //from Layout.jsx
@@ -37,12 +37,12 @@ export default function MapView({ listing }) {
 
   function handleClick(restaurant) {
     setSelectedRestaurant(restaurant);
-    navigate(`./${restaurant.id}`)
+    navigate(`/listing/${restaurant.id}`)
   }
 
   const userPosition = {
-    lat: locationObj.coordinate.lat,
-    lng: locationObj.coordinate.lng
+    lat: parseFloat(lsLocationObj[0]),
+    lng: parseFloat(lsLocationObj[1])
   };
   
   const listingMarkers = listing.map((each, index) => {
@@ -83,7 +83,6 @@ export default function MapView({ listing }) {
                   <p>{`${each.price ? each.price : ''}`}</p>
                 </div>
                 <p>
-                  {/* <span className={!each.is_closed ? 'opening-green' : 'closing-red'}>{!each.is_closed ? `Open` : `Closed`}</span> */}
                   <span>{`< ${parseFloat(each.distance/1000).toFixed(1)} km`}</span>
                 </p>
             </InfoWindow>

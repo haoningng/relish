@@ -1,15 +1,12 @@
-import { Outlet } from "react-router-dom"
-import { useState } from "react"
+import { Outlet, useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
+import useLocalStorageState from 'use-local-storage-state'
 import Footer from "./Footer"
 
 export default function Layout() {
-  // default to Melbourne coordinate
-  const [locationObj, setLocationObj] = useState({
-    coordinate: {
-      lat: -38.1828007,
-      lng: 144.458746,
-    },
-    placeName: 'Melbourne CBD', // placeName to be shown as link on top left corner home page
+  const [lsLocationObj, setLsLocationObj] = useLocalStorageState('locationObj', {
+    // default to Melbourne coordinate
+    defaultValue: ['-37.8136', '144.9631', 'Melbourne CBD']
   })
 
   const [filterObj, setFilterObj] = useState({
@@ -18,7 +15,7 @@ export default function Layout() {
     sort: 'best_match'
   })
 
-  const [selectedCuisine, setSelectedCuisine] = useState(''); // selected cuisine option
+  const [selectedCuisine, setSelectedCuisine] = useState('restaurant'); // selected cuisine option
   const [selectedRestaurant, setSelectedRestaurant] = useState('') // selected restaurant's details to be shown on Restaurant page
   const [offset, setOffset] = useState(0) // offset parameter to be used in Yelp Api Business Search
   const [listing, setListing] = useState([]) // listing after filtering out 'been to' and appending the new ones
@@ -46,14 +43,25 @@ export default function Layout() {
     'Seafood',
     'Salad'
   ] // cuisine options
-  
+
+  // if locationObj is not initialised in localStorage
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (lsLocationObj[0] === 'undefined' || !lsLocationObj) {
+      setLsLocationObj(() => (
+        [`-37.8136`, `144.9631`, 'Melbourne CBD']
+      ));
+      navigate('/location');
+    }
+  }, [lsLocationObj, navigate])
+
   return (
     <div className="site-wrapper">
       <main>
         <Outlet 
           context={{
-            locationObj,
-            setLocationObj,
+            lsLocationObj,
+            setLsLocationObj,
             filterObj,
             setFilterObj,
             cuisineList,

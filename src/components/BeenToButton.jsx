@@ -21,7 +21,7 @@ export default function BeenToButton({ page }) {
       localStorage.setItem("been-to", serializedData);
   
       console.log("Restaurant saved to localStorage!");
-      navigate('/Home', { state: { savedRestaurants }})
+      navigate('/', { state: { savedRestaurants }})
   
     } catch (error) {
       console.error("Error saving restaurant to localStorage:", error);

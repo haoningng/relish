@@ -6,8 +6,8 @@ import InputSearch from "../components/InputSearch";
 
 export default function Location() {
   const {
-    locationObj,
-    setLocationObj,
+    lsLocationObj,
+    setLsLocationObj,
     setFilterObj,
     setSelectedCuisine,
     setOffset,
@@ -21,12 +21,12 @@ export default function Location() {
   // default to 0.1 degree in coordinate i.e. approx +/-11km
   const defaultBounds = useMemo(() => {
     return {
-      north: locationObj.coordinate.lat + 0.1,
-      south: locationObj.coordinate.lat - 0.1,
-      east: locationObj.coordinate.lng + 0.1,
-      west: locationObj.coordinate.lng - 0.1,
+      north: parseFloat(lsLocationObj[0]) + 0.1,
+      south: parseFloat(lsLocationObj[0]) - 0.1,
+      east: parseFloat(lsLocationObj[1]) + 0.1,
+      west: parseFloat(lsLocationObj[1]) - 0.1,
     };
-  }, [locationObj.coordinate.lat, locationObj.coordinate.lng]) 
+  }, [lsLocationObj]) 
 
   // restricted to Australia
   const options = useMemo(() => {
@@ -37,13 +37,9 @@ export default function Location() {
     };
   }, [defaultBounds]) 
 
-  // reset the cuisine choice, placeName and filters
+  // reset the cuisine choice and filters
   useEffect(() => {
-    setSelectedCuisine('');
-    setLocationObj((locationObj) => ({
-      ...locationObj,
-      placeName: ''
-    }));
+    setSelectedCuisine('restaurant');
     setFilterObj((filterObj) => ({
       ...filterObj,
       priceLevel: null,
@@ -55,33 +51,26 @@ export default function Location() {
   }, [])
 
   // request for permission to retrieve coordinate via Geolocation API
-  useEffect(() => {
+  function getMyLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         // permission granted
         (position) => {
           setPermissionStatus('granted');
-          setLocationObj((locationObj) => ({
-            ...locationObj,
-            coordinate: {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            },
-            placeName:'Discovering Nearby'
-          }))
-        },
+          setLsLocationObj(() => (
+            [`${position.coords.latitude}`, `${position.coords.longitude}`, 'Discovering Nearby']
+          ))}
+,
         (error) => {
           // if denied
           if (error.code === error.PERMISSION_DENIED) {
             setPermissionStatus('denied');
-            setLocationObj((locationObj) => ({
-              ...locationObj,
-              coordinate: {
-                lat: -37.8136,
-                lng: 144.9631
-              },
-              placeName: 'Melbourne CBD'
-            })); // Default to Melbourne Coordinate
+            // if not already set in localStorage, set default to Melbourne CBD
+            if (!lsLocationObj) {
+              setLsLocationObj(() => (
+                [`-37.8136`, `144.9631`, 'Melbourne CBD']
+              ))
+            }
           } else {
             setPermissionStatus('error'); // Other errors
           }
@@ -90,7 +79,7 @@ export default function Location() {
     } else {
       setPermissionStatus('unsupported'); // Geolocation not supported
     }
-  }, []);
+  }
   
   // Google Maps Javascript API [Library = Places]
   useEffect(() => {
@@ -103,20 +92,15 @@ export default function Location() {
       autoCompleteRef.current.addListener("place_changed", async function () {
         const place = await autoCompleteRef.current.getPlace();
         if (place) {
-          setLocationObj((locationObj) => ({
-            ...locationObj,
-            coordinate: {
-              lat: place.geometry?.location.lat(),
-              lng: place.geometry?.location.lng(),
-            },
-            placeName: place.name
-          }))
+          setLsLocationObj(() => (
+            [`${place.geometry?.location.lat()}`, `${place.geometry?.location.lng()}`, `${place.name}`]
+          ))
         }
       });
     }
   }, []);
 
-  return permissionStatus === 'granted' || permissionStatus === 'denied' ? (
+  return (
     <div className="input-outer-container">
       <InputSearch 
         page={{
@@ -127,10 +111,11 @@ export default function Location() {
         }}
       />
       <br />
-      {locationObj.coordinate.lat ? 
-      <>
         <StaticMap
-          coordinate={locationObj.coordinate}
+          coordinate={{
+            lat: parseFloat(lsLocationObj[0]),
+            lng: parseFloat(lsLocationObj[1]),
+          }}
           page={{
             name: 'location'
           }}
@@ -138,41 +123,14 @@ export default function Location() {
         <Link to="/Quiz">
           <button className='location-proceed-btn'>Proceed</button>
         </Link>
-      </>
-      : 
-      <>
-        <StaticMap
-          coordinate={{
-            lat: -38.1828007,
-            lng: 144.458746,
-          }}
-          page={{
-            name: 'location'
-        }}
-        /> 
-      </>}
+        <div className='use-my-location'>
+          <p className="material-symbols-outlined">my_location</p>
+          <p onClick={getMyLocation}>Use my current location</p>
+        </div>
+          {permissionStatus === 'denied' && 
+          <p className='geolocation-permission-denied'>
+          - Location permission is required -<br/>Please go to your browser settings and enable location access for this website.
+          </p>}
     </div>
-  ) : (
-    // this block runs when the browser is checking permissionStatus
-    // TODO: insert animation here maybe
-    <div className="input-outer-container">
-      <InputSearch 
-        page={{
-          name: 'location',
-          ref: inputRef,
-          title: 'Where to eat?',
-          placeholder: 'Suburb / Postcode'
-        }}
-      />
-      <br />
-      {locationObj.coordinate.lat ? <StaticMap
-        coordinate={locationObj.coordinate}
-        page={{
-          name: 'location'
-        }}
-      /> : ''}
-      <p className='searching'>Searching location</p>
-      <p className='searching-2'>Please refresh if you are not redirected within a few seconds </p>
-    </div>
-  );
+  ) 
 }

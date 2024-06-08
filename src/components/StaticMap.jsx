@@ -19,7 +19,7 @@ export default function StaticMap({ coordinate, page }) {
     }, [lat, lng])
 
     return ( page.name == 'location' ?
-        imgUrl ? <img className="location-img" alt='Static map of current location' src={imgUrl} ></img> : null
+        imgUrl ? <img className="location-img" alt='Static map of current location' src={imgUrl} ></img> : <div className="location-img"></div>
         : page.name == 'restaurant' ?
         imgUrl ? <img className="restaurant-map" alt='Static map of selected restaurant' src={imgUrl} ></img> : null
         : page.name == 'cardsview' ?

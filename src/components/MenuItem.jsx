@@ -71,7 +71,7 @@ export default function MenuItem({ children, value, name }) {
         setListing([]);
       }
     }
-    navigate('/Home')
+    navigate('/')
   }
 
   return (

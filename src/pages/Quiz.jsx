@@ -6,19 +6,19 @@ import CuisineOptions from "../components/CuisineOptions";
 
 export default function Quiz() {
   const {
-    locationObj,
+    lsLocationObj,
     setFilterObj,
     selectedCuisine,
     setSelectedCuisine,
     setOffset,
     setListing
   } = useOutletContext(); //from Layout.jsx
-  console.log(locationObj.coordinate, selectedCuisine)
+  console.log(lsLocationObj, selectedCuisine)
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    setSelectedCuisine('');
+    setSelectedCuisine('restaurant');
     setFilterObj((filterObj) => ({
       ...filterObj,
       priceLevel: null,
@@ -36,10 +36,10 @@ export default function Quiz() {
     const randomIndex = Math.floor(Math.random() * list.length); // Get a random index
     const randomElement = list[randomIndex];
     setSelectedCuisine(randomElement);
-    navigate('/Home');
+    navigate('/');
   }
 
-  return locationObj.coordinate ? (
+  return lsLocationObj ? (
     <div className="input-outer-container">
       <InputSearch 
         page={{

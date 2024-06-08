@@ -8,7 +8,8 @@ export default function InputSearch({ page }) {
   const {
     setSelectedCuisine,
     setOffset,
-    setListing
+    setListing,
+    setLsLocationObj
   } = useOutletContext(); //from Layout.jsx
 
   InputSearch.propTypes = {
@@ -30,8 +31,14 @@ export default function InputSearch({ page }) {
       setInputValue('');
       setListing([]);
       form.reset();
-      navigate('/Home');
-    } 
+      navigate('/');
+    } else {
+      setLsLocationObj(() => (
+        [`-37.8136`, `144.9631`, 'Melbourne CBD']
+      ));
+      setListing([]);
+      form.reset();
+    }
   }
 
   // handle selecting from dropdown suggestions (for cuisine options)
@@ -41,7 +48,7 @@ export default function InputSearch({ page }) {
     setInputValue('');
     setListing([]);
     form.reset();
-    navigate('/Home');
+    navigate('/');
   }
  
   function handleChange(event){
