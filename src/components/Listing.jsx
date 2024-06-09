@@ -3,6 +3,7 @@ import { useOutletContext, useNavigate, useLocation } from "react-router-dom";
 import { PropTypes } from 'prop-types'
 import CardsView from './CardsView';
 import MapView from './MapView';
+import SkeletonListing from "../components/SkeletonListing";
 
 export default function Listing({ mapOn }) {
   const {
@@ -20,7 +21,8 @@ export default function Listing({ mapOn }) {
   };
 
   const [showSeeMore, setShowSeeMore] = useState(false);
-  const [errorCode, setErrorCode] = useState(0)
+  const [errorCode, setErrorCode] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const saved = useLocation();
   
@@ -117,6 +119,7 @@ export default function Listing({ mapOn }) {
             })
           }
         })
+        setLoading(false);
       })
       .catch(err => {
         if (err.message === 'Too many requests') {
@@ -126,6 +129,7 @@ export default function Listing({ mapOn }) {
           // Handle network errors or other exceptions
           console.error('Fetch Error:', err);
         }
+        setLoading(false);
         });
   }, [saved.state?.savedRestaurants, filterObj.priceLevel, filterObj.radius, filterObj.sort, lsLocationObj, offset, selectedCuisine, setListing]);
 
@@ -138,10 +142,13 @@ export default function Listing({ mapOn }) {
     mapOn 
     ? <MapView listing={ listing }/> 
     : <div className="listing-container" ref={listingContainerRef}>
-        <CardsView listing={ listing }/>
-        <button className={`listing-see-more ${showSeeMore ? 'show' : ''}`} onClick={handleSeeMoreClick}>See More</button>
-        <br/>
-        <br/>
+        {loading ? <SkeletonListing/> :
+        <>
+          <CardsView listing={ listing }/>
+          <button className={`listing-see-more ${showSeeMore ? 'show' : ''}`} onClick={handleSeeMoreClick}>See More</button>
+          <br/>
+          <br/>
+        </>}
       </div>
   );
 }

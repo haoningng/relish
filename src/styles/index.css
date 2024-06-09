@@ -140,8 +140,8 @@ li.pac-item {
 
 .location-img {
   border-radius: 50%;
-  width: 20rem;
-  height: 20rem;
+  width: 19rem;
+  height: 19rem;
   position: relative;
   margin-top: 180px;
 }
@@ -497,6 +497,59 @@ input[type="radio"]:checked + .radio-label {
   border-bottom: 1px solid #6B7280;
 }
 
+/* (C) SkeletonListing component */
+
+.skeleton-listing {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.skeleton-image,
+.skeleton-title,
+.skeleton-line {
+  border-radius: 8px;
+  object-fit: cover;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: #eeeeee7c; /* Light gray background */
+  animation: skeleton-loading 1s linear infinite alternate; /* Animation */
+}
+
+.skeleton-image {
+  width: 360px;
+  height: 150px;
+}
+
+.skeleton-title {
+  width: 340px;
+  height: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  padding-left: 0;
+}
+
+.skeleton-line {
+  width: 265px;
+  height: 10px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* (C) CardsListing component */
 
 .listing-container {
@@ -774,14 +827,16 @@ input[type="radio"]:checked + .radio-label {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 10px;
-  gap: 0;;
+  gap: 0;
 }
 
 .footer-link {
   text-decoration: none;
   color: #F0F3F6;
   cursor: pointer;
+  width: 100px;
+  height: 100%;
+  padding-top: 7px;
 }
 
 .footer-icon-text {
