@@ -22,7 +22,7 @@ export default function FilterMenu() {
 
   // Track if ANY filter is applied (not just the dropdown state)
   const isFilterApplied = useMemo(() => {
-    return filterObj.priceLevel !== 0 || filterObj.radius !== 4000 || filterObj.sort !== 'best_match';
+    return filterObj.priceLevel !== 0 || filterObj.radius !== 0 || filterObj.sort !== 'best_match';
   }, [filterObj]); // Update whenever filterObj changes
   
   const buttonArray = [{
@@ -99,7 +99,7 @@ export default function FilterMenu() {
   // Dynamic label for the filter button
   const dspPriceLevel = filterObj.priceLevel !== 0 ?
   ` ${'$'.repeat(filterObj.priceLevel)}` : 'Price';
-  const dspRadius = filterObj.radius !== 4000 ? `<${filterObj.radius/1000}km` : 'Distance';
+  const dspRadius = filterObj.radius !== 0 ? `<${filterObj.radius/1000}km` : 'Distance';
   const dspSort = filterObj.sort === 'review_count' ? 'Review' : filterObj.sort === 'rating' ?  'Ratings' : filterObj.sort === 'distance' ? `Distance` : 'Sort By';
   
   return (
@@ -115,7 +115,7 @@ export default function FilterMenu() {
                 buttonObj.name === activeButton.name ||
                 (isFilterApplied && (
                   buttonObj.name === 'Price' && filterObj.priceLevel !== 0 ||
-                  buttonObj.name === 'Distance' && filterObj.radius !== 4000 ||
+                  buttonObj.name === 'Distance' && filterObj.radius !== 0 ||
                   buttonObj.name === 'Sort By' && (filterObj.sort === 'rating' || filterObj.sort === 'review_count' || filterObj.sort === 'distance')
                 ))
                 ? {

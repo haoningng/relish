@@ -11,7 +11,7 @@ export default function Layout() {
 
   const [filterObj, setFilterObj] = useState({
     priceLevel: 0,
-    radius: 4000,
+    radius: 0,
     sort: 0
   })
 

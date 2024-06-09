@@ -21,9 +21,9 @@ export default function Quiz() {
     setSelectedCuisine('restaurant');
     setFilterObj((filterObj) => ({
       ...filterObj,
-      priceLevel: null,
-      radius: 4000,
-      sort: 'best_match'
+      priceLevel: 0,
+      radius: 0,
+      sort: 0
     })),
     setOffset(0);
     setListing([]);
