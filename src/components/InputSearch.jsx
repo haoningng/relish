@@ -6,6 +6,7 @@ import { PropTypes } from 'prop-types'
 
 export default function InputSearch({ page }) {
   const {
+    selectedCuisine,
     setSelectedCuisine,
     setOffset,
     setListing,
@@ -27,13 +28,15 @@ export default function InputSearch({ page }) {
   function handleSubmit(event) {
     event.preventDefault(); // Prevent default form submission
     if (page.name !== 'location') {
-      setSelectedCuisine(inputValue.toLowerCase());
-      setOffset(0);
-      setInputValue('');
-      setListing([]);
-      form.reset();
-      setLoading(true);
-      navigate('/');
+      if (inputValue !== selectedCuisine) {
+        setSelectedCuisine(inputValue.toLowerCase());
+        setOffset(0);
+        setInputValue('');
+        setListing([]);
+        form.reset();
+        setLoading(true);
+        navigate('/');
+      }
     } else {
       setLsLocationObj(() => (
         [`-37.8136`, `144.9631`, 'Melbourne CBD']
@@ -45,13 +48,15 @@ export default function InputSearch({ page }) {
 
   // handle selecting from dropdown suggestions (for cuisine options)
   function handleClick(suggestion) {
-    setSelectedCuisine(suggestion);
-    setOffset(0);
     setInputValue('');
-    setListing([]);
     form.reset();
-    setLoading(true);
-    navigate('/');
+    if (suggestion !== selectedCuisine) {
+      setSelectedCuisine(suggestion);
+      setOffset(0);
+      setListing([]);
+      setLoading(true);
+      navigate('/');
+    }
   }
  
   function handleChange(event){

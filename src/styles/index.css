@@ -356,7 +356,6 @@ input[type="radio"]:checked + .radio-label {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 1; /* Ensure chevrons are above content */
   width: 20px;
   height: 20px;
   cursor: pointer;
