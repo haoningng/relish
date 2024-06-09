@@ -9,7 +9,8 @@ export default function InputSearch({ page }) {
     setSelectedCuisine,
     setOffset,
     setListing,
-    setLsLocationObj
+    setLsLocationObj,
+    setLoading
   } = useOutletContext(); //from Layout.jsx
 
   InputSearch.propTypes = {
@@ -31,6 +32,7 @@ export default function InputSearch({ page }) {
       setInputValue('');
       setListing([]);
       form.reset();
+      setLoading(true);
       navigate('/');
     } else {
       setLsLocationObj(() => (
@@ -48,6 +50,7 @@ export default function InputSearch({ page }) {
     setInputValue('');
     setListing([]);
     form.reset();
+    setLoading(true);
     navigate('/');
   }
  

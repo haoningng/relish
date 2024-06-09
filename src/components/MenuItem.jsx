@@ -6,7 +6,8 @@ export default function MenuItem({ children, value, name }) {
   const {
     setFilterObj,
     setOffset,
-    setListing
+    setListing,
+    setLoading
   } = useOutletContext(); //from Layout.jsx
 
   MenuItem.propTypes = {
@@ -28,15 +29,12 @@ export default function MenuItem({ children, value, name }) {
           ...filterObj,
           price: null
         }));
-        setOffset(0);
-        setListing([]);
+
       } else {
         setFilterObj((filterObj) => ({
           ...filterObj,
           price: value
         }));
-        setOffset(0);
-        setListing([]);
       }
     } else if (name === 'Distance') {
       if (value == 0) {
@@ -44,15 +42,11 @@ export default function MenuItem({ children, value, name }) {
           ...filterObj,
           radius: 4000
         }));
-        setOffset(0);
-        setListing([]);
       } else {
         setFilterObj((filterObj) => ({
           ...filterObj,
           radius: value
         }));
-        setOffset(0);
-        setListing([]);
       }
     } else if (name === 'Sort By') {
       if (value == 0) {
@@ -60,17 +54,16 @@ export default function MenuItem({ children, value, name }) {
           ...filterObj,
           sort: 'best_match'
         }));
-        setOffset(0);
-        setListing([]);
       } else {
         setFilterObj((filterObj) => ({
           ...filterObj,
           sort: value
         }));
-        setOffset(0);
-        setListing([]);
       }
     }
+    setOffset(0);
+    setListing([]);
+    setLoading(true);
     navigate('/')
   }
 

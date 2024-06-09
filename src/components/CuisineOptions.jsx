@@ -8,7 +8,8 @@ export default function CuisineOptions({ page }) {
     selectedCuisine,
     setSelectedCuisine,
     setOffset,
-    setListing
+    setListing,
+    setLoading
   } = useOutletContext(); //from Layout.jsx
 
   const navigate = useNavigate()
@@ -22,6 +23,7 @@ export default function CuisineOptions({ page }) {
     setSelectedCuisine(value);
     setOffset(0);
     setListing([]);
+    setLoading(true);
     navigate('/');
   }
 

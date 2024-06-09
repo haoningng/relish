@@ -13,7 +13,9 @@ export default function Listing({ mapOn }) {
     offset,
     setOffset,
     listing,
-    setListing
+    setListing,
+    loading,
+    setLoading
   } = useOutletContext(); //from Layout.jsx
 
   Listing.propTypes = {
@@ -22,7 +24,7 @@ export default function Listing({ mapOn }) {
 
   const [showSeeMore, setShowSeeMore] = useState(false);
   const [errorCode, setErrorCode] = useState(0);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   const saved = useLocation();
   
