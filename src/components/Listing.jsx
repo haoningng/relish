@@ -79,16 +79,7 @@ export default function Listing({ mapOn }) {
           // Handle rate limiting error
           throw new Error('Too many requests');
         }
-        if (response.ok) {
-          // Get the RateLimit-Remaining header value
-          const rateLimitRemaining = response.headers.get('RateLimit-Remaining');
-  
-          // Check if the header exists and log the value
-          if (rateLimitRemaining) {
-            console.log('Rate Limit Remaining:', rateLimitRemaining);
-          }          
-          response.json()
-        }
+        return response.json()
       })
       .then(data => {
         // 2. Filter the data to remove the been-to restaurants, if there are any been-to restaurants
