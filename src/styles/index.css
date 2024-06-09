@@ -592,7 +592,7 @@ input[type="radio"]:checked + .radio-label {
   cursor: pointer;
 }
 
-.listing-restaurant-photo, .cardsview-map {
+.listing-restaurant-photo {
   width: 360px;
   height: 180px;
   border-radius: 8px;
