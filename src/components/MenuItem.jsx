@@ -27,13 +27,12 @@ export default function MenuItem({ children, value, name }) {
       if (value == 0) {
         setFilterObj((filterObj) => ({
           ...filterObj,
-          price: null
+          priceLevel: 0
         }));
-
       } else {
         setFilterObj((filterObj) => ({
           ...filterObj,
-          price: value
+          priceLevel: value
         }));
       }
     } else if (name === 'Distance') {
@@ -52,7 +51,7 @@ export default function MenuItem({ children, value, name }) {
       if (value == 0) {
         setFilterObj((filterObj) => ({
           ...filterObj,
-          sort: 'best_match'
+          sort: 0
         }));
       } else {
         setFilterObj((filterObj) => ({

@@ -10,9 +10,9 @@ export default function Layout() {
   })
 
   const [filterObj, setFilterObj] = useState({
-    priceLevel: null,
+    priceLevel: 0,
     radius: 4000,
-    sort: 'best_match'
+    sort: 0
   })
 
   const [selectedCuisine, setSelectedCuisine] = useState('restaurant'); // selected cuisine option

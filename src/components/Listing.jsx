@@ -24,7 +24,6 @@ export default function Listing({ mapOn }) {
 
   const [showSeeMore, setShowSeeMore] = useState(false);
   const [errorCode, setErrorCode] = useState(0);
-  // const [loading, setLoading] = useState(true);
 
   const saved = useLocation();
   
@@ -65,14 +64,14 @@ export default function Listing({ mapOn }) {
   useEffect(() => {
     // 1. deserialise the restaurant list from localStorage
     const beenToRestaurants = JSON.parse(localStorage.getItem('been-to'));
-    
+
     const options = {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-          "endpoint": (`https://api.yelp.com/v3/businesses/search?term=${selectedCuisine}${filterObj.priceLevel ? `&price=` + `${String(filterObj.priceLevel)}` :''}&categories=${selectedCuisine}&sort_by=${filterObj.sort}&radius=${filterObj.radius}${`&latitude=${parseFloat(lsLocationObj[0])}&longitude=${parseFloat(lsLocationObj[1])}`}&locale=en_AU&offset=${offset}&limit=20`),
+          "endpoint": (`https://api.yelp.com/v3/businesses/search?term=${selectedCuisine}${filterObj.priceLevel ? `&price=${filterObj.priceLevel}` : ''}&categories=${selectedCuisine}${filterObj.sort ? `&sort_by=${filterObj.sort}` : ''}&radius=${filterObj.radius}${`&latitude=${parseFloat(lsLocationObj[0])}&longitude=${parseFloat(lsLocationObj[1])}`}&locale=en_AU&offset=${offset}&limit=20`),
           "id": `django-insecure-0ezwicnx+&u=g+d3e2&9-u!c9un559($jq7--dpd*8p-bshh4$`
       })
     }

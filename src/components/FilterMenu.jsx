@@ -19,6 +19,11 @@ export default function FilterMenu() {
 
   const [activeButton, setActiveButton] = useState(defaultState);
   const dropdownRef = useRef(null);
+
+  // Track if ANY filter is applied (not just the dropdown state)
+  const isFilterApplied = useMemo(() => {
+    return filterObj.priceLevel !== 0 || filterObj.radius !== 4000 || filterObj.sort !== 'best_match';
+  }, [filterObj]); // Update whenever filterObj changes
   
   const buttonArray = [{
     name: 'Price',
@@ -92,7 +97,7 @@ export default function FilterMenu() {
   }, [defaultState]);
 
   // Dynamic label for the filter button
-  const dspPriceLevel = filterObj.priceLevel !== null ?
+  const dspPriceLevel = filterObj.priceLevel !== 0 ?
   ` ${'$'.repeat(filterObj.priceLevel)}` : 'Price';
   const dspRadius = filterObj.radius !== 4000 ? `<${filterObj.radius/1000}km` : 'Distance';
   const dspSort = filterObj.sort === 'review_count' ? 'Review' : filterObj.sort === 'rating' ?  'Ratings' : filterObj.sort === 'distance' ? `Distance` : 'Sort By';
@@ -105,7 +110,14 @@ export default function FilterMenu() {
             <button
               className="menu-button"
               onClick={() => handleButtonClick(buttonObj)}
-              style={buttonObj.name === activeButton.name
+              style={
+                // Apply active style if the dropdown is open OR a filter is applied for this button
+                buttonObj.name === activeButton.name ||
+                (isFilterApplied && (
+                  buttonObj.name === 'Price' && filterObj.priceLevel !== 0 ||
+                  buttonObj.name === 'Distance' && filterObj.radius !== 4000 ||
+                  buttonObj.name === 'Sort By' && (filterObj.sort === 'rating' || filterObj.sort === 'review_count' || filterObj.sort === 'distance')
+                ))
                 ? {
                     backgroundColor: '#8DA656',
                     color: 'white',
