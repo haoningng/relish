@@ -1,16 +1,26 @@
-import { useOutletContext, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import notFoundImage from '../assets/notfound.svg';
 import "../styles/index.css";
 
 function NotFound() {
+  const navigate = useNavigate();
+
+  function handleBack(event) {
+    event.preventDefault();
+    navigate('/Home');
+  }
+
   return (
-      <div>
-        <h1>
-              404
-          </h1>
-          <h1 style={{ color: "green" }}>
-              Whoops... Chef Not Found!
-          </h1>
+    <div className="notfound-container">
+      <h1>404</h1>
+      <div className="notfound-message">
+        <img src={notFoundImage} alt="Chef Not Found" className="notfound-emoji" />
+        <h2>Whoops...<br/>Chef Not Found!</h2>
       </div>
+      <button className="back-button" onClick={handleBack}>
+        Back to find food
+      </button>
+    </div>
   );
 }
 
