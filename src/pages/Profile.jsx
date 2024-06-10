@@ -63,7 +63,7 @@ export default function Profile() {
         <h2>John Smith</h2>
         <div className='progress-bar'>
           <div className='progress-left-text'>
-            <p className='progress-sum'>{beenToRestaurants?.length}</p>
+            <p className='progress-sum'>{beenToRestaurants ? beenToRestaurants?.length : 0}</p>
             <p className='progress-checkin-text'>Check-ins</p>
           </div>
           <StepProgressBar progress={beenToRestaurants?.length}/>
