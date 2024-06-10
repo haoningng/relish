@@ -1,32 +1,38 @@
 import { NavLink } from 'react-router-dom';
-import profileImage from '../assets/profile.png';
-import awardImage from '../assets/award.svg';
-import searchImage from '../assets/search.svg';
 
 export default function Footer() {
+  const activeStyles = {
+      fontWeight: 800,
+      color: '#303D32',
+      borderTop: '2px solid black',
+  }
+
   return (
     <footer>
       <nav className="footer-container">
-        <NavLink to="/">
-          <img
-              src={searchImage}
-              alt='Navigation icon to search page'
-              className="footer-icon"
-            />
+        <NavLink className='footer-link' to="/location" style={({ isActive }) => isActive ? activeStyles : null}>
+          <div className='footer-btn'>
+            <span className="material-symbols-outlined footer-icon">
+            location_on
+            </span>
+            <p className='footer-icon-text'>Location</p>
+          </div>
         </NavLink>
-        <NavLink to="/award">
-          <img
-            src={awardImage}
-            alt='Navigation icon to award page'
-            className="footer-icon"
-          />
+        <NavLink className='footer-link' to="/" style={({ isActive }) => isActive ? activeStyles : null}>
+          <div className='footer-btn'>
+            <span className="material-symbols-outlined footer-icon">
+            home
+            </span>
+            <p className='footer-icon-text'>Home</p>
+          </div>
         </NavLink>
-        <NavLink to="/profile">
-          <img
-              src={profileImage}
-              alt='Navigation icon to profile page'
-              className="footer-icon"
-            />
+        <NavLink className='footer-link' to="/profile" style={({ isActive }) => isActive ? activeStyles : null}>
+          <div className='footer-btn'>
+            <span className="material-symbols-outlined footer-icon">
+            account_circle
+            </span>
+            <p className='footer-icon-text'>Profile</p>
+          </div>
         </NavLink>
       </nav>
     </footer>

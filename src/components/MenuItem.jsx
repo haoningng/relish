@@ -4,11 +4,10 @@ import { PropTypes } from 'prop-types'
 
 export default function MenuItem({ children, value, name }) {
   const {
-    setPriceLevel,
-    setRadius,
-    setSort,
+    filterObj,
+    setFilterObj,
     setOffset,
-    setListing
+    setListing,
   } = useOutletContext(); //from Layout.jsx
 
   MenuItem.propTypes = {
@@ -23,39 +22,55 @@ export default function MenuItem({ children, value, name }) {
   const navigate = useNavigate()
 
   function handleRadio(event) {
-    const {value} = event.target
-    if (name === 'Price') {
-      if (value == 0) {
-        setPriceLevel(null);
-        setOffset(0);
-        setListing([]);
-      } else {
-        setPriceLevel(value);
-        setOffset(0);
-        setListing([]);
+    event.preventDefault(); 
+    const {value} = event.target;
+    if (value != 0 && value != filterObj.priceLevel && value != filterObj.radius && value != filterObj.sort) {
+      if (name === 'Price') {
+        setFilterObj((filterObj) => ({
+          ...filterObj,
+          priceLevel: value
+        }));
+      } else if (name === 'Distance') {
+        setFilterObj((filterObj) => ({
+          ...filterObj,
+          radius: value
+        }));
+      } else if (name === 'Sort By') {
+        setFilterObj((filterObj) => ({
+          ...filterObj,
+          sort: value
+        }));
       }
-    } else if (name === 'Distance') {
-      if (value == 0) {
-        setRadius(4000);
+      setOffset(0);
+      setListing([]);
+      navigate('/')
+    } else if (value == 0) {
+      if (name === 'Price' && filterObj.priceLevel != 0) {
+        setFilterObj((filterObj) => ({
+          ...filterObj,
+          priceLevel: 0
+        }));
         setOffset(0);
         setListing([]);
-      } else {
-        setRadius(value);
+        navigate('/')
+      } else if (name === 'Distance' && filterObj.radius != 0) {
+        setFilterObj((filterObj) => ({
+          ...filterObj,
+          radius: 0
+        }));
         setOffset(0);
         setListing([]);
-      }
-    } else if (name === 'Sort By') {
-      if (value == 0) {
-        setSort('best_match');
+        navigate('/')
+      } else if (name === 'Sort By' && filterObj.sort != 0) {
+        setFilterObj((filterObj) => ({
+          ...filterObj,
+          sort: 0
+        }));
         setOffset(0);
         setListing([]);
-      } else {
-        setSort(value);
-        setOffset(0);
-        setListing([]);
+        navigate('/')
       }
     }
-    navigate('/Home')
   }
 
   return (
@@ -67,7 +82,7 @@ export default function MenuItem({ children, value, name }) {
         value={value}
         onChange={handleRadio}
       />
-      <label className={value === 0 || value === 4000 ? 'menu-item reset-menu-item' : 'menu-item'} htmlFor={value}>
+      <label className={value === 0 ? 'menu-item reset-menu-item' : 'menu-item'} htmlFor={value}>
       {children}
       </label>
     </div>

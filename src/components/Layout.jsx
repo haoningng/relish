@@ -1,18 +1,25 @@
-import { Outlet } from "react-router-dom"
-import { useState } from "react"
+import { Outlet, useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
+import useLocalStorageState from 'use-local-storage-state'
 import Footer from "./Footer"
 
 export default function Layout() {
-  // default to Melbourne coordinate
-  const [coordinate, setCoordinate] = useState({
-    lat: -38.1828007,
-    lng: 144.458746,
-  }); // search location coordinate when available
-  const [location, setLocation] = useState('') // location query when user pressed enter OR when coordinate is not available
-  const [placeName, setPlaceName] = useState('') // placeName to be shown as link on top left corner home page
-  const [priceLevel, setPriceLevel] = useState(null) // price level filter
-  const [radius, setRadius] = useState(4000) // distance filter in meters
-  const [sort, setSort] = useState('best_match') // sort by filter
+  const [lsLocationObj, setLsLocationObj] = useLocalStorageState('locationObj', {
+    // default to Melbourne coordinate
+    defaultValue: ['-37.8136', '144.9631', 'Melbourne CBD']
+  })
+
+  const [filterObj, setFilterObj] = useState({
+    priceLevel: 0,
+    radius: 0,
+    sort: 0
+  })
+
+  const [selectedCuisine, setSelectedCuisine] = useState('restaurant'); // selected cuisine option
+  const [selectedRestaurant, setSelectedRestaurant] = useState('') // selected restaurant's details to be shown on Restaurant page
+  const [offset, setOffset] = useState(0) // offset parameter to be used in Yelp Api Business Search
+  const [listing, setListing] = useState([]) // listing after filtering out 'been to' and appending the new ones
+
   const cuisineList = [
     'Japanese',
     'Mexican',
@@ -36,27 +43,27 @@ export default function Layout() {
     'Seafood',
     'Salad'
   ] // cuisine options
-  const [selectedCuisine, setSelectedCuisine] = useState(''); // selected cuisine option
-  const [selectedRestaurant, setSelectedRestaurant] = useState('') // selected restaurant's details to be shown on Restaurant page
-  const [offset, setOffset] = useState(0) // offset parameter to be used in Yelp Api Business Search
-  const [listing, setListing] = useState([]) // listing after filtering out 'been to' and appending the new ones
+
+  // if locationObj is not initialised in localStorage
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (lsLocationObj[0] === 'undefined' || !lsLocationObj) {
+      setLsLocationObj(() => (
+        [`-37.8136`, `144.9631`, 'Melbourne CBD']
+      ));
+      navigate('/location');
+    }
+  }, [lsLocationObj, navigate])
+
   return (
     <div className="site-wrapper">
       <main>
         <Outlet 
           context={{
-            coordinate,
-            setCoordinate,
-            location,
-            setLocation,
-            placeName,
-            setPlaceName,
-            priceLevel,
-            setPriceLevel,
-            radius,
-            setRadius,
-            sort,
-            setSort,
+            lsLocationObj,
+            setLsLocationObj,
+            filterObj,
+            setFilterObj,
             cuisineList,
             selectedCuisine,
             setSelectedCuisine,
@@ -65,7 +72,7 @@ export default function Layout() {
             offset,
             setOffset,
             listing,
-            setListing
+            setListing,
           }} />
       </main>
       <Footer/>
