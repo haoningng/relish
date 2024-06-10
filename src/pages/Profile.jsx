@@ -20,7 +20,7 @@ export default function Profile() {
     }
   }
 
-  const visitedCards = beenToRestaurants?.map((each) => {
+  const visitedCards = beenToRestaurants?.reverse().map((each) => {
     const coordinate = {
       lat: each.coordinates.latitude,
       lng: each.coordinates.longitude
@@ -70,7 +70,7 @@ export default function Profile() {
         </div>
       </div>
       <div className='profile-award-container'>
-        <div className='profile-award-title'>
+        <div className='profile-subtitle'>
           <h3>Awards</h3>
           <p>See more</p>
         </div>
@@ -96,7 +96,10 @@ export default function Profile() {
         </div>
       </div>
       <div className='profile-visited-container'>
-        <h3>Previously Visited</h3>
+        <div className='profile-subtitle'>
+          <h3>Previously Visited</h3>
+          <p>See more</p>
+        </div>
         <div className='profile-visited-scrollable'>
           {visitedCards}
         </div>

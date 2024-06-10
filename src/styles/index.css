@@ -872,14 +872,14 @@ input[type="radio"]:checked + .radio-label {
   margin: -12px auto;
 }
 
-.profile-award-title {
+.profile-subtitle {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 320px
 }
 
-.profile-award-title p {
+.profile-subtitle p {
   font-weight: 200;
 }
 
