@@ -19,9 +19,13 @@ export default function Restaurant() {
   const beenToRestaurants = JSON.parse(localStorage.getItem('been-to'));
 
   const inStorage = useMemo(() => {
-    return beenToRestaurants.some((each) => {
-      return each.id === selectedRestaurant.id
-    })
+    if (beenToRestaurants) {
+      return beenToRestaurants?.some((each) => {
+        return each.id === selectedRestaurant.id
+      })
+    } else {
+      return null;
+    }
   }, [beenToRestaurants, selectedRestaurant.id])
 
   useEffect(() => {
