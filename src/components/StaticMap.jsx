@@ -24,6 +24,8 @@ export default function StaticMap({ coordinate, page }) {
         imgUrl ? <img className="restaurant-map" alt='Static map of selected restaurant' src={imgUrl} ></img> : null
         : page.name == 'cardsview' ?
         imgUrl ? <img className="listing-restaurant-photo" alt='Static map of selected restaurant' src={imgUrl} ></img> : null
+        : page.name == 'profile' ?
+        imgUrl ? <img className="profile-visited-img" alt='Static map of selected restaurant' src={imgUrl} ></img> : null
         : imgUrl ? <img className="restaurant-img" alt='Static map of selected restaurant' src={imgUrl} ></img> : null
     )
 }

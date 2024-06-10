@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useOutletContext, useNavigate } from "react-router-dom";
 import "../styles/index.css";
 import Listing from "../components/Listing";
 import InputSearch from "../components/InputSearch";
 import CuisineOptions from "../components/CuisineOptions";
 import FilterMenu from "../components/FilterMenu";
+import HorizontalChevron from "../components/HorizontalChevron";
 
 export default function Home() {
   const {
@@ -24,28 +25,6 @@ export default function Home() {
     setToggleMapView(prevToggleMapView => !prevToggleMapView);
   }
 
-  useEffect(() => {
-    const scrollableContainer = document.querySelector('.home-cuisine-container');
-    const leftChevron = scrollableContainer.querySelector('.left-chevron');
-    const rightChevron = scrollableContainer.querySelector('.right-chevron');
-  
-    const updateChevronVisibility = () => {
-      const isScrolledLeft = scrollableContainer.scrollLeft > 0;
-      const isScrolledRight = scrollableContainer.scrollWidth - scrollableContainer.scrollLeft - scrollableContainer.clientWidth <= 1; // Adjust this threshold as needed
-      leftChevron.classList.toggle('hidden', !isScrolledLeft);
-      rightChevron.classList.toggle('hidden', isScrolledRight);
-    };
-  
-    updateChevronVisibility(); 
-  
-    const handleScroll = () => {
-      updateChevronVisibility();
-    };
-  
-    scrollableContainer.addEventListener('scroll', handleScroll);
-    return () => scrollableContainer.removeEventListener('scroll', handleScroll);
-  }, [])
-
   return (
       <div className="input-outer-container">
         <h3 onClick={handleClick} className='home-location-link-container'>
@@ -58,8 +37,9 @@ export default function Home() {
             placeholder: 'Search Relish'
           }}
         />
-        <div className="home-cuisine-container">
-          <div className="chevron left-chevron"></div>
+        <HorizontalChevron
+          page={{classname: 'home-cuisine-container'}}
+        >
           <CuisineOptions 
             page={{
               name: 'home',
@@ -67,8 +47,7 @@ export default function Home() {
               descClassName: 'horizontal-radio-label-desc'
             }}
           />
-          <div className="chevron right-chevron"></div>
-        </div>
+        </HorizontalChevron>
         <br />
         <FilterMenu/>
         <div className='result-container'>

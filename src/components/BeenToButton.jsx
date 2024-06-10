@@ -30,6 +30,14 @@ export default function BeenToButton({ page }) {
   }
 
   return (
-    <img onClick={() => handleBeenToClick(page.restaurant)} className={`${page.name}-been-to-button`} src={`/tomato-slice.png`} alt={`Relish icon`} width='20px' height='20px'/>
+    // <img onClick={() => handleBeenToClick(page.restaurant)} className={`${page.name}-been-to-button`} src={`/tomato-slice.png`} alt={`Relish icon`} width='20px' height='20px'/>
+    <span
+      onClick={() => handleBeenToClick(page.restaurant)}
+      className={`material-symbols-outlined ${page.name}-been-to-button`}
+      width='20px'
+      height='20px'
+    >
+      add_location
+    </span>
   )
 }

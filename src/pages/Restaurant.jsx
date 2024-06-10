@@ -1,7 +1,8 @@
 import { useOutletContext } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import StaticMap from '../components/StaticMap';
 import BeenToButton from '../components/BeenToButton';
+import UnvisitButton from "../components/UnvisitButton";
 
 export default function Restaurant() {
   const {
@@ -14,6 +15,14 @@ export default function Restaurant() {
   }
   
   const [openNow, setOpenNow] = useState(null);
+
+  const beenToRestaurants = JSON.parse(localStorage.getItem('been-to'));
+
+  const inStorage = useMemo(() => {
+    return beenToRestaurants.some((each) => {
+      return each.id === selectedRestaurant.id
+    })
+  }, [beenToRestaurants, selectedRestaurant.id])
 
   useEffect(() => {
     const fetchOpenNowStatus = async () => {
@@ -67,12 +76,21 @@ export default function Restaurant() {
                       name: 'restaurant-img'
                     }}
                   />}
+            {inStorage ? 
+            <UnvisitButton 
+              page={{
+                name: 'restaurant',
+                restaurant: selectedRestaurant,
+              }}
+            />
+            :
             <BeenToButton 
               page={{
                 name: 'restaurant',
                 restaurant: selectedRestaurant,
               }}
             />
+            }
           </div>
           <h3 className='restaurant-text-1'>{selectedRestaurant.name}</h3>
           <div className='restaurant-text-2'>
