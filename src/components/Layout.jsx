@@ -20,6 +20,8 @@ export default function Layout() {
   const [offset, setOffset] = useState(0) // offset parameter to be used in Yelp Api Business Search
   const [listing, setListing] = useState([]) // listing after filtering out 'been to' and appending the new ones
 
+  const [loading, setLoading] = useState(true);
+
   const cuisineList = [
     'Japanese',
     'Mexican',
@@ -73,6 +75,8 @@ export default function Layout() {
             setOffset,
             listing,
             setListing,
+            loading,
+            setLoading,
           }} />
       </main>
       <Footer/>

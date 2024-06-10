@@ -11,7 +11,8 @@ export default function Quiz() {
     selectedCuisine,
     setSelectedCuisine,
     setOffset,
-    setListing
+    setListing,
+    setLoading
   } = useOutletContext(); //from Layout.jsx
   console.log(lsLocationObj, selectedCuisine)
 
@@ -27,6 +28,7 @@ export default function Quiz() {
     })),
     setOffset(0);
     setListing([]);
+    setLoading(true);
   }, [])
 
   function handleRandom(event) {

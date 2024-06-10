@@ -8,6 +8,7 @@ export default function MenuItem({ children, value, name }) {
     setFilterObj,
     setOffset,
     setListing,
+    setLoading
   } = useOutletContext(); //from Layout.jsx
 
   MenuItem.propTypes = {
@@ -42,6 +43,7 @@ export default function MenuItem({ children, value, name }) {
         }));
       }
       setOffset(0);
+      setLoading(true);
       setListing([]);
       navigate('/')
     } else if (value == 0) {
@@ -51,6 +53,7 @@ export default function MenuItem({ children, value, name }) {
           priceLevel: 0
         }));
         setOffset(0);
+        setLoading(true);
         setListing([]);
         navigate('/')
       } else if (name === 'Distance' && filterObj.radius != 0) {
@@ -59,6 +62,7 @@ export default function MenuItem({ children, value, name }) {
           radius: 0
         }));
         setOffset(0);
+        setLoading(true);
         setListing([]);
         navigate('/')
       } else if (name === 'Sort By' && filterObj.sort != 0) {
@@ -67,6 +71,7 @@ export default function MenuItem({ children, value, name }) {
           sort: 0
         }));
         setOffset(0);
+        setLoading(true);
         setListing([]);
         navigate('/')
       }

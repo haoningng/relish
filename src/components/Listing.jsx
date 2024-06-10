@@ -14,6 +14,8 @@ export default function Listing({ mapOn }) {
     setOffset,
     listing,
     setListing,
+    loading,
+    setLoading,
   } = useOutletContext(); //from Layout.jsx
 
   Listing.propTypes = {
@@ -22,7 +24,6 @@ export default function Listing({ mapOn }) {
 
   const [showSeeMore, setShowSeeMore] = useState(false);
   const [errorCode, setErrorCode] = useState(0);
-  const [loading, setLoading] = useState(true);
 
   const saved = useLocation();
   
@@ -63,7 +64,7 @@ export default function Listing({ mapOn }) {
   useEffect(() => {
     // 1. deserialise the restaurant list from localStorage
     const beenToRestaurants = JSON.parse(localStorage.getItem('been-to'));
-    setLoading(true);
+
     const options = {
       method: 'POST',
       headers: {

@@ -11,7 +11,8 @@ export default function Location() {
     setFilterObj,
     setSelectedCuisine,
     setOffset,
-    setListing
+    setListing,
+    setLoading,
   } = useOutletContext(); //from Layout.jsx
 
   const [permissionStatus, setPermissionStatus] = useState('prompt');
@@ -48,6 +49,7 @@ export default function Location() {
     })),
     setOffset(0);
     setListing([]);
+    setLoading(true);
   }, [])
 
   // request for permission to retrieve coordinate via Geolocation API
