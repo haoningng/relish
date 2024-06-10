@@ -1,14 +1,18 @@
 import StepProgressBar from "../components/ProgressBar";
 import { useOutletContext, useNavigate } from "react-router-dom";
+import { useState } from 'react'
 import "../styles/index.css";
 import StaticMap from "../components/StaticMap";
 import UnvisitButton from "../components/UnvisitButton";
 import HorizontalChevron from "../components/HorizontalChevron";
+import MapView from "../components/MapView";
 
 export default function Profile() {
   const {
     setSelectedRestaurant
   } = useOutletContext(); //from Layout.jsx
+
+  const [toggleMapView, setToggleMapView] = useState(false)
 
   const beenToRestaurants = JSON.parse(localStorage.getItem('been-to'));
   
@@ -70,45 +74,56 @@ export default function Profile() {
           <StepProgressBar progress={beenToRestaurants?.length}/>
         </div>
       </div>
-      <div className='profile-award-container'>
-        <div className='profile-subtitle'>
-          <h3>Awards</h3>
-          <p>See more</p>
-        </div>
-        <div className='profile-award-card'>
-          <img width='53px' src='hexagonal.svg'/>
-          <div className='profile-award-texts'>
-            <div className='profile-award-text-1'>
-              <h4>Mexicana Fiesta</h4>
-              <p>8m ago</p>
+      {toggleMapView ? 
+      <div className='profile-visited-map'>
+        <div className='profile-subtitle-map'>
+            <h3>Previously Visited</h3>
+            <button className='profile-button' onClick={() => setToggleMapView(false)}>Back</button>
+          </div>
+        <MapView listing={ beenToRestaurants.reverse() }/> 
+      </div>
+      : 
+      <>
+        <div className='profile-award-container'>
+          <div className='profile-subtitle'>
+            <h3>Awards</h3>
+            <button className='profile-button'>See more</button>
+          </div>
+          <div className='profile-award-card'>
+            <img width='53px' src='hexagonal.svg'/>
+            <div className='profile-award-texts'>
+              <div className='profile-award-text-1'>
+                <h4>Mexicana Fiesta</h4>
+                <p>8m ago</p>
+              </div>
+              <p className='profile-award-text-2'>Visited 5 mexican restaurant</p>
             </div>
-            <p className='profile-award-text-2'>Visited 5 mexican restaurant</p>
+          </div>
+          <div className='profile-award-card'>
+            <img width='53px' src='hexagonal.svg'/>
+            <div className='profile-award-texts'>
+              <div className='profile-award-text-1'>
+                <h4>Mexicana Fiesta</h4>
+                <p>8m ago</p>
+              </div>
+              <p className='profile-award-text-2'>Visited 5 mexican restaurant</p>
+            </div>
           </div>
         </div>
-        <div className='profile-award-card'>
-          <img width='53px' src='hexagonal.svg'/>
-          <div className='profile-award-texts'>
-            <div className='profile-award-text-1'>
-              <h4>Mexicana Fiesta</h4>
-              <p>8m ago</p>
-            </div>
-            <p className='profile-award-text-2'>Visited 5 mexican restaurant</p>
+        <div className='profile-visited-container'>
+          <div className='profile-subtitle'>
+            <h3>Previously Visited</h3>
+            <button className='profile-button' onClick={() => setToggleMapView(true)} >Show Map <span className="material-symbols-outlined">map</span></button>
           </div>
-        </div>
-      </div>
-      <div className='profile-visited-container'>
-        <div className='profile-subtitle'>
-          <h3>Previously Visited</h3>
-          <p>See more</p>
-        </div>
 
-        <HorizontalChevron
-          page={{ name: 'profile', classname: 'profile-visited-scrollable'}}
-        >
-          {visitedCards}
-        </HorizontalChevron>
-
-      </div>
+          <HorizontalChevron
+            page={{ name: 'profile', classname: 'profile-visited-scrollable'}}
+          >
+            {visitedCards}
+          </HorizontalChevron>
+        </div>
+      </>
+      }
     </div>
   )
 }
