@@ -3,6 +3,7 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 import "../styles/index.css";
 import StaticMap from "../components/StaticMap";
 import UnvisitButton from "../components/UnvisitButton";
+import HorizontalChevron from "../components/HorizontalChevron";
 
 export default function Profile() {
   const {
@@ -100,9 +101,13 @@ export default function Profile() {
           <h3>Previously Visited</h3>
           <p>See more</p>
         </div>
-        <div className='profile-visited-scrollable'>
+
+        <HorizontalChevron
+          page={{ name: 'profile', classname: 'profile-visited-scrollable'}}
+        >
           {visitedCards}
-        </div>
+        </HorizontalChevron>
+
       </div>
     </div>
   )

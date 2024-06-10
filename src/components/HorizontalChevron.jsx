@@ -31,9 +31,9 @@ export default function HorizontalChevron({ children, page }) {
 
   return (
     <div className={`${page.classname}`}>
-      <div className="chevron left-chevron"></div>
+      <div className={`chevron left-chevron ${page.name === 'profile' ? 'profile-chevron' : ''}`}></div>
         { children }
-      <div className="chevron right-chevron"></div>
+      <div className={`chevron right-chevron ${page.name === 'profile' ? 'profile-chevron' : ''}`}></div>
     </div>
   )
 }

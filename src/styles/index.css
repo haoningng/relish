@@ -317,18 +317,25 @@ input[type="radio"]:checked + .radio-label {
   transform: translateY(-50%) rotate(180deg); /* Flip chevron */
 }
 
+.profile-chevron {
+  top: 620px;
+}
+
 /* Hide chevrons when not needed */
-.home-cuisine-container .chevron.hidden {
+.home-cuisine-container .chevron.hidden,
+.profile-visited-scrollable .chevron.hidden {
   opacity: 0;
   pointer-events: none; /* Disable clicks when hidden */
 }
 
 /* Show/hide based on scroll position (using JavaScript) */
-.home-cuisine-container.scrollable-left .left-chevron { 
+.home-cuisine-container.scrollable-left .left-chevron,
+.profile-visited-scrollable.scrollable-left .left-chevron { 
   opacity: 1;
   pointer-events: auto; 
 }
-.home-cuisine-container.scrollable-right .right-chevron { 
+.home-cuisine-container.scrollable-right .right-chevron,
+.profile-visited-scrollable.scrollable-right .right-chevron { 
   opacity: 1;
   pointer-events: auto; 
 }
