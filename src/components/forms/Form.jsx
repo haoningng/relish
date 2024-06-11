@@ -1,6 +1,7 @@
 import CustomInput from "./CustomInput";
 import { Flex, Button } from "@chakra-ui/react";
 import Spinner from "../common/Spinner";
+import { ActionButton } from "../common";
 
 export default function Form({
   config,
@@ -31,9 +32,9 @@ export default function Form({
         <Flex mt={"1rem"} flexDirection={"column"}>
           {typeof children !== "undefined" && children}
           <Flex justifyContent={btnPosition}>
-            <Button type="submit" mt={"0.7rem"} isDisabled={isLoading}>
+            <ActionButton type="submit" mt={"0.7rem"} isDisabled={isLoading}>
               {isLoading ? <Spinner /> : `${btnText}`}
-            </Button>
+            </ActionButton>
           </Flex>
         </Flex>
       </form>

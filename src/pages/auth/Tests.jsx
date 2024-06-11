@@ -9,7 +9,7 @@ export default function Auth() {
 	return (
 		<ChakraProviders>
 			<Flex justifyContent={'center'} width={'100%'}>
-				{/* <Signup /> */}
+				<Login />
 				<Test />
 			</Flex>
 			{/* <Signup />

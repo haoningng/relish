@@ -53,6 +53,7 @@ export default function RegisterForm() {
         config={config}
         isLoading={isLoading}
         btnText="Sign up"
+        btnPosition='center'
         onChange={onChange}
         onSubmit={onSubmit}
       />

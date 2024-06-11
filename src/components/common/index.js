@@ -1,3 +1,2 @@
-// export { default as Login } from './Login';
-export { default as Auth } from './Auth';
-export { default as Google } from './Google';
+export { default as ActionButton } from './ActionButton';
+export { default as BackToHome } from './BackToHome';

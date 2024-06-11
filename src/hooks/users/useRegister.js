@@ -26,7 +26,6 @@ export default function useRegister() {
 		register({ username, email, password, re_password })
 			.unwrap()
 			.then(() => {
-				dispatch(setUsername(setUsernameFromJWT(res.access)))
 				toast.success('Please check email to verify account');
 			})
 			.catch((e) => {
