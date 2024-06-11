@@ -8,7 +8,8 @@ export default function CuisineOptions({ page }) {
     selectedCuisine,
     setSelectedCuisine,
     setOffset,
-    setListing
+    setListing,
+    setLoading
   } = useOutletContext(); //from Layout.jsx
 
   const navigate = useNavigate()
@@ -21,8 +22,9 @@ export default function CuisineOptions({ page }) {
     const {value} = event.target;
     setSelectedCuisine(value);
     setOffset(0);
+    setLoading(true);
     setListing([]);
-    navigate('/Home');
+    navigate('/');
   }
 
   return (
@@ -38,8 +40,21 @@ export default function CuisineOptions({ page }) {
             onChange={handleRadio}
           />
           <label className={page.className} htmlFor={each}>
-            <img className='cuisine-img' src={`/Cuisines/${each}.svg`} alt={`${each} icon`} />
-            <p className={page.descClassName}>{each}</p>
+            <img 
+              style={each === selectedCuisine ? {
+                backgroundColor: '#8DA656',
+                border: '1px solid #6FBD6E',
+                borderRadius: '18px',
+                padding: '4px'
+              }: {}}
+              className='cuisine-img'
+              src={`/Cuisines/${each}.svg`}
+              alt={`${each} icon`} 
+            />
+            <p
+              style={each === selectedCuisine ? {fontWeight: '700'} : {}}
+              className={page.descClassName}
+            >{each}</p>
           </label>
         </div>
       )

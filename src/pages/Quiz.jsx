@@ -6,26 +6,29 @@ import CuisineOptions from "../components/CuisineOptions";
 
 export default function Quiz() {
   const {
-    coordinate,
+    lsLocationObj,
+    setFilterObj,
     selectedCuisine,
     setSelectedCuisine,
-    setRadius,
-    setPriceLevel,
-    setSort,
     setOffset,
-    setListing
+    setListing,
+    setLoading
   } = useOutletContext(); //from Layout.jsx
-  console.log(coordinate, selectedCuisine)
+  console.log(lsLocationObj, selectedCuisine)
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    setSelectedCuisine('');
-    setRadius(4000);
-    setPriceLevel(null);
-    setSort('best_match');
+    setSelectedCuisine('restaurant');
+    setFilterObj((filterObj) => ({
+      ...filterObj,
+      priceLevel: 0,
+      radius: 0,
+      sort: 0
+    })),
     setOffset(0);
     setListing([]);
+    setLoading(true);
   }, [])
 
   function handleRandom(event) {
@@ -35,19 +38,20 @@ export default function Quiz() {
     const randomIndex = Math.floor(Math.random() * list.length); // Get a random index
     const randomElement = list[randomIndex];
     setSelectedCuisine(randomElement);
-    navigate('/Home');
+    navigate('/');
   }
 
-  return coordinate ? (
+  return lsLocationObj ? (
     <div className="input-outer-container">
       <InputSearch 
         page={{
           name: 'quiz',
           title: 'What to eat?',
-          placeholder: 'Dish (e.g. beef pho...)'
+          placeholder: 'Search Dish (e.g. beef pho...)'
         }}
       />
       <br />
+      <h3 className='quiz-subtitle-1'>-- Pick a cuisine --</h3>
       <div className="quiz-cuisine-container">
         <CuisineOptions 
           page={{
@@ -57,6 +61,7 @@ export default function Quiz() {
           }}
         />
       </div>
+      <h3 className='quiz-subtitle-2'> -- Try your luck --</h3>
       <button className="i-am-feeling-hungry" onClick={handleRandom}>I&#39;m Feeling Hungry</button>
     </div>
   ) : (

@@ -18,11 +18,11 @@ export default function CardsView({ listing }) {
   function handleClick(event, restaurant) {
     if (event.target.closest('.listing-restaurant-photo')) {
       setSelectedRestaurant(restaurant);
-      navigate(`./${restaurant.id}`)
+      navigate(`/listing/${restaurant.id}`)
     }
   }
   
-  const cards = listing.map(each => {
+  const cards = listing?.map(each => {
     const imageUrl = each.image_url;
     const coordinate = {
       lat: each.coordinates.latitude,
@@ -65,7 +65,6 @@ export default function CardsView({ listing }) {
           </div>
           <div className='listing-desc-text-3'>
             <p>
-              {/* <span className={!each.is_closed ? 'opening-green' : 'closing-red'}>{!each.is_closed ? `Open` : `Closed`}</span> */}
               <span>{`< ${parseFloat(each.distance/1000).toFixed(1)} km`}</span>
             </p>
           </div>
@@ -74,6 +73,9 @@ export default function CardsView({ listing }) {
     )
   })
 return (
-    listing.length ? cards : `0 Results of ${selectedCuisine} dish/restaurant at this range\nTry again`
+    listing?.length ? cards 
+    : <p className='error-message'>
+        {`0 Results of ${selectedCuisine} at this range or price level\nTry again`}
+      </p>
   )
 }

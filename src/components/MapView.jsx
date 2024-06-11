@@ -13,8 +13,8 @@ const MAP_ID = import.meta.env.VITE_MAP_ID
 
 export default function MapView({ listing }) {
   const {
-    coordinate,
-    radius,
+    lsLocationObj,
+    filterObj,
     setSelectedRestaurant
   } = useOutletContext(); //from Layout.jsx
 
@@ -24,12 +24,12 @@ export default function MapView({ listing }) {
 
   const navigate = useNavigate();
   const [activeMarkerId, setActiveMarkerId] = useState(null); // Track the active marker
-  const [zoomLevel, setZoomLevel] = useState(calculateZoomLevel(radius)); // Initial calculation
+  const [zoomLevel, setZoomLevel] = useState(calculateZoomLevel(filterObj.radius)); // Initial calculation
   const markerRefs = useRef([]); // Array to store marker refs
 
   useEffect(() => {
-    setZoomLevel(calculateZoomLevel(radius)); // Recalculate when radius changes
-  }, [radius]);
+    setZoomLevel(calculateZoomLevel(filterObj.radius)); // Recalculate when radius changes
+  }, [filterObj.radius]);
 
   function calculateZoomLevel(radius) {
     return radius <= 1000 ? 14 : radius <= 5000 ? 12 : radius <= 10000 ? 11 : 10;
@@ -37,12 +37,12 @@ export default function MapView({ listing }) {
 
   function handleClick(restaurant) {
     setSelectedRestaurant(restaurant);
-    navigate(`./${restaurant.id}`)
+    navigate(`/listing/${restaurant.id}`)
   }
 
   const userPosition = {
-    lat: coordinate.lat,
-    lng: coordinate.lng
+    lat: parseFloat(lsLocationObj[0]),
+    lng: parseFloat(lsLocationObj[1])
   };
   
   const listingMarkers = listing.map((each, index) => {
@@ -83,7 +83,6 @@ export default function MapView({ listing }) {
                   <p>{`${each.price ? each.price : ''}`}</p>
                 </div>
                 <p>
-                  {/* <span className={!each.is_closed ? 'opening-green' : 'closing-red'}>{!each.is_closed ? `Open` : `Closed`}</span> */}
                   <span>{`< ${parseFloat(each.distance/1000).toFixed(1)} km`}</span>
                 </p>
             </InfoWindow>
