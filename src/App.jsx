@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import Restaurant from "./pages/Restaurant";
 import NotFound from "./pages/Error";
 import Profile from "./pages/Profile";
+import { Auth, Google } from "./pages/auth";
+import { Tests } from "./pages/auth";
 
 function App() {
   return (
@@ -19,6 +21,9 @@ function App() {
           <Route path="listing/:id" element={<Restaurant />} />
           <Route path="profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="auth" element={<Auth />} />
+          <Route path="tests" element={<Tests />} />
+          <Route path="auth/google" element={<Google />} />
         </Route>
       </Routes>
     </BrowserRouter>
