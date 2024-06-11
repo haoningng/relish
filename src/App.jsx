@@ -5,6 +5,7 @@ import Location from './pages/Location';
 import Quiz from './pages/Quiz';
 import Home from './pages/Home';
 import Restaurant from "./pages/Restaurant";
+import NotFound from "./pages/Error";
 import Profile from "./pages/Profile";
 
 function App() {
@@ -12,11 +13,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home/>} />
-          <Route path="quiz" element={<Quiz/>} />
-          <Route path="location" element={<Location/>} />
+          <Route index element={<Home />} />
+          <Route path="quiz" element={<Quiz />} />
+          <Route path="location" element={<Location />} />
           <Route path="listing/:id" element={<Restaurant />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
