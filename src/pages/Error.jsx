@@ -7,7 +7,7 @@ function NotFound() {
 
   function handleBack(event) {
     event.preventDefault();
-    navigate('/Home');
+    navigate('/');
   }
 
   return (
