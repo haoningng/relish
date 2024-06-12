@@ -3,7 +3,10 @@ import { PropTypes } from 'prop-types'
 
 export default function HorizontalChevron({ children, page }) {
   HorizontalChevron.propTypes = {
-    children: PropTypes.object.isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.array
+    ]),
     page: PropTypes.object
   };
 
