@@ -361,9 +361,9 @@ input[type="radio"]:checked + .radio-label {
   overflow-y: hidden;
   position: relative;
   margin-top: 67px; 
+  margin-bottom: 0px;
   display: flex;
   flex-direction: row;
-  /* justify-content: space-around; */
   align-items: start;
   gap: 15px;
   white-space: nowrap;
@@ -403,7 +403,6 @@ input[type="radio"]:checked + .radio-label {
 .home-filter-container {
   width: 360px;
   position: relative;
-  /* margin-top: 3.2em; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
