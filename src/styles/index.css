@@ -354,16 +354,16 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .home-cuisine-container {
-  width: 370px;
+  width: 360px;
   margin-left: 0;
   height: 70px;
   overflow-x: scroll;
   overflow-y: hidden;
   position: relative;
-  top: 67px; 
+  margin-top: 67px; 
+  margin-bottom: 0px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   align-items: start;
   gap: 15px;
   white-space: nowrap;
@@ -401,16 +401,15 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .home-filter-container {
-  width: 368px;
+  width: 360px;
   position: relative;
-  margin-top: 3.2em;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
 .result-header-container {
-  width: 365px;
+  width: 360px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -464,7 +463,7 @@ input[type="radio"]:checked + .radio-label {
   z-index: 1;
   position: fixed;
   left: 5%;
-  top: 250px;
+  top: 240px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 3px;

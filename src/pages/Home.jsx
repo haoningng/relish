@@ -48,7 +48,6 @@ export default function Home() {
             }}
           />
         </HorizontalChevron>
-        <br />
         <FilterMenu/>
         <div className='result-container'>
           <div className='result-header-container'>
