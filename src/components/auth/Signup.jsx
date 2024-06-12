@@ -5,10 +5,10 @@ import { Heading, Flex, Link, Box } from "@chakra-ui/react";
 export default function Page() {
   return (
     <>
+      <Link href="/auth/login" position={"absolute"} right={0} m={'1rem'}>
+        Login
+      </Link>
       <Flex flexDirection={"column"} position={"relative"}>
-        <Link href="/auth/login" position={"absolute"} right={0} m={'1rem'}>
-          Login
-        </Link>
         <Heading textAlign={"center"}>Create an acount</Heading>
         <RegisterForm />
         <Box mt={"1rem"}>

@@ -7,8 +7,8 @@ import Home from './pages/Home';
 import Restaurant from "./pages/Restaurant";
 import NotFound from "./pages/Error";
 import Profile from "./pages/Profile";
-import { Auth, Google } from "./pages/auth";
-import { Tests } from "./pages/auth";
+import { Google, Login, Signup, Tests, Activation } from "./pages/auth";
+import { PasswordReset, PasswordResetConfirmation } from "./pages/password-reset";
 
 function App() {
   return (
@@ -21,7 +21,11 @@ function App() {
           <Route path="listing/:id" element={<Restaurant />} />
           <Route path="profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="auth" element={<Auth />} />
+          <Route path="auth/login" element={<Login />} />
+          <Route path="auth/signup" element={<Signup />} />
+          <Route path="password-reset" element={<PasswordReset />} />
+          <Route path="password-reset/:uid/:token" element={<PasswordResetConfirmation />} />
+          <Route path="activation/:uid/:token" element={<Activation />} />
           <Route path="tests" element={<Tests />} />
           <Route path="auth/google" element={<Google />} />
         </Route>

@@ -29,13 +29,14 @@ export default function useLogin() {
 
 		login({ email, password })
 			.unwrap()
-			.then(() => {
+			.then((res) => {
 				dispatch(setAuth());
 				dispatch(setUsername(setUsernameFromJWT(res.access)))
 				toast.success('Logged in');
 				router('/location');
 			})
 			.catch((e) => {
+				console.log(e)
 				toast.error('Failed to log in');
 			});
 	};
