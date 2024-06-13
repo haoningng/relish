@@ -54,6 +54,7 @@ export default function CardsView({ listing }) {
               page={{
                 name: 'listing',
                 restaurant: each,
+                visited: false
               }}
             />
         </div>

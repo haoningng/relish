@@ -587,15 +587,20 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .listing-been-to-button {
-  font-size: 38px;
+  font-size: 35px;
   position: relative;
   top: -180px;
   left: 310px;
   width: 40px;
   height: 40px;
-  /* border-radius: 50%;
+  background-color: #CD5534;
+  border-radius: 18px;
+  color: #ffffff;
   border: none;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
 
@@ -744,9 +749,14 @@ input[type="radio"]:checked + .radio-label {
   left: 290px;
   width: 50px;
   height: 50px;
-  /* border-radius: 20px;
+  background-color: #CD5534;
+  border-radius: 18px;
+  color: #ffffff;
   border: none;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
 
@@ -981,30 +991,19 @@ input[type="radio"]:checked + .radio-label {
   text-wrap: wrap;
 }
 
-.profile-unvisit-button {
+.profile-been-to-button {
   position: relative;
   top: 20px;
-  left: -20px;
+  left: -30px;
   background-color: #CD5534;
   border-radius: 18px;
-  color: #ffffff;
+  border: none;
+  color: #EDF1D6;
   cursor: pointer;
+  width: 35px;
+  height: 35px;
 }
 
-.restaurant-unvisit-button {
-  font-size: 48px;
-  position: relative;
-  top: -40px;
-  left: 290px;
-  width: 50px;
-  height: 50px;
-  background-color: #CD5534;
-  border-radius: 18px;
-  color: #ffffff;
-  border: none;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-}
 
 .profile-visited-map {
   width: 370px;

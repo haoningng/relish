@@ -1,43 +1,65 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useRestaurantCreateOrDeleteMutation } from '../redux/features/restaurantApiSlice';
+import { useAppSelector, useAppDispatch } from '../redux/hooks';
+import { setRestaurants, deleteRestaurant } from '../redux/features/restaurantSlice';
+import { toast } from 'react-toastify';
+import Spinner from "./common/Spinner";
 import { PropTypes } from 'prop-types';
 
 export default function BeenToButton({ page }) {
+
   BeenToButton.propTypes = {
     page: PropTypes.object.isRequired,
   };
 
   const navigate = useNavigate();
+  const [RestaurantsCreate] = useRestaurantCreateOrDeleteMutation();
+  const [buttonLoading, setButtonLoading] = useState(false)
+
+  // 1. Retrieve and Update
+	const { restaurantList } = useAppSelector((state) => state.restaurant);
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    setButtonLoading(false);
+  }, [setButtonLoading])
 
   function handleBeenToClick(restaurant) {
-    try {  
-      // 1. Retrieve and Update
-      const savedRestaurants = JSON.parse(localStorage.getItem("been-to")) || [];
-      savedRestaurants.push(restaurant);
-
-      // 2. Serialise the array for Storage
-      const serializedData = JSON.stringify(savedRestaurants);
-  
-      // 3. Store in localStorage
-      localStorage.setItem("been-to", serializedData);
-  
-      console.log("Restaurant saved to localStorage!");
-      navigate('/', { state: { savedRestaurants }})
-  
-    } catch (error) {
-      console.error("Error saving restaurant to localStorage:", error);
-      // Handle the error (e.g., display an error message to the user)
-    }
+    setButtonLoading(true);
+    // 2. Store in database
+    RestaurantsCreate({ place_id: restaurant.id, obj: restaurant, cuisine_type: 'Italian', has_been: true })
+    .unwrap()
+    .then((res) => {
+      if (res) {
+        // 3. if successful, append it to Redux store (global state)
+        dispatch(setRestaurants(res))
+        toast.success('Successfully created!');
+        setButtonLoading(false);
+        navigate('/', { state: { restaurantList }})
+      } else {
+        // 4. if already in Redux store, remove it from Redux store.
+        dispatch(deleteRestaurant(restaurant.id))
+        toast.success('Successfully deleted!');
+        setButtonLoading(false);
+        navigate('/profile')
+      }
+    })
+    .catch((e) => {
+      console.log("ERROR:", e)
+      const firstErrorMsg = Object.values(e.data)[0]
+      toast.error('Failed to create a Restaurants' + '\n' + firstErrorMsg);
+    });
   }
 
   return (
-    // <img onClick={() => handleBeenToClick(page.restaurant)} className={`${page.name}-been-to-button`} src={`/tomato-slice.png`} alt={`Relish icon`} width='20px' height='20px'/>
-    <span
+    <button
       onClick={() => handleBeenToClick(page.restaurant)}
       className={`material-symbols-outlined ${page.name}-been-to-button`}
-      width='20px'
-      height='20px'
     >
-      add_location
-    </span>
+      {buttonLoading ? <Spinner size={page.name === 'restaurant' ? 'lg' : 'md'} />
+      : page.visited ? `cancel` : `where_to_vote`}
+    </button>
+    
   )
 }

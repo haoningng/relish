@@ -2,19 +2,20 @@ import StepProgressBar from "../components/ProgressBar";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { useState } from 'react'
 import "../styles/index.css";
+import { useAppSelector } from '../redux/hooks';
 import StaticMap from "../components/StaticMap";
-import UnvisitButton from "../components/UnvisitButton";
+import BeenToButton from "../components/BeenToButton";
 import HorizontalChevron from "../components/HorizontalChevron";
 import MapView from "../components/MapView";
 
 export default function Profile() {
   const {
-    setSelectedRestaurant
+    setSelectedRestaurant,
   } = useOutletContext(); //from Layout.jsx
 
   const [toggleMapView, setToggleMapView] = useState(false)
 
-  const beenToRestaurants = JSON.parse(localStorage.getItem('been-to'));
+  const { restaurantList } = useAppSelector((state) => state.restaurant);
   
   const navigate = useNavigate();
 
@@ -24,8 +25,19 @@ export default function Profile() {
       navigate(`/listing/${restaurant.id}`)
     }
   }
+  const newList = restaurantList.map(each => each)
 
-  const visitedCards = beenToRestaurants?.reverse().map((each) => {
+  const visitedCards = newList?.reverse().map((restaurantObj) => {
+
+    // Remove invalid characters from JSON string before parsing
+    const convert = restaurantObj.obj
+                    .replace(/'/g, '"')
+                    .replace(/False/g, 'false')
+                    .replace(/True/g, 'true')
+                    .replace(/None/g, 'null');
+
+    const each = JSON.parse(convert)
+
     const coordinate = {
       lat: each.coordinates.latitude,
       lng: each.coordinates.longitude
@@ -46,10 +58,11 @@ export default function Profile() {
             name: 'profile'
           }}/>
           }
-          <UnvisitButton 
+          <BeenToButton 
             page={{
               name: 'profile',
               restaurant: each,
+              visited: true
             }}
           />
         </div>
@@ -68,10 +81,10 @@ export default function Profile() {
         <h2>John Smith</h2>
         <div className='progress-bar'>
           <div className='progress-left-text'>
-            <p className='progress-sum'>{beenToRestaurants ? beenToRestaurants?.length : 0}</p>
+            <p className='progress-sum'>{restaurantList ? restaurantList?.length : 0}</p>
             <p className='progress-checkin-text'>Check-ins</p>
           </div>
-          <StepProgressBar progress={beenToRestaurants?.length}/>
+          <StepProgressBar progress={restaurantList?.length}/>
         </div>
       </div>
       {toggleMapView ? 
@@ -80,7 +93,20 @@ export default function Profile() {
             <h3>Previously Visited</h3>
             <button className='profile-button' onClick={() => setToggleMapView(false)}>Back</button>
           </div>
-        <MapView listing={ beenToRestaurants.reverse() }/> 
+        <MapView listing={ 
+          restaurantList?.map((restaurantObj) => {
+
+            // Remove invalid characters from JSON string before parsing
+            const convert = restaurantObj.obj
+                            .replace(/'/g, '"')
+                            .replace(/False/g, 'false')
+                            .replace(/True/g, 'true')
+                            .replace(/None/g, 'null');
+        
+            const each = JSON.parse(convert)
+            return each;
+          })
+         }/> 
       </div>
       : 
       <>

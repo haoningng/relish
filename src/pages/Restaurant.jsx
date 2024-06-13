@@ -1,8 +1,8 @@
 import { useOutletContext } from 'react-router-dom';
 import { useEffect, useState, useMemo } from 'react';
+import { useAppSelector } from '../redux/hooks';
 import StaticMap from '../components/StaticMap';
 import BeenToButton from '../components/BeenToButton';
-import UnvisitButton from "../components/UnvisitButton";
 
 export default function Restaurant() {
   const {
@@ -16,17 +16,32 @@ export default function Restaurant() {
   
   const [openNow, setOpenNow] = useState(null);
 
-  const beenToRestaurants = JSON.parse(localStorage.getItem('been-to'));
-
+  const { restaurantList } = useAppSelector((state) => state.restaurant);
+  
+  // Determine if the restaurant is in Redux Store (i.e. visited)
   const inStorage = useMemo(() => {
+    // Parse the visited list from Redux Store
+    const beenToRestaurants = restaurantList?.map((restaurantObj) => {
+  
+      // Remove invalid characters from JSON string before parsing
+      const convert = restaurantObj.obj
+                      .replace(/'/g, '"')
+                      .replace(/False/g, 'false')
+                      .replace(/True/g, 'true')
+                      .replace(/None/g, 'null');
+  
+      const each = JSON.parse(convert);
+      return each;
+    })
+
     if (beenToRestaurants) {
       return beenToRestaurants?.some((each) => {
-        return each.id === selectedRestaurant.id
+        return each.id === selectedRestaurant.id //true if visited, false otherwise
       })
     } else {
       return null;
     }
-  }, [beenToRestaurants, selectedRestaurant.id])
+  }, [restaurantList, selectedRestaurant.id])
 
   useEffect(() => {
     const fetchOpenNowStatus = async () => {
@@ -80,21 +95,13 @@ export default function Restaurant() {
                       name: 'restaurant-img'
                     }}
                   />}
-            {inStorage ? 
-            <UnvisitButton 
-              page={{
-                name: 'restaurant',
-                restaurant: selectedRestaurant,
-              }}
-            />
-            :
             <BeenToButton 
               page={{
                 name: 'restaurant',
                 restaurant: selectedRestaurant,
+                visited: inStorage ? true : false
               }}
             />
-            }
           </div>
           <h3 className='restaurant-text-1'>{selectedRestaurant.name}</h3>
           <div className='restaurant-text-2'>
