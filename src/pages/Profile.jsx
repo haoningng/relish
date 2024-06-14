@@ -29,25 +29,17 @@ export default function Profile() {
   const newList = restaurantList.map(each => each)
 
   const visitedCards = newList?.reverse().map((restaurantObj) => {
-    console.log(`BEFORE CONVERT: ${restaurantObj.obj}`);
-    console.log(restaurantObj.obj.includes('"'))
+
     // Remove invalid characters from JSON string before parsing
-
-    let convert = restaurantObj.obj;
-
-    if (convert.startsWith("'") && convert.endsWith("'")) {
-        convert = '"' + convert.substring(1, convert.length - 1) + '"';
-    }
-
-    convert = restaurantObj.obj
-                    .replace(/'/g, '"')
+    const convert = restaurantObj.obj
                     .replace(/False/g, 'false')
                     .replace(/True/g, 'true')
                     .replace(/None/g, 'null')
-                    .replace(/\\/g, '');
-    console.log(`AFTER CONVERT: ${convert}`);
-    console.log(typeof convert)
-    const each = JSON.parse(convert) //<- error when there is ' in the name (guessing)
+                    .replace(/'(\w+)'\s*:/g, '"$1":')  // Replace single quotes around keys
+                    .replace(/:\s*'([^']*)'/g, ': "$1"') // Replace single quotes around string values
+                    .replace(/\['(.*?)'\]/g, '["$1"]'); // Replace single quotes in arrays
+
+    const each = JSON.parse(convert);
 
     const coordinate = {
       lat: each.coordinates.latitude,
@@ -109,11 +101,13 @@ export default function Profile() {
 
             // Remove invalid characters from JSON string before parsing
             const convert = restaurantObj.obj
-                            .replace(/'/g, '"')
                             .replace(/False/g, 'false')
                             .replace(/True/g, 'true')
                             .replace(/None/g, 'null')
-                            .replace(/\\/g, '');
+                            .replace(/'(\w+)'\s*:/g, '"$1":')  // Replace single quotes around keys
+                            .replace(/:\s*'([^']*)'/g, ': "$1"') // Replace single quotes around string values
+                            .replace(/\['(.*?)'\]/g, '["$1"]'); // Replace single quotes in arrays
+
         
             const each = JSON.parse(convert)
             return each;

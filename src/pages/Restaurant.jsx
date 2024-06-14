@@ -33,10 +33,12 @@ export default function Restaurant() {
   
       // Remove invalid characters from JSON string before parsing
       const convert = restaurantObj.obj
-                      .replace(/'/g, '"')
                       .replace(/False/g, 'false')
                       .replace(/True/g, 'true')
-                      .replace(/None/g, 'null');
+                      .replace(/None/g, 'null')
+                      .replace(/'(\w+)'\s*:/g, '"$1":')  // Replace single quotes around keys
+                      .replace(/:\s*'([^']*)'/g, ': "$1"') // Replace single quotes around string values
+                      .replace(/\['(.*?)'\]/g, '["$1"]'); // Replace single quotes in arrays
   
       const each = JSON.parse(convert);
       return each;
