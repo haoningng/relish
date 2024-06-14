@@ -4,7 +4,7 @@ export default function Footer() {
   const activeStyles = {
       fontWeight: 800,
       color: '#303D32',
-      borderTop: '2px solid black',
+      borderTop: '3px solid black',
   }
 
   return (

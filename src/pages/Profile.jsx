@@ -7,6 +7,7 @@ import StaticMap from "../components/StaticMap";
 import BeenToButton from "../components/BeenToButton";
 import HorizontalChevron from "../components/HorizontalChevron";
 import MapView from "../components/MapView";
+import CuisineTag from "../components/CuisineTag";
 
 export default function Profile() {
   const {
@@ -61,6 +62,7 @@ export default function Profile() {
             name: 'profile'
           }}/>
           }
+          <CuisineTag restaurant={each} page={{name: 'profile'}}/>
           <BeenToButton 
             page={{
               name: 'profile',
@@ -108,7 +110,6 @@ export default function Profile() {
                             .replace(/:\s*'([^']*)'/g, ': "$1"') // Replace single quotes around string values
                             .replace(/\['(.*?)'\]/g, '["$1"]'); // Replace single quotes in arrays
 
-        
             const each = JSON.parse(convert)
             return each;
           })
