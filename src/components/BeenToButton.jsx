@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useRestaurantCreateOrDeleteMutation } from '../redux/features/restaurantApiSlice';
 import { useAppSelector, useAppDispatch } from '../redux/hooks';
 import { setRestaurants, deleteRestaurant } from '../redux/features/restaurantSlice';
+import { getCuisineType } from '../foods/food_to_cuisine';
 import { toast } from 'react-toastify';
 import Spinner from "./common/Spinner";
 import { PropTypes } from 'prop-types';
@@ -12,7 +13,7 @@ export default function BeenToButton({ page }) {
   BeenToButton.propTypes = {
     page: PropTypes.object.isRequired,
   };
-
+  
   const navigate = useNavigate();
   const [RestaurantsCreate] = useRestaurantCreateOrDeleteMutation();
   const [buttonLoading, setButtonLoading] = useState(false)
@@ -25,10 +26,13 @@ export default function BeenToButton({ page }) {
     setButtonLoading(false);
   }, [setButtonLoading])
 
+
   function handleBeenToClick(restaurant) {
+    const cuisineType = getCuisineType(restaurant);
+    console.log(`${restaurant.name} is classified as ${cuisineType}`);
     setButtonLoading(true);
     // 2. Store in database
-    RestaurantsCreate({ place_id: restaurant.id, obj: restaurant, cuisine_type: 'Italian', has_been: true })
+    RestaurantsCreate({ place_id: restaurant.id, obj: restaurant, cuisine_type: cuisineType, has_been: true })
     .unwrap()
     .then((res) => {
       if (res) {

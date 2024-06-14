@@ -1,17 +1,25 @@
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useMemo } from 'react';
 import { useAppSelector } from '../redux/hooks';
 import StaticMap from '../components/StaticMap';
 import BeenToButton from '../components/BeenToButton';
+import CuisineTag from '../components/CuisineTag';
 
 export default function Restaurant() {
   const {
     selectedRestaurant
   } = useOutletContext(); //from Layout.jsx
 
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!selectedRestaurant) {
+      navigate('/');
+    }
+  }, [navigate, selectedRestaurant])
+
   const coordinate = {
-    lat: selectedRestaurant?.coordinates.latitude,
-    lng: selectedRestaurant?.coordinates.longitude
+    lat: selectedRestaurant?.coordinates?.latitude,
+    lng: selectedRestaurant?.coordinates?.longitude
   }
   
   const [openNow, setOpenNow] = useState(null);
@@ -77,6 +85,7 @@ export default function Restaurant() {
     if (selectedRestaurant.id) { // Fetch only if selectedRestaurant.id exists
       fetchOpenNowStatus();
     }
+    console.log(selectedRestaurant)
   }, [selectedRestaurant.id]); 
   
   return ( selectedRestaurant ?
@@ -95,6 +104,7 @@ export default function Restaurant() {
                       name: 'restaurant-img'
                     }}
                   />}
+            <CuisineTag restaurant={selectedRestaurant} page={{name: 'restaurant'}}/>
             <BeenToButton 
               page={{
                 name: 'restaurant',

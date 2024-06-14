@@ -15,6 +15,7 @@ export default function Profile() {
 
   const [toggleMapView, setToggleMapView] = useState(false)
 
+  // from Redux Store
   const { restaurantList } = useAppSelector((state) => state.restaurant);
   
   const navigate = useNavigate();
@@ -28,15 +29,25 @@ export default function Profile() {
   const newList = restaurantList.map(each => each)
 
   const visitedCards = newList?.reverse().map((restaurantObj) => {
-
+    console.log(`BEFORE CONVERT: ${restaurantObj.obj}`);
+    console.log(restaurantObj.obj.includes('"'))
     // Remove invalid characters from JSON string before parsing
-    const convert = restaurantObj.obj
+
+    let convert = restaurantObj.obj;
+
+    if (convert.startsWith("'") && convert.endsWith("'")) {
+        convert = '"' + convert.substring(1, convert.length - 1) + '"';
+    }
+
+    convert = restaurantObj.obj
                     .replace(/'/g, '"')
                     .replace(/False/g, 'false')
                     .replace(/True/g, 'true')
-                    .replace(/None/g, 'null');
-
-    const each = JSON.parse(convert)
+                    .replace(/None/g, 'null')
+                    .replace(/\\/g, '');
+    console.log(`AFTER CONVERT: ${convert}`);
+    console.log(typeof convert)
+    const each = JSON.parse(convert) //<- error when there is ' in the name (guessing)
 
     const coordinate = {
       lat: each.coordinates.latitude,
@@ -101,7 +112,8 @@ export default function Profile() {
                             .replace(/'/g, '"')
                             .replace(/False/g, 'false')
                             .replace(/True/g, 'true')
-                            .replace(/None/g, 'null');
+                            .replace(/None/g, 'null')
+                            .replace(/\\/g, '');
         
             const each = JSON.parse(convert)
             return each;

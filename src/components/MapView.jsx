@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { PropTypes } from 'prop-types'
+import CuisineTag from "./CuisineTag";
 import {
   APIProvider,
   Map,
@@ -77,6 +78,7 @@ export default function MapView({ listing }) {
               anchor={markerRefs.current[index]} // Use the ref from the array
               onCloseClick={() => setActiveMarkerId(null)}
             >
+                <CuisineTag restaurant={each} page={{name: 'map'}}/>
                 <h3 className='infowindow-text-1'>{each.name}</h3>
                 <div className='infowindow-text-2'>
                   <p>{`${each.rating} ★ (${each.review_count})`}</p>

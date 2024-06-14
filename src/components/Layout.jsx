@@ -41,12 +41,8 @@ export default function Layout() {
 				console.log(firstErrorMsg)
 			});
 	}
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			return handleRestaurantList()
-		}
-	}, [])
 
+  
   const cuisineList = [
     'Japanese',
     'Mexican',
@@ -69,7 +65,7 @@ export default function Layout() {
     'American',
     'Seafood',
     'Salad'
-  ] // cuisine options
+    ] // cuisine options
 
   // if locationObj is not initialised in localStorage
   const navigate = useNavigate();
@@ -81,6 +77,12 @@ export default function Layout() {
       navigate('/location');
     }
   }, [lsLocationObj, navigate])
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      return handleRestaurantList()
+    }
+  }, [])
 
   return (
     <div className="site-wrapper">
