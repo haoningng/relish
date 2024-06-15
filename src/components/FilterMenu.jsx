@@ -119,9 +119,9 @@ export default function FilterMenu() {
                   buttonObj.name === 'Sort By' && (filterObj.sort === 'rating' || filterObj.sort === 'review_count' || filterObj.sort === 'distance')
                 ))
                 ? {
-                    backgroundColor: '#8DA656',
-                    color: 'white',
-                    border: '1px solid #6FBD6E'}
+                    backgroundColor: '#163300',
+                    color: '#9FE870',
+                    border: '1px solid #9FE870'}
                 : {}}
             >
               {buttonObj.name === 'Price' ?  dspPriceLevel : 

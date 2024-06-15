@@ -42,8 +42,8 @@ export default function CuisineOptions({ page }) {
           <label className={page.className} htmlFor={each}>
             <img 
               style={each === selectedCuisine ? {
-                backgroundColor: '#8DA656',
-                border: '1px solid #6FBD6E',
+                backgroundColor: '#163300',
+                border: '2px inset #9FE870',
                 borderRadius: '18px',
                 padding: '4px'
               }: {}}

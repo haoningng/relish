@@ -14,7 +14,8 @@ export default class StepProgressBar extends React.Component {
         width='203px'
         height='5px'
         percent={progress}
-        filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
+        unfilledBackground="#8da656"
+        filledBackground="linear-gradient(to right, #9FE870, #65CF21)"
       >
         <Step transition="scale">
           {({ accomplished }) => (

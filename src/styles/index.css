@@ -17,7 +17,7 @@ Note
 }
 
 :root {
-  background: linear-gradient(0deg, #67A175,  #303D32);
+  background: linear-gradient(0deg, #67A175,  #163300);
   color: #f9f9f9;
   width: 100vw;
   height: 100vh;
@@ -171,7 +171,7 @@ li.pac-item {
   height: 60px;
   border-radius: 100px;
   border: none;
-  background-color: #CD5534;
+  background-color: #BF1E2C;
   color: #FFFFFF;
   font-size: 20px;
   font-weight: 500;
@@ -284,7 +284,7 @@ input[type="radio"]:checked + .radio-label {
   height: 60px;
   border-radius: 100px;
   border: none;
-  background-color: #CD5534;
+  background-color: #BF1E2C;
   color: #FFFFFF;
   font-size: 20px;
   font-weight: 500;
@@ -434,7 +434,7 @@ input[type="radio"]:checked + .radio-label {
 
 .map-button {
   background-color: #EDF1D6;
-  color: #303D32;
+  color: #163300;
   width: 130px;
   height: 26px;
   border: none;
@@ -450,8 +450,8 @@ input[type="radio"]:checked + .radio-label {
 /* (C) Menu component */
 
 .menu-button {
-  background-color: #EDF1D6;
-  color: #303D32;
+  background-color: #9FE870;
+  color: #163300;
   width: 104px;
   height: 26px;
   border: none;
@@ -610,7 +610,7 @@ input[type="radio"]:checked + .radio-label {
   left: 310px;
   width: 40px;
   height: 40px;
-  background-color: #CD5534;
+  background-color: #BF1E2C;
   border-radius: 18px;
   color: #ffffff;
   border: none;
@@ -676,7 +676,7 @@ input[type="radio"]:checked + .radio-label {
   height: 45px;
   border-radius: 70px;
   border: none;
-  background-color: #CD5534;
+  background-color: #BF1E2C;
   color: #FFFFFF;
   font-size: 20px;
   font-weight: 500;
@@ -842,7 +842,7 @@ input[type="radio"]:checked + .radio-label {
   left: 290px;
   width: 50px;
   height: 50px;
-  background-color: #CD5534;
+  background-color: #BF1E2C;
   border-radius: 18px;
   color: #ffffff;
   border: none;
@@ -886,8 +886,8 @@ input[type="radio"]:checked + .radio-label {
   width: 170px;
   height: 22vh;
   border-radius: 25px;
-  background-color: #CD5534;
-  border: 3px solid #FF932E;
+  background-color: #163300;
+  border: 3px solid #9FE870;
   color: #ffffff;
   font-size: 1.5em;
   font-weight: 800;
@@ -912,7 +912,10 @@ input[type="radio"]:checked + .radio-label {
 .progress-bar {
   width: 333px;
   height: 74px;
-  background-color: #8DA656;
+  background-color: #EDF1D6;
+  color: #163300;
+  border: 1px solid #163300;
+  font-weight: 600;
   border-radius: 18px;
   padding: 10px;
   margin: 15px auto;
@@ -954,7 +957,7 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .profile-top-half {
-  background-color: #303D32;
+  background-color: #163300;
   position: fixed;
   z-index: -1;
   width: 100vw;
@@ -1090,7 +1093,7 @@ input[type="radio"]:checked + .radio-label {
   position: relative;
   top: 20px;
   left: -30px;
-  background-color: #CD5534;
+  background-color: #BF1E2C;
   border-radius: 18px;
   border: none;
   color: #EDF1D6;
@@ -1109,7 +1112,7 @@ input[type="radio"]:checked + .radio-label {
   display: flex;
   align-items: center;
   background-color: #EDF1D6;
-  color: #303D32;
+  color: #163300;
   padding: 0 12px;
   height: 26px;
   border: none;
@@ -1120,9 +1123,9 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .profile-button:active {
-  background-color: #8DA656;
-  color: white;
-  border: 1px solid #6FBD6E;
+  background-color: #163300;
+  color: #9FE870;
+  border: 1px solid #9FE870;
 }
 
 .profile-button:focus {
@@ -1132,7 +1135,7 @@ input[type="radio"]:checked + .radio-label {
 /* (P) Footer page */
 
 .footer-container {
-  background-color: #303D32;
+  background-color: #163300;
   height: 7%;
   width: 100%;
   position: fixed;

@@ -38,13 +38,13 @@ export default function BeenToButton({ page }) {
       if (res) {
         // 3. if successful, append it to Redux store (global state)
         dispatch(setRestaurants(res))
-        toast.success('Successfully created!');
+        toast.success(`${restaurant.name} is marked as visited!\n You can view it in your profile page.`);
         setButtonLoading(false);
         navigate('/', { state: { restaurantList }})
       } else {
         // 4. if already in Redux store, remove it from Redux store.
         dispatch(deleteRestaurant(restaurant.id))
-        toast.success('Successfully deleted!');
+        toast.success(`${restaurant.name} is removed from the previously visited list!`);
         setButtonLoading(false);
         navigate('/profile')
       }
