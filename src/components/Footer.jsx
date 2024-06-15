@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 export default function Footer() {
   const activeStyles = {
       fontWeight: 800,
-      color: '#303D32',
-      borderTop: '3px solid black',
+      color: '#ABC86C',
+      borderTop: '3px solid #ABC86C',
   }
 
   return (

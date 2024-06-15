@@ -77,7 +77,7 @@ export default function Listing({ mapOn }) {
           'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-          "endpoint": (`https://api.yelp.com/v3/businesses/search?term=${selectedCuisine}${filterObj.priceLevel ? `&price=${filterObj.priceLevel}` : ''}&categories=${selectedCuisine}${filterObj.sort ? `&sort_by=${filterObj.sort}` : ''}${filterObj.radius ? `&radius=${filterObj.radius}` : ''}${`&latitude=${parseFloat(lsLocationObj[0])}&longitude=${parseFloat(lsLocationObj[1])}`}&locale=en_AU&offset=${offset}&limit=20`),
+          "endpoint": (`https://api.yelp.com/v3/businesses/search?term=${selectedCuisine}%20restaurants${filterObj.priceLevel ? `&price=${filterObj.priceLevel}` : ''}&categories=${selectedCuisine}${filterObj.sort ? `&sort_by=${filterObj.sort}` : ''}${filterObj.radius ? `&radius=${filterObj.radius}` : ''}${`&latitude=${parseFloat(lsLocationObj[0])}&longitude=${parseFloat(lsLocationObj[1])}`}&locale=en_AU&offset=${offset}&limit=20`),
           "id": `django-insecure-0ezwicnx+&u=g+d3e2&9-u!c9un559($jq7--dpd*8p-bshh4$`
       })
     }

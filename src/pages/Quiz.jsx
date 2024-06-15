@@ -19,7 +19,7 @@ export default function Quiz() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setSelectedCuisine('restaurant');
+    setSelectedCuisine('');
     setFilterObj((filterObj) => ({
       ...filterObj,
       priceLevel: 0,

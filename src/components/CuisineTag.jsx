@@ -35,6 +35,7 @@ export default function CuisineTag({ restaurant, page}) {
     "Korean": "#DC143C",
     "Vietnamese": "#6B8E23",
     "MiddleEast": "#663399", 
+    "Mediterranean": "#663399", 
     "Halal": "#786DE7",
     "Burger": "#660000",
     "FastFood": "#FF69B4",
@@ -43,7 +44,8 @@ export default function CuisineTag({ restaurant, page}) {
     "Ethiopian": "#BA55D3",
     "Caribbean": "#8B0000",
     "Moroccan": "#800000",
-    "European": "#F08080", 
+    "European": "#F08080",
+    "Australian": "#F08080", 
     "Bar": "#660000", 
     "Others": "#000000",
     "Unknown": "#8DA656"

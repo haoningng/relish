@@ -71,7 +71,12 @@ export default function Restaurant() {
         const data = await response.json();
 
         if (response.ok) {
-          setOpenNow(data.hours[0].is_open_now);
+          if (data.hours) {
+            setOpenNow(data.hours[0].is_open_now);
+          } else {
+            setOpenNow(null);
+            console.error('Yelp API Error: is_open_now field is undefined');
+          }
         } else {
           setOpenNow(null)
           console.error('Yelp API Error:', data.error);
@@ -128,8 +133,8 @@ export default function Restaurant() {
           >{selectedRestaurant.location.display_address.join(', ')}</a>
           <div className='restaurant-text-3'>
             <p>
-              <span className={openNow ? 'opening-green' : 'closing-red'}>{openNow ? `Open` : openNow === null ? '' : `Closed`}</span>
-              <span>{` • < ${parseFloat(selectedRestaurant.distance/1000).toFixed(1)} km`}</span>
+              <span className={openNow ? 'opening-green' : 'closing-red'}>{openNow ? `Open • ` : openNow === null ? '' : `Closed • `}</span>
+              <span>{`< ${parseFloat(selectedRestaurant.distance/1000).toFixed(1)} km`}</span>
             </p>
           </div>
         </div>

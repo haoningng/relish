@@ -18,7 +18,7 @@ export default function Layout() {
     sort: 0
   })
 
-  const [selectedCuisine, setSelectedCuisine] = useState('restaurant'); // selected cuisine option
+  const [selectedCuisine, setSelectedCuisine] = useState(''); // selected cuisine option
   const [selectedRestaurant, setSelectedRestaurant] = useState('') // selected restaurant's details to be shown on Restaurant page
   const [offset, setOffset] = useState(0) // offset parameter to be used in Yelp Api Business Search
   const [listing, setListing] = useState([]) // listing after filtering out 'been to' and appending the new ones

@@ -349,7 +349,7 @@ input[type="radio"]:checked + .radio-label {
 
 .home-location-link {
   font-size: 0.8em;
-  font-weight: 200;
+  font-weight: 500;
   cursor: pointer;
 }
 
@@ -360,8 +360,8 @@ input[type="radio"]:checked + .radio-label {
   overflow-x: scroll;
   overflow-y: hidden;
   position: relative;
-  margin-top: 67px; 
-  margin-bottom: 0px;
+  margin-top: 63px; 
+  margin-bottom: 4px;
   display: flex;
   flex-direction: row;
   align-items: start;
@@ -396,7 +396,8 @@ input[type="radio"]:checked + .radio-label {
   color: #ffffff;
   height: 10px;
   font-size: 11px;
-  font-weight: 300;
+  font-weight: 500;
+  letter-spacing: 0.1px;
   margin-top: 2px;
 }
 
@@ -520,12 +521,12 @@ input[type="radio"]:checked + .radio-label {
   cursor: pointer;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background-color: #eeeeee7c; /* Light gray background */
-  animation: skeleton-loading 1s linear infinite alternate; /* Animation */
+  animation: skeleton-loading 0.6s linear infinite alternate; /* Animation */
 }
 
 .skeleton-image {
   width: 360px;
-  height: 150px;
+  height: 120px;
 }
 
 .skeleton-title {
@@ -549,7 +550,7 @@ input[type="radio"]:checked + .radio-label {
 
 @keyframes skeleton-loading {
   0% {
-    opacity: 0.5;
+    opacity: 0.7;
   }
   100% {
     opacity: 1;
@@ -589,7 +590,7 @@ input[type="radio"]:checked + .radio-label {
 .listing-been-to-button {
   font-size: 35px;
   position: relative;
-  top: -195px;
+  top: -170px;
   left: 310px;
   width: 40px;
   height: 40px;
@@ -606,7 +607,7 @@ input[type="radio"]:checked + .radio-label {
 
 .listing-restaurant-photo {
   width: 360px;
-  height: 180px;
+  height: 150px;
   border-radius: 8px;
   object-fit: cover;
   cursor: pointer;
@@ -631,12 +632,12 @@ input[type="radio"]:checked + .radio-label {
   display: flex;
   justify-content: space-between;
   font-size: 1.1em;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: -30px;
 }
 
 .listing-desc-text-3 {
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .opening-green {
@@ -680,7 +681,7 @@ input[type="radio"]:checked + .radio-label {
 .listing-cuisine-tag {
   font-size: 12px;
   position: relative;
-  top: -180px;
+  top: -150px;
   left: 7px;
   width: 80px;
   height: 20px;
@@ -699,7 +700,7 @@ input[type="radio"]:checked + .radio-label {
   position: relative;
   top: -250px;
   left: 10px;
-  width: 80px;
+  width: 120px;
   height: 30px;
   background-color: #8DA656;
   border-radius: 18px;
@@ -732,7 +733,7 @@ input[type="radio"]:checked + .radio-label {
   font-size: 12px;
   position: absolute;
   top: 0px;
-  width: 60px;
+  width: 80px;
   height: 14px;
   background-color: #8DA656;
   border-radius: 18px;
@@ -865,7 +866,7 @@ input[type="radio"]:checked + .radio-label {
 
 .restaurant-buttons {
   width: 170px;
-  height: 25vh;
+  height: 22vh;
   border-radius: 25px;
   background-color: #CD5534;
   border: 3px solid #FF932E;
@@ -938,7 +939,7 @@ input[type="radio"]:checked + .radio-label {
   position: fixed;
   z-index: -1;
   width: 100vw;
-  height: 123px;
+  height: 135px;
   padding-top: 10px;
   left: 0;
   top: 0;
@@ -1089,6 +1090,7 @@ input[type="radio"]:checked + .radio-label {
   align-items: center;
   background-color: #EDF1D6;
   color: #000000;
+  padding: 0 12px;
   height: 26px;
   border: none;
   cursor: pointer;
@@ -1110,7 +1112,7 @@ input[type="radio"]:checked + .radio-label {
 /* (P) Footer page */
 
 .footer-container {
-  background-color: #67A175;
+  background-color: #303D32;
   height: 7%;
   width: 100%;
   position: fixed;
@@ -1131,7 +1133,7 @@ input[type="radio"]:checked + .radio-label {
 
 .footer-icon {
   font-size: 1.8em;
-  margin-bottom: -10px;  
+  margin-bottom: -12px;  
 }
 
 .footer-btn {
@@ -1151,7 +1153,8 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .footer-icon-text {
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 /* (P) Error page */
