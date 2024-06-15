@@ -1,6 +1,6 @@
 import StepProgressBar from "../components/ProgressBar";
 import { useOutletContext, useNavigate } from "react-router-dom";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import "../styles/index.css";
 import { useAppSelector } from '../redux/hooks';
 import StaticMap from "../components/StaticMap";
@@ -8,6 +8,9 @@ import BeenToButton from "../components/BeenToButton";
 import HorizontalChevron from "../components/HorizontalChevron";
 import MapView from "../components/MapView";
 import CuisineTag from "../components/CuisineTag";
+import Confetti from 'react-confetti'
+import { toast } from 'react-toastify';
+
 
 export default function Profile() {
   const {
@@ -15,6 +18,7 @@ export default function Profile() {
   } = useOutletContext(); //from Layout.jsx
 
   const [toggleMapView, setToggleMapView] = useState(false)
+  const [celebrating, setCelebrating] = useState(false);
 
   // from Redux Store
   const { restaurantList } = useAppSelector((state) => state.restaurant);
@@ -27,6 +31,18 @@ export default function Profile() {
       navigate(`/listing/${restaurant.id}`)
     }
   }
+
+  useEffect(() => {
+    const milestones = [25, 50, 75, 100];
+    if (milestones.includes(restaurantList?.length)) {
+      toast.success(`Congratulations for having visited ${restaurantList?.length} restaurants!`)
+      setCelebrating(true);
+
+      // Wait for the confetti animation to complete (e.g., 5 seconds)
+      setTimeout(() => setCelebrating(false), 5000); 
+    }
+  }, [restaurantList?.length]); 
+  
   const newList = restaurantList.map(each => each)
 
   const visitedCards = newList?.reverse().map((restaurantObj) => {
@@ -78,6 +94,8 @@ export default function Profile() {
 
   return (
     <div className='profile-page-container'>
+      {celebrating && <Confetti />}
+  
       <div className='profile-top-half'>
         <h1>Profile</h1>
       </div>
