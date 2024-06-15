@@ -316,6 +316,16 @@ input[type="radio"]:checked + .radio-label {
   right: 8px;
 }
 
+@media only screen and (min-width: 550px) {
+  .left-chevron {
+    visibility: hidden;
+  }
+  
+  .right-chevron {
+    visibility: hidden;
+  }
+}
+
 .profile-chevron {
   top: 620px;
 }
@@ -424,7 +434,7 @@ input[type="radio"]:checked + .radio-label {
 
 .map-button {
   background-color: #EDF1D6;
-  color: #000000;
+  color: #303D32;
   width: 130px;
   height: 26px;
   border: none;
@@ -441,7 +451,7 @@ input[type="radio"]:checked + .radio-label {
 
 .menu-button {
   background-color: #EDF1D6;
-  color: #000000;
+  color: #303D32;
   width: 104px;
   height: 26px;
   border: none;
@@ -472,6 +482,13 @@ input[type="radio"]:checked + .radio-label {
   border-radius: 18px;
   width: 90%;
   opacity: 0.7;
+}
+
+@media only screen and (min-width: 850px) {
+  .menu-dropdown {
+    left: 37.5%;
+    width: 25%;
+  }
 }
 
 .menu-item {
@@ -941,7 +958,7 @@ input[type="radio"]:checked + .radio-label {
   position: fixed;
   z-index: -1;
   width: 100vw;
-  height: 135px;
+  height: 160px;
   padding-top: 10px;
   left: 0;
   top: 0;
@@ -1092,7 +1109,7 @@ input[type="radio"]:checked + .radio-label {
   display: flex;
   align-items: center;
   background-color: #EDF1D6;
-  color: #000000;
+  color: #303D32;
   padding: 0 12px;
   height: 26px;
   border: none;
