@@ -34,9 +34,17 @@ export default function HorizontalChevron({ children, page }) {
 
   return (
     <div className={`${page.classname}`}>
-      <div className={`chevron left-chevron ${page.name === 'profile' ? 'profile-chevron' : ''}`}></div>
+      <div className={`chevron left-chevron ${page.name === 'profile' ? 'profile-chevron' : ''}`}>
+        <span className="material-symbols-outlined">
+        arrow_back_ios
+        </span>
+      </div>
         { children }
-      <div className={`chevron right-chevron ${page.name === 'profile' ? 'profile-chevron' : ''}`}></div>
+      <div className={`chevron right-chevron ${page.name === 'profile' ? 'profile-chevron' : ''}`}>
+        <span className="material-symbols-outlined">
+        arrow_forward_ios
+        </span>
+      </div>
     </div>
   )
 }
