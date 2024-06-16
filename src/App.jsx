@@ -5,6 +5,8 @@ import Location from './pages/Location';
 import Quiz from './pages/Quiz';
 import Home from './pages/Home';
 import Restaurant from "./pages/Restaurant";
+import NotFound from "./pages/Error";
+import Award from "./pages/Awards";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path="quiz" element={<Quiz/>} />
           <Route path="home" element={<Home/>} />
           <Route path="home/:id" element={<Restaurant />} />
+          <Route path="award" element={<Award/>} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
