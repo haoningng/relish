@@ -6,11 +6,12 @@ import { PropTypes } from 'prop-types'
 
 export default function InputSearch({ page }) {
   const {
-    setLocation,
-    setPlaceName,
+    selectedCuisine,
     setSelectedCuisine,
     setOffset,
-    setListing
+    setListing,
+    setLsLocationObj,
+    setLoading
   } = useOutletContext(); //from Layout.jsx
 
   InputSearch.propTypes = {
@@ -27,30 +28,35 @@ export default function InputSearch({ page }) {
   function handleSubmit(event) {
     event.preventDefault(); // Prevent default form submission
     if (page.name !== 'location') {
-      setSelectedCuisine(inputValue.toLowerCase());
-      setOffset(0);
-      setInputValue('');
+      if (inputValue !== selectedCuisine) {
+        setSelectedCuisine(inputValue.toLowerCase());
+        setOffset(0);
+        setInputValue('');
+        setLoading(true);
+        setListing([]);
+        form.reset();
+        navigate('/');
+      }
+    } else {
+      setLsLocationObj(() => (
+        [`-37.8136`, `144.9631`, 'Melbourne CBD']
+      ));
       setListing([]);
       form.reset();
-      navigate('/Home');
-    } 
-    else {
-      setLocation(inputValue.toLowerCase());
-      setPlaceName(inputValue.toLowerCase());
-      setInputValue('');
-      form.reset();
-      navigate('/Quiz');
     }
   }
 
   // handle selecting from dropdown suggestions (for cuisine options)
   function handleClick(suggestion) {
-    setSelectedCuisine(suggestion);
-    setOffset(0);
     setInputValue('');
-    setListing([]);
     form.reset();
-    navigate('/Home');
+    if (suggestion !== selectedCuisine) {
+      setSelectedCuisine(suggestion);
+      setOffset(0);
+      setLoading(true);
+      setListing([]);
+      navigate('/');
+    }
   }
  
   function handleChange(event){

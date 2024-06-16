@@ -1,21 +1,18 @@
 import { useRef, useEffect, useState, useMemo } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, Link } from "react-router-dom";
 import "../styles/index.css";
 import StaticMap from "../components/StaticMap";
 import InputSearch from "../components/InputSearch";
 
 export default function Location() {
   const {
-    coordinate,
-    setCoordinate,
-    setPlaceName,
-    setLocation,
-    setRadius,
-    setPriceLevel,
-    setSort,
+    lsLocationObj,
+    setLsLocationObj,
+    setFilterObj,
     setSelectedCuisine,
     setOffset,
-    setListing
+    setListing,
+    setLoading,
   } = useOutletContext(); //from Layout.jsx
 
   const [permissionStatus, setPermissionStatus] = useState('prompt');
@@ -25,12 +22,12 @@ export default function Location() {
   // default to 0.1 degree in coordinate i.e. approx +/-11km
   const defaultBounds = useMemo(() => {
     return {
-      north: coordinate.lat + 0.1,
-      south: coordinate.lat - 0.1,
-      east: coordinate.lng + 0.1,
-      west: coordinate.lng - 0.1,
+      north: parseFloat(lsLocationObj[0]) + 0.1,
+      south: parseFloat(lsLocationObj[0]) - 0.1,
+      east: parseFloat(lsLocationObj[1]) + 0.1,
+      west: parseFloat(lsLocationObj[1]) - 0.1,
     };
-  }, [coordinate.lat, coordinate.lng]) 
+  }, [lsLocationObj]) 
 
   // restricted to Australia
   const options = useMemo(() => {
@@ -41,37 +38,41 @@ export default function Location() {
     };
   }, [defaultBounds]) 
 
-  // reset the cuisine choice, placeName and filters
+  // reset the cuisine choice and filters
   useEffect(() => {
-    setSelectedCuisine('');
-    setPlaceName('');
-    setLocation('');
-    setRadius(4000);
-    setPriceLevel(null);
-    setSort('best_match');
+    setSelectedCuisine('restaurant');
+    setFilterObj((filterObj) => ({
+      ...filterObj,
+      priceLevel: 0,
+      radius: 0,
+      sort: 0
+    })),
     setOffset(0);
     setListing([]);
+    setLoading(true);
   }, [])
 
   // request for permission to retrieve coordinate via Geolocation API
-  useEffect(() => {
+  function getMyLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         // permission granted
         (position) => {
           setPermissionStatus('granted');
-          setCoordinate({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          })
-          setPlaceName('Discovering Nearby')
-        },
+          setLsLocationObj(() => (
+            [`${position.coords.latitude}`, `${position.coords.longitude}`, 'Discovering Nearby']
+          ))}
+,
         (error) => {
           // if denied
           if (error.code === error.PERMISSION_DENIED) {
             setPermissionStatus('denied');
-            setCoordinate({lat: -37.8136, lng: 144.9631}); // Default to Melbourne Coordinate
-            setPlaceName('Melbourne CBD');
+            // if not already set in localStorage, set default to Melbourne CBD
+            if (!lsLocationObj) {
+              setLsLocationObj(() => (
+                [`-37.8136`, `144.9631`, 'Melbourne CBD']
+              ))
+            }
           } else {
             setPermissionStatus('error'); // Other errors
           }
@@ -80,7 +81,7 @@ export default function Location() {
     } else {
       setPermissionStatus('unsupported'); // Geolocation not supported
     }
-  }, []);
+  }
   
   // Google Maps Javascript API [Library = Places]
   useEffect(() => {
@@ -93,17 +94,15 @@ export default function Location() {
       autoCompleteRef.current.addListener("place_changed", async function () {
         const place = await autoCompleteRef.current.getPlace();
         if (place) {
-          setPlaceName(place.name)
-          setCoordinate({
-            lat: place.geometry?.location.lat(),
-            lng: place.geometry?.location.lng(),
-          })
+          setLsLocationObj(() => (
+            [`${place.geometry?.location.lat()}`, `${place.geometry?.location.lng()}`, `${place.name}`]
+          ))
         }
       });
     }
   }, []);
 
-  return permissionStatus === 'denied' ? (
+  return (
     <div className="input-outer-container">
       <InputSearch 
         page={{
@@ -114,54 +113,26 @@ export default function Location() {
         }}
       />
       <br />
-      {coordinate.lat ? <StaticMap
-        coordinate={coordinate}
-        page={{
-          name: 'location'
-        }}
-      /> : 'searching'}
-      <p>Tap on the map to proceed</p>
+        <StaticMap
+          coordinate={{
+            lat: parseFloat(lsLocationObj[0]),
+            lng: parseFloat(lsLocationObj[1]),
+          }}
+          page={{
+            name: 'location'
+          }}
+        /> 
+        <Link to="/Quiz">
+          <button className='location-proceed-btn'>Proceed</button>
+        </Link>
+        <div className='use-my-location'>
+          <p className="material-symbols-outlined">my_location</p>
+          <p onClick={getMyLocation}>Use my current location</p>
+        </div>
+          {permissionStatus === 'denied' && 
+          <p className='geolocation-permission-denied'>
+          - Location permission is required -<br/>Please go to your browser settings and enable location access for this website.
+          </p>}
     </div>
-  ) : permissionStatus === 'granted' ? (
-    <div className="input-outer-container">
-      <InputSearch 
-        page={{
-          name: 'location',
-          ref: inputRef,
-          title: 'Where to eat?',
-          placeholder: 'Suburb / Postcode'
-        }}
-      />
-      <br />
-      {coordinate.lat ? <StaticMap
-        coordinate={coordinate}
-        page={{
-          name: 'location'
-        }}
-      /> : 'searching'}
-      <p>Tap on the map to proceed</p>
-    </div>
-  ) : (
-    // this block runs when the browser is checking permissionStatus
-    // TODO: insert animation here maybe
-    <div className="input-outer-container">
-      <InputSearch 
-        page={{
-          name: 'location',
-          ref: inputRef,
-          title: 'Where to eat?',
-          placeholder: 'Suburb / Postcode'
-        }}
-      />
-      <br />
-      {coordinate.lat ? <StaticMap
-        coordinate={coordinate}
-        page={{
-          name: 'location'
-        }}
-      /> : ''}
-      <p className='searching'>Searching location</p>
-      <p className='searching-2'>Please refresh if you are not redirected within a few seconds </p>
-    </div>
-  );
+  ) 
 }

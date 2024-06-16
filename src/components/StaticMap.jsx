@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
 import PropTypes from 'prop-types';
 
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY
@@ -20,12 +19,13 @@ export default function StaticMap({ coordinate, page }) {
     }, [lat, lng])
 
     return ( page.name == 'location' ?
-        <Link to="/Quiz">
-            {imgUrl ? <img className="location-img" alt='Static map of current location' src={imgUrl} ></img> : null}
-        </Link> : page.name == 'restaurant' ?
+        imgUrl ? <img className="location-img" alt='Static map of current location' src={imgUrl} ></img> : <div className="location-img"></div>
+        : page.name == 'restaurant' ?
         imgUrl ? <img className="restaurant-map" alt='Static map of selected restaurant' src={imgUrl} ></img> : null
         : page.name == 'cardsview' ?
-        imgUrl ? <img className="cardsview-map" alt='Static map of selected restaurant' src={imgUrl} ></img> : null
+        imgUrl ? <img className="listing-restaurant-photo" alt='Static map of selected restaurant' src={imgUrl} ></img> : null
+        : page.name == 'profile' ?
+        imgUrl ? <img className="profile-visited-img" alt='Static map of selected restaurant' src={imgUrl} ></img> : null
         : imgUrl ? <img className="restaurant-img" alt='Static map of selected restaurant' src={imgUrl} ></img> : null
     )
 }

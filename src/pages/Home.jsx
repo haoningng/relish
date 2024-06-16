@@ -5,18 +5,20 @@ import Listing from "../components/Listing";
 import InputSearch from "../components/InputSearch";
 import CuisineOptions from "../components/CuisineOptions";
 import FilterMenu from "../components/FilterMenu";
+import HorizontalChevron from "../components/HorizontalChevron";
 
 export default function Home() {
   const {
-    placeName
+    lsLocationObj,
+    selectedCuisine
   } = useOutletContext(); //from Layout.jsx
-
+  console.log(lsLocationObj, selectedCuisine)
   const [toggleMapView, setToggleMapView] = useState(false)
 
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate('/');
+    navigate('/location');
   }
 
   function handleToggle() {
@@ -26,7 +28,7 @@ export default function Home() {
   return (
       <div className="input-outer-container">
         <h3 onClick={handleClick} className='home-location-link-container'>
-          <span className='home-location-link'>{placeName} ▼</span>
+          <span className='home-location-link'>{lsLocationObj[2]} ▼</span>
         </h3>
         <InputSearch 
           page={{
@@ -35,7 +37,9 @@ export default function Home() {
             placeholder: 'Search Relish'
           }}
         />
-        <div className="home-cuisine-container">
+        <HorizontalChevron
+          page={{classname: 'home-cuisine-container'}}
+        >
           <CuisineOptions 
             page={{
               name: 'home',
@@ -43,8 +47,7 @@ export default function Home() {
               descClassName: 'horizontal-radio-label-desc'
             }}
           />
-        </div>
-        <br />
+        </HorizontalChevron>
         <FilterMenu/>
         <div className='result-container'>
           <div className='result-header-container'>
@@ -53,13 +56,12 @@ export default function Home() {
                   to="map"
                   className="map-button"
                   onClick={handleToggle}
-                  // end
                   style={toggleMapView ? {
                     backgroundColor: '#8DA656',
                     color: 'white',
                     border: '1px solid #6FBD6E'} : {}}
               >
-                Map
+                View in {toggleMapView ? 'List' : 'Map'}
               </button>
           </div>
           <Listing mapOn={toggleMapView}/>
