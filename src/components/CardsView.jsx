@@ -2,6 +2,7 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 import { PropTypes } from 'prop-types'
 import StaticMap from "./StaticMap";
 import BeenToButton from "./BeenToButton";
+import CuisineTag from "./CuisineTag";
 
 export default function CardsView({ listing }) {
   const {
@@ -50,10 +51,12 @@ export default function CardsView({ listing }) {
               name: 'cardsview'
             }}
             />}
+            <CuisineTag restaurant={each} page={{name: 'listing'}}/>
             <BeenToButton 
               page={{
                 name: 'listing',
                 restaurant: each,
+                visited: false
               }}
             />
         </div>

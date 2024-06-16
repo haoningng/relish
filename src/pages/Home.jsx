@@ -57,9 +57,9 @@ export default function Home() {
                   className="map-button"
                   onClick={handleToggle}
                   style={toggleMapView ? {
-                    backgroundColor: '#8DA656',
-                    color: 'white',
-                    border: '1px solid #6FBD6E'} : {}}
+                    backgroundColor: '#163300',
+                    color: '#9FE870',
+                    border: '1px solid #9FE870'} : {}}
               >
                 View in {toggleMapView ? 'List' : 'Map'}
               </button>

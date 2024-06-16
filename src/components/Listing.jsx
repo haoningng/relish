@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef }  from 'react';
 import { useOutletContext, useNavigate, useLocation } from "react-router-dom";
+import { useAppSelector } from "../redux/hooks"
 import { PropTypes } from 'prop-types'
 import CardsView from './CardsView';
 import MapView from './MapView';
@@ -24,6 +25,9 @@ export default function Listing({ mapOn }) {
 
   const [showSeeMore, setShowSeeMore] = useState(false);
   const [errorCode, setErrorCode] = useState(0);
+
+  // Access visted list from Redux Store
+  const { restaurantList } = useAppSelector((state) => state.restaurant);
 
   const saved = useLocation();
   
@@ -62,8 +66,10 @@ export default function Listing({ mapOn }) {
   }, []);
   
   useEffect(() => {
-    // 1. deserialise the restaurant list from localStorage
-    const beenToRestaurants = JSON.parse(localStorage.getItem('been-to'));
+    console.log(restaurantList.map(each => each.place_id))
+    if (!listing) {
+      setLoading(true);
+    }
 
     const options = {
       method: 'POST',
@@ -71,7 +77,7 @@ export default function Listing({ mapOn }) {
           'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-          "endpoint": (`https://api.yelp.com/v3/businesses/search?term=${selectedCuisine}${filterObj.priceLevel ? `&price=${filterObj.priceLevel}` : ''}&categories=${selectedCuisine}${filterObj.sort ? `&sort_by=${filterObj.sort}` : ''}${filterObj.radius ? `&radius=${filterObj.radius}` : ''}${`&latitude=${parseFloat(lsLocationObj[0])}&longitude=${parseFloat(lsLocationObj[1])}`}&locale=en_AU&offset=${offset}&limit=20`),
+          "endpoint": (`https://api.yelp.com/v3/businesses/search?term=${selectedCuisine}%20restaurants${filterObj.priceLevel ? `&price=${filterObj.priceLevel}` : ''}&categories=${selectedCuisine}${filterObj.sort ? `&sort_by=${filterObj.sort}` : ''}${filterObj.radius ? `&radius=${filterObj.radius}` : ''}${`&latitude=${parseFloat(lsLocationObj[0])}&longitude=${parseFloat(lsLocationObj[1])}`}&locale=en_AU&offset=${offset}&limit=20`),
           "id": `django-insecure-0ezwicnx+&u=g+d3e2&9-u!c9un559($jq7--dpd*8p-bshh4$`
       })
     }
@@ -85,14 +91,14 @@ export default function Listing({ mapOn }) {
         return response.json()
       })
       .then(data => {
-        // 2. Filter the data to remove the been-to restaurants, if there are any been-to restaurants
-        const filteredNewListing = beenToRestaurants ?  (data.businesses?.filter((each) => {
-          const isNotInBeenTo = !beenToRestaurants?.some(been => been.id === each.id);
+        // 1. Filter the data to remove the been-to restaurants, if there are any been-to restaurants
+        const filteredNewListing = restaurantList ?  (data.businesses?.filter((each) => {
+          const isNotInBeenTo = !restaurantList?.some(been => been.place_id === each.id);
           return isNotInBeenTo;
         })) : data.businesses;
 
         setListing(prevListing => {
-          // 3. Before pressing the see more button / been-to button, render the filtered list straighaway
+          // 2. Before pressing the see more button / been-to button, render the filtered list straighaway
           if (prevListing?.length === 0) {
             return filteredNewListing;
           }
@@ -115,7 +121,7 @@ export default function Listing({ mapOn }) {
             }
             // if see more button was pressed at least once i.e. offset > 20, we need to filter the previous List one more time
             return prevListing?.filter((each) => {
-              const isNotInBeenTo = !beenToRestaurants?.some(been => been.id === each.id);
+              const isNotInBeenTo = !restaurantList?.some(been => been.place_id === each.id);
               return isNotInBeenTo;
             })
           }
@@ -132,7 +138,7 @@ export default function Listing({ mapOn }) {
         }
         setLoading(false);
         });
-  }, [saved.state?.savedRestaurants, filterObj.priceLevel, filterObj.radius, filterObj.sort, lsLocationObj, offset, selectedCuisine, setListing]);
+  }, [restaurantList, saved.state?.restaurantList, filterObj.priceLevel, filterObj.radius, filterObj.sort, lsLocationObj, offset, selectedCuisine, setListing]);
 
   return ( errorCode == 429 ? 
   <p className='error-message'>

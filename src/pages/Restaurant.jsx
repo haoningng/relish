@@ -1,32 +1,57 @@
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useMemo } from 'react';
+import { useAppSelector } from '../redux/hooks';
 import StaticMap from '../components/StaticMap';
 import BeenToButton from '../components/BeenToButton';
-import UnvisitButton from "../components/UnvisitButton";
+import CuisineTag from '../components/CuisineTag';
 
 export default function Restaurant() {
   const {
     selectedRestaurant
   } = useOutletContext(); //from Layout.jsx
 
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!selectedRestaurant) {
+      navigate('/');
+    }
+  }, [navigate, selectedRestaurant])
+
   const coordinate = {
-    lat: selectedRestaurant?.coordinates.latitude,
-    lng: selectedRestaurant?.coordinates.longitude
+    lat: selectedRestaurant?.coordinates?.latitude,
+    lng: selectedRestaurant?.coordinates?.longitude
   }
   
   const [openNow, setOpenNow] = useState(null);
 
-  const beenToRestaurants = JSON.parse(localStorage.getItem('been-to'));
-
+  const { restaurantList } = useAppSelector((state) => state.restaurant);
+  
+  // Determine if the restaurant is in Redux Store (i.e. visited)
   const inStorage = useMemo(() => {
+    // Parse the visited list from Redux Store
+    const beenToRestaurants = restaurantList?.map((restaurantObj) => {
+  
+      // Remove invalid characters from JSON string before parsing
+      const convert = restaurantObj.obj
+                      .replace(/False/g, 'false')
+                      .replace(/True/g, 'true')
+                      .replace(/None/g, 'null')
+                      .replace(/'(\w+)'\s*:/g, '"$1":')  // Replace single quotes around keys
+                      .replace(/:\s*'([^']*)'/g, ': "$1"') // Replace single quotes around string values
+                      .replace(/\['(.*?)'\]/g, '["$1"]'); // Replace single quotes in arrays
+  
+      const each = JSON.parse(convert);
+      return each;
+    })
+
     if (beenToRestaurants) {
       return beenToRestaurants?.some((each) => {
-        return each.id === selectedRestaurant.id
+        return each.id === selectedRestaurant.id //true if visited, false otherwise
       })
     } else {
       return null;
     }
-  }, [beenToRestaurants, selectedRestaurant.id])
+  }, [restaurantList, selectedRestaurant.id])
 
   useEffect(() => {
     const fetchOpenNowStatus = async () => {
@@ -46,7 +71,12 @@ export default function Restaurant() {
         const data = await response.json();
 
         if (response.ok) {
-          setOpenNow(data.hours[0].is_open_now);
+          if (data.hours) {
+            setOpenNow(data.hours[0].is_open_now);
+          } else {
+            setOpenNow(null);
+            console.error('Yelp API Error: is_open_now field is undefined');
+          }
         } else {
           setOpenNow(null)
           console.error('Yelp API Error:', data.error);
@@ -62,6 +92,7 @@ export default function Restaurant() {
     if (selectedRestaurant.id) { // Fetch only if selectedRestaurant.id exists
       fetchOpenNowStatus();
     }
+    console.log(selectedRestaurant)
   }, [selectedRestaurant.id]); 
   
   return ( selectedRestaurant ?
@@ -80,21 +111,14 @@ export default function Restaurant() {
                       name: 'restaurant-img'
                     }}
                   />}
-            {inStorage ? 
-            <UnvisitButton 
-              page={{
-                name: 'restaurant',
-                restaurant: selectedRestaurant,
-              }}
-            />
-            :
+            <CuisineTag restaurant={selectedRestaurant} page={{name: 'restaurant'}}/>
             <BeenToButton 
               page={{
                 name: 'restaurant',
                 restaurant: selectedRestaurant,
+                visited: inStorage ? true : false
               }}
             />
-            }
           </div>
           <h3 className='restaurant-text-1'>{selectedRestaurant.name}</h3>
           <div className='restaurant-text-2'>
@@ -109,8 +133,8 @@ export default function Restaurant() {
           >{selectedRestaurant.location.display_address.join(', ')}</a>
           <div className='restaurant-text-3'>
             <p>
-              <span className={openNow ? 'opening-green' : 'closing-red'}>{openNow ? `Open` : openNow === null ? '' : `Closed`}</span>
-              <span>{` • < ${parseFloat(selectedRestaurant.distance/1000).toFixed(1)} km`}</span>
+              <span className={openNow ? 'opening-green' : 'closing-red'}>{openNow ? `Open • ` : openNow === null ? '' : `Closed • `}</span>
+              <span>{`< ${parseFloat(selectedRestaurant.distance/1000).toFixed(1)} km`}</span>
             </p>
           </div>
         </div>

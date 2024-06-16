@@ -40,7 +40,7 @@ export default function Location() {
 
   // reset the cuisine choice and filters
   useEffect(() => {
-    setSelectedCuisine('restaurant');
+    setSelectedCuisine('');
     setFilterObj((filterObj) => ({
       ...filterObj,
       priceLevel: 0,

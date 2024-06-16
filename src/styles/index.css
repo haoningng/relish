@@ -17,7 +17,7 @@ Note
 }
 
 :root {
-  background: linear-gradient(0deg, #67A175,  #303D32);
+  background: linear-gradient(0deg, #67A175,  #163300);
   color: #f9f9f9;
   width: 100vw;
   height: 100vh;
@@ -144,6 +144,8 @@ li.pac-item {
   height: 19rem;
   position: relative;
   margin-top: 180px;
+  background-color: #eeeeee7c; /* Light gray background */
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 /* (P) Location page */
@@ -169,7 +171,7 @@ li.pac-item {
   height: 60px;
   border-radius: 100px;
   border: none;
-  background-color: #CD5534;
+  background-color: #BF1E2C;
   color: #FFFFFF;
   font-size: 20px;
   font-weight: 500;
@@ -269,7 +271,7 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .quiz-subtitle-2 {
-  margin-top: 550px;
+  margin-top: 540px;
   position: absolute;
   font-weight: 300;
   font-size: 14px;
@@ -282,7 +284,7 @@ input[type="radio"]:checked + .radio-label {
   height: 60px;
   border-radius: 100px;
   border: none;
-  background-color: #CD5534;
+  background-color: #BF1E2C;
   color: #FFFFFF;
   font-size: 20px;
   font-weight: 500;
@@ -299,22 +301,29 @@ input[type="radio"]:checked + .radio-label {
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent */
-  clip-path: polygon(100% 0, 0 50%, 100% 100%); /* Chevron shape */
+  /* cursor: pointer; */
 }
 
 .left-chevron {
   position: fixed;
   top: 170px;
-  left: 10px;
+  left: 8px;
 }
 
 .right-chevron {
   position: fixed;
   top: 170px;
-  right: 10px;
-  transform: translateY(-50%) rotate(180deg); /* Flip chevron */
+  right: 8px;
+}
+
+@media only screen and (min-width: 550px) {
+  .left-chevron {
+    visibility: hidden;
+  }
+  
+  .right-chevron {
+    visibility: hidden;
+  }
 }
 
 .profile-chevron {
@@ -349,7 +358,7 @@ input[type="radio"]:checked + .radio-label {
 
 .home-location-link {
   font-size: 0.8em;
-  font-weight: 200;
+  font-weight: 500;
   cursor: pointer;
 }
 
@@ -360,8 +369,8 @@ input[type="radio"]:checked + .radio-label {
   overflow-x: scroll;
   overflow-y: hidden;
   position: relative;
-  margin-top: 67px; 
-  margin-bottom: 0px;
+  margin-top: 63px; 
+  margin-bottom: 4px;
   display: flex;
   flex-direction: row;
   align-items: start;
@@ -396,7 +405,8 @@ input[type="radio"]:checked + .radio-label {
   color: #ffffff;
   height: 10px;
   font-size: 11px;
-  font-weight: 300;
+  font-weight: 500;
+  letter-spacing: 0.1px;
   margin-top: 2px;
 }
 
@@ -424,7 +434,7 @@ input[type="radio"]:checked + .radio-label {
 
 .map-button {
   background-color: #EDF1D6;
-  color: #000000;
+  color: #163300;
   width: 130px;
   height: 26px;
   border: none;
@@ -440,8 +450,8 @@ input[type="radio"]:checked + .radio-label {
 /* (C) Menu component */
 
 .menu-button {
-  background-color: #EDF1D6;
-  color: #000000;
+  background-color: #9FE870;
+  color: #163300;
   width: 104px;
   height: 26px;
   border: none;
@@ -472,6 +482,13 @@ input[type="radio"]:checked + .radio-label {
   border-radius: 18px;
   width: 90%;
   opacity: 0.7;
+}
+
+@media only screen and (min-width: 850px) {
+  .menu-dropdown {
+    left: 37.5%;
+    width: 25%;
+  }
 }
 
 .menu-item {
@@ -520,12 +537,12 @@ input[type="radio"]:checked + .radio-label {
   cursor: pointer;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background-color: #eeeeee7c; /* Light gray background */
-  animation: skeleton-loading 1s linear infinite alternate; /* Animation */
+  animation: skeleton-loading 0.6s linear infinite alternate; /* Animation */
 }
 
 .skeleton-image {
   width: 360px;
-  height: 150px;
+  height: 120px;
 }
 
 .skeleton-title {
@@ -549,7 +566,7 @@ input[type="radio"]:checked + .radio-label {
 
 @keyframes skeleton-loading {
   0% {
-    opacity: 0.5;
+    opacity: 0.7;
   }
   100% {
     opacity: 1;
@@ -560,7 +577,7 @@ input[type="radio"]:checked + .radio-label {
 
 .listing-container {
   width: 365px;
-  height: 490px;
+  height: calc(100vh * 0.6);
   overflow-y: scroll;
   overflow-x: hidden;
   display: flex;
@@ -587,24 +604,30 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .listing-been-to-button {
-  font-size: 38px;
+  font-size: 35px;
   position: relative;
-  top: -180px;
+  top: -170px;
   left: 310px;
   width: 40px;
   height: 40px;
-  /* border-radius: 50%;
+  background-color: #BF1E2C;
+  border-radius: 18px;
+  color: #ffffff;
   border: none;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
 
 .listing-restaurant-photo {
   width: 360px;
-  height: 180px;
+  height: 150px;
   border-radius: 8px;
   object-fit: cover;
   cursor: pointer;
+  background-color: #eeeeee7c; /* Light gray background */
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -613,7 +636,7 @@ input[type="radio"]:checked + .radio-label {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  margin-top: -64px;
+  margin-top: -75px;
 }
 
 .listing-desc-text-1{
@@ -626,12 +649,12 @@ input[type="radio"]:checked + .radio-label {
   display: flex;
   justify-content: space-between;
   font-size: 1.1em;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: -30px;
 }
 
 .listing-desc-text-3 {
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .opening-green {
@@ -653,7 +676,7 @@ input[type="radio"]:checked + .radio-label {
   height: 45px;
   border-radius: 70px;
   border: none;
-  background-color: #CD5534;
+  background-color: #BF1E2C;
   color: #FFFFFF;
   font-size: 20px;
   font-weight: 500;
@@ -668,6 +691,75 @@ input[type="radio"]:checked + .radio-label {
   opacity: 1 !important; 
   transform: translateY(0) !important;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* (C) Cuisine Tag */
+
+.listing-cuisine-tag {
+  font-size: 12px;
+  position: relative;
+  top: -150px;
+  left: 7px;
+  width: 80px;
+  height: 20px;
+  background-color: #8DA656;
+  border-radius: 18px;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.restaurant-cuisine-tag {
+  font-size: 16px;
+  position: relative;
+  top: -250px;
+  left: 10px;
+  width: 120px;
+  height: 30px;
+  background-color: #8DA656;
+  border-radius: 18px;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-cuisine-tag {
+  font-size: 12px;
+  position: absolute;
+  top: 25px;
+  /* left: 10px; */
+  width: 80px;
+  height: 14px;
+  background-color: #8DA656;
+  border-radius: 18px;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-cuisine-tag {
+  font-size: 12px;
+  position: absolute;
+  top: 0px;
+  width: 80px;
+  height: 14px;
+  background-color: #8DA656;
+  border-radius: 18px;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* (C) MapView component */
@@ -687,16 +779,20 @@ input[type="radio"]:checked + .radio-label {
   font-size: 1.1em;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
 }
 
 .infowindow-text-1{
   font-weight: 600;
   margin-bottom: -5px;
+  text-align: left;
 }
 
 .infowindow-text-2 {
   display: flex;
   justify-content: space-between;
+  width: 100%;
   margin-bottom: -15px;
 }
 
@@ -726,7 +822,7 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .restaurant-img-container {
-  margin-bottom: -30px;
+  margin-bottom: -70px;
 }
 
 .restaurant-img {
@@ -734,19 +830,26 @@ input[type="radio"]:checked + .radio-label {
   height: 250px;
   margin: 0 auto;
   object-fit: cover;
+  border-radius: 18px;
+  background-color: #eeeeee7c; /* Light gray background */
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .restaurant-been-to-button {
   font-size: 48px;
   position: relative;
-  top: -40px;
+  top: -70px;
   left: 290px;
   width: 50px;
   height: 50px;
-  /* border-radius: 20px;
+  background-color: #BF1E2C;
+  border-radius: 18px;
+  color: #ffffff;
   border: none;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
 
@@ -781,10 +884,10 @@ input[type="radio"]:checked + .radio-label {
 
 .restaurant-buttons {
   width: 170px;
-  height: 25vh;
+  height: 22vh;
   border-radius: 25px;
-  background-color: #CD5534;
-  border: 3px solid #FF932E;
+  background-color: #163300;
+  border: 3px solid #9FE870;
   color: #ffffff;
   font-size: 1.5em;
   font-weight: 800;
@@ -799,6 +902,7 @@ input[type="radio"]:checked + .radio-label {
   width: 100%;
   object-fit: cover;
   margin-bottom: 10%;
+  background-color: #eeeeee7c; /* Light gray background */
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 }
@@ -808,7 +912,10 @@ input[type="radio"]:checked + .radio-label {
 .progress-bar {
   width: 333px;
   height: 74px;
-  background-color: #8DA656;
+  background-color: #EDF1D6;
+  color: #163300;
+  border: 1px solid #163300;
+  font-weight: 600;
   border-radius: 18px;
   padding: 10px;
   margin: 15px auto;
@@ -850,11 +957,11 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .profile-top-half {
-  background-color: #303D32;
+  background-color: #163300;
   position: fixed;
   z-index: -1;
   width: 100vw;
-  height: 123px;
+  height: 160px;
   padding-top: 10px;
   left: 0;
   top: 0;
@@ -971,6 +1078,7 @@ input[type="radio"]:checked + .radio-label {
   height: 80px;
   object-fit: cover;
   cursor: pointer;
+  background-color: #eeeeee7c; /* Light gray background */
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -981,30 +1089,19 @@ input[type="radio"]:checked + .radio-label {
   text-wrap: wrap;
 }
 
-.profile-unvisit-button {
+.profile-been-to-button {
   position: relative;
   top: 20px;
-  left: -20px;
-  background-color: #CD5534;
+  left: -30px;
+  background-color: #BF1E2C;
   border-radius: 18px;
-  color: #ffffff;
+  border: none;
+  color: #EDF1D6;
   cursor: pointer;
+  width: 35px;
+  height: 35px;
 }
 
-.restaurant-unvisit-button {
-  font-size: 48px;
-  position: relative;
-  top: -40px;
-  left: 290px;
-  width: 50px;
-  height: 50px;
-  background-color: #CD5534;
-  border-radius: 18px;
-  color: #ffffff;
-  border: none;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-}
 
 .profile-visited-map {
   width: 370px;
@@ -1015,7 +1112,8 @@ input[type="radio"]:checked + .radio-label {
   display: flex;
   align-items: center;
   background-color: #EDF1D6;
-  color: #000000;
+  color: #163300;
+  padding: 0 12px;
   height: 26px;
   border: none;
   cursor: pointer;
@@ -1025,9 +1123,9 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .profile-button:active {
-  background-color: #8DA656;
-  color: white;
-  border: 1px solid #6FBD6E;
+  background-color: #163300;
+  color: #9FE870;
+  border: 1px solid #9FE870;
 }
 
 .profile-button:focus {
@@ -1037,7 +1135,7 @@ input[type="radio"]:checked + .radio-label {
 /* (P) Footer page */
 
 .footer-container {
-  background-color: #67A175;
+  background-color: #163300;
   height: 7%;
   width: 100%;
   position: fixed;
@@ -1058,7 +1156,7 @@ input[type="radio"]:checked + .radio-label {
 
 .footer-icon {
   font-size: 1.8em;
-  margin-bottom: -10px;  
+  margin-bottom: -12px;  
 }
 
 .footer-btn {
@@ -1078,7 +1176,8 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .footer-icon-text {
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 /* (P) Error page */

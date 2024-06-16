@@ -18,14 +18,14 @@ export default function StaticMap({ coordinate, page }) {
         setImgUrl(`https://maps.googleapis.com/maps/api/staticmap?/center=${lat},%20${lng}&zoom=14&size=400x400&markers=${lat},%20${lng}&key=${API_KEY}`)
     }, [lat, lng])
 
-    return ( page.name == 'location' ?
-        imgUrl ? <img className="location-img" alt='Static map of current location' src={imgUrl} ></img> : <div className="location-img"></div>
-        : page.name == 'restaurant' ?
-        imgUrl ? <img className="restaurant-map" alt='Static map of selected restaurant' src={imgUrl} ></img> : null
-        : page.name == 'cardsview' ?
-        imgUrl ? <img className="listing-restaurant-photo" alt='Static map of selected restaurant' src={imgUrl} ></img> : null
-        : page.name == 'profile' ?
-        imgUrl ? <img className="profile-visited-img" alt='Static map of selected restaurant' src={imgUrl} ></img> : null
-        : imgUrl ? <img className="restaurant-img" alt='Static map of selected restaurant' src={imgUrl} ></img> : null
+    return ( page.name == 'location' 
+        ? imgUrl ? <img className="location-img" alt='Static map of current location' src={imgUrl} ></img> : <div className="location-img"></div>
+        : page.name == 'restaurant' 
+            ? imgUrl ? <img className="restaurant-map" alt='Static map of selected restaurant' src={imgUrl} ></img> : <div className="restaurant-map"></div>
+            : page.name == 'cardsview' 
+                ? imgUrl ? <img className="listing-restaurant-photo" alt='Static map of selected restaurant' src={imgUrl} ></img> : <div className="listing-restaurant-photo"></div>
+                : page.name == 'profile' 
+                    ? imgUrl ? <img className="profile-visited-img" alt='Static map of selected restaurant' src={imgUrl} ></img> : <div className="profile-visited-img"></div>
+                    : imgUrl ? <img className="restaurant-img" alt='Static map of selected restaurant' src={imgUrl} ></img> : <div className="restaurant-img"></div>
     )
 }

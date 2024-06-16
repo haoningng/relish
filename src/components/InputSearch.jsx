@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import "../styles/index.css";
-import dishList from "../dishList"
+import dishList from "../foods/dishList"
 import { PropTypes } from 'prop-types'
 
 export default function InputSearch({ page }) {
