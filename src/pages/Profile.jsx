@@ -138,7 +138,7 @@ export default function Profile() {
         <div className='profile-award-container'>
           <div className='profile-subtitle'>
             <h3>Awards</h3>
-            <button className='profile-button'>Collection</button>
+            <button className='profile-button' onClick={() => navigate('/award')}>Collection</button>
           </div>
           <div className='profile-award-card'>
             <img width='53px' src='hexagonal.svg'/>
