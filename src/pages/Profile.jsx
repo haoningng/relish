@@ -10,6 +10,7 @@ import MapView from "../components/MapView";
 import CuisineTag from "../components/CuisineTag";
 import Confetti from 'react-confetti'
 import { toast } from 'react-toastify';
+import Awards from "./Awards";
 
 
 export default function Profile() {
@@ -19,6 +20,7 @@ export default function Profile() {
 
   const [toggleMapView, setToggleMapView] = useState(false)
   const [celebrating, setCelebrating] = useState(false);
+  const [showAwards, setShowAwards] = useState(false);
 
   // from Redux Store
   const { restaurantList } = useAppSelector((state) => state.restaurant);
@@ -92,7 +94,16 @@ export default function Profile() {
     )
   })
 
-  return (
+  return ( showAwards ? 
+    <>
+      <button className='profile-button  awards-close' onClick={() => setShowAwards(prev => !prev)}>
+        <span className="material-symbols-outlined">
+          close
+        </span>
+      </button>
+      <Awards />
+    </>
+    :
     <div className='profile-page-container'>
       {celebrating && <Confetti />}
   
@@ -138,26 +149,26 @@ export default function Profile() {
         <div className='profile-award-container'>
           <div className='profile-subtitle'>
             <h3>Awards</h3>
-            <button className='profile-button' onClick={() => navigate('/award')}>Collection</button>
+            <button className='profile-button' onClick={() => setShowAwards(prev => !prev)}>Collection</button>
           </div>
           <div className='profile-award-card'>
             <img width='53px' src='hexagonal.svg'/>
             <div className='profile-award-texts'>
               <div className='profile-award-text-1'>
-                <h4>Mexicana Fiesta</h4>
+                <h4>Feta Late Than Never</h4>
                 <p>8m ago</p>
               </div>
-              <p className='profile-award-text-2'>Visited 5 mexican restaurant</p>
+              <p className='profile-award-text-2'>Visited 5 Greek restaurants</p>
             </div>
           </div>
           <div className='profile-award-card'>
             <img width='53px' src='hexagonal.svg'/>
             <div className='profile-award-texts'>
               <div className='profile-award-text-1'>
-                <h4>Mexicana Fiesta</h4>
+                <h4>I Am Pho Real</h4>
                 <p>8m ago</p>
               </div>
-              <p className='profile-award-text-2'>Visited 5 mexican restaurant</p>
+              <p className='profile-award-text-2'>Visited 5 Vietnamese restaurants</p>
             </div>
           </div>
         </div>

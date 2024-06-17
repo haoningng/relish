@@ -1015,7 +1015,7 @@ input[type="radio"]:checked + .radio-label {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 240px;
+  width: 260px;
   height: 70px;
   border-bottom: 1px solid #ffffff;
 }
@@ -1037,11 +1037,11 @@ input[type="radio"]:checked + .radio-label {
 
 .profile-award-text-2 {
   margin: 0;
-  width: 240px;
+  width: 300px;
 }
 
 .profile-visited-scrollable {
-  width: 300px;
+  width: 320px;
   margin-left: 0;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -1267,7 +1267,8 @@ input[type="radio"]:checked + .radio-label {
 /* (P) Awards page */
 
   .awards-page {
-    padding: 20px;
+    margin-top: -80px;
+    padding: 15px;
   }
 
   .awards-title {
@@ -1278,7 +1279,7 @@ input[type="radio"]:checked + .radio-label {
   .awards-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 10px;
     height: calc(100vh * 0.78);
     overflow-y: auto;
     overflow-x: hidden;
@@ -1293,4 +1294,10 @@ input[type="radio"]:checked + .radio-label {
     /* Hide scrollbar for IE, Edge and Firefox */
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+  }
+
+  .awards-close {
+    height: 40px;
+    margin-top: 20px;
+    margin-left: 20px;
   }
