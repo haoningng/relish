@@ -98,10 +98,10 @@ find the repo @ https://github.com/Goaty-yagi/Relish_backend
 ### Front-end Team
 - [Nick Ng](https://www.linkedin.com/in/nick-ng-b27706b0/)
 - [Yichen Cao](https://www.linkedin.com/in/ycaoc)
-- [Nobuhiro Fukahashi](https://www.linkedin.com/in/nobuhiro-funahashi-1b725322b)
+- [Nobuhiro Funahashi](https://www.linkedin.com/in/nobuhiro-funahashi-1b725322b)
 
 ### Back-end Team
-- [Nobuhiro Fukahashi](https://www.linkedin.com/in/nobuhiro-funahashi-1b725322b)
+- [Nobuhiro Funahashi](https://www.linkedin.com/in/nobuhiro-funahashi-1b725322b)
 
 ## 📺 Visual Appeal
 
