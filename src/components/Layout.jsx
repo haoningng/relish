@@ -51,8 +51,9 @@ export default function Layout() {
       if (location.pathname === '/') {
         const targetElement = eventData.event.target;
         const isInsideScrollableArea = targetElement.closest('.home-cuisine-container'); // ignore the cuisine container
+        const isInsideMapView = targetElement.closest('.mapview-container'); // ignore the mapview
         
-        if (!isInsideScrollableArea) {
+        if (!isInsideScrollableArea && !isInsideMapView) {
           navigate('/profile');
         }
       } else if (location.pathname === '/location') {
@@ -70,8 +71,9 @@ export default function Layout() {
       } else if (location.pathname === '/') {
         const targetElement = eventData.event.target;
         const isInsideScrollableArea = targetElement.closest('.home-cuisine-container'); // ignore the cuisine container
+        const isInsideMapView = targetElement.closest('.mapview-container'); // ignore the mapview
         
-        if (!isInsideScrollableArea) {
+        if (!isInsideScrollableArea && !isInsideMapView) {
           navigate('/location');
         }
       }
