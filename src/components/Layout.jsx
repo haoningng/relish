@@ -64,8 +64,9 @@ export default function Layout() {
       if (location.pathname === '/profile') {
         const targetElement = eventData.event.target;
         const isInsideScrollableArea = targetElement.closest('.profile-visited-scrollable'); // ignore the visited container
+        const isInsideMapView = targetElement.closest('.mapview-container'); // ignore the mapview
         
-        if (!isInsideScrollableArea) {
+        if (!isInsideScrollableArea && !isInsideMapView) {
           navigate('/');
         }
       } else if (location.pathname === '/') {
