@@ -155,10 +155,10 @@ export default function Profile() {
             <img width='53px' src='hexagonal.svg'/>
             <div className='profile-award-texts'>
               <div className='profile-award-text-1'>
-                <h4>Feta Late Than Never</h4>
+                <h4>Ive Got Fillings For You</h4>
                 <p>8m ago</p>
               </div>
-              <p className='profile-award-text-2'>Visited 5 Greek restaurants</p>
+              <p className='profile-award-text-2'>Visited 5 Chinese restaurants</p>
             </div>
           </div>
           <div className='profile-award-card'>
