@@ -14,21 +14,23 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="auth/login" element={<Login />} />
+        <Route path="auth/signup" element={<Signup />} />
+        <Route path="password-reset" element={<PasswordReset />} />
+        <Route path="password-reset/:uid/:token" element={<PasswordResetConfirmation />} />
+        <Route path="activation/:uid/:token" element={<Activation />} />
+        <Route path="tests" element={<Tests />} />
+        <Route path="auth/google" element={<Google />} />
+        {/* Protected routes: */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="quiz" element={<Quiz />} />
           <Route path="location" element={<Location />} />
           <Route path="listing/:id" element={<Restaurant />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="auth/login" element={<Login />} />
-          <Route path="auth/signup" element={<Signup />} />
-          <Route path="password-reset" element={<PasswordReset />} />
-          <Route path="password-reset/:uid/:token" element={<PasswordResetConfirmation />} />
-          <Route path="activation/:uid/:token" element={<Activation />} />
-          <Route path="tests" element={<Tests />} />
-          <Route path="auth/google" element={<Google />} />
-          <Route path="*" element={<NotFound />} />
         </Route>
+        {/* 404 page */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

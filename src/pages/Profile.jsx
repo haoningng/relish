@@ -24,6 +24,7 @@ export default function Profile() {
 
   // from Redux Store
   const { restaurantList } = useAppSelector((state) => state.restaurant);
+  const { username } = useAppSelector((state) => state.auth);
   
   const navigate = useNavigate();
 
@@ -112,7 +113,7 @@ export default function Profile() {
       </div>
       <div className='profile-bottom-half'>
         <img width='120px' className='profile-avatar' src='avatar.svg' />
-        <h2>John Smith</h2>
+        <h2>@{username}</h2>
         <div className='progress-bar'>
           <div className='progress-left-text'>
             <p className='progress-sum'>{restaurantList ? restaurantList?.length : 0}</p>
