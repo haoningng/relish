@@ -11,12 +11,12 @@ import CuisineTag from "../components/CuisineTag";
 import Confetti from 'react-confetti'
 import { toast } from 'react-toastify';
 import Awards from "./Awards";
-import GuidedTour from "../components/GuidedTour";
+import { Logout } from "../components/auth";
+import { useRetrieveUserQuery } from "../redux/features/authApiSlice";
 
 export default function Profile() {
   const {
     setSelectedRestaurant,
-    isFirstTime,
   } = useOutletContext(); //from Layout.jsx
 
   const [toggleMapView, setToggleMapView] = useState(false)
@@ -25,8 +25,8 @@ export default function Profile() {
 
   // from Redux Store
   const { restaurantList } = useAppSelector((state) => state.restaurant);
-  const { username } = useAppSelector((state) => state.auth);
-  
+  const { data: user, error, isLoading } = useRetrieveUserQuery();
+
   const navigate = useNavigate();
 
   function handleClick(event, restaurant) {
@@ -43,22 +43,22 @@ export default function Profile() {
       setCelebrating(true);
 
       // Wait for the confetti animation to complete (e.g., 5 seconds)
-      setTimeout(() => setCelebrating(false), 5000); 
+      setTimeout(() => setCelebrating(false), 5000);
     }
-  }, [restaurantList?.length]); 
-  
+  }, [restaurantList?.length]);
+
   const newList = restaurantList.map(each => each)
 
   const visitedCards = newList?.reverse().map((restaurantObj) => {
 
     // Remove invalid characters from JSON string before parsing
     const convert = restaurantObj.obj
-                    .replace(/False/g, 'false')
-                    .replace(/True/g, 'true')
-                    .replace(/None/g, 'null')
-                    .replace(/'(\w+)'\s*:/g, '"$1":')  // Replace single quotes around keys
-                    .replace(/:\s*'([^']*)'/g, ': "$1"') // Replace single quotes around string values
-                    .replace(/\['(.*?)'\]/g, '["$1"]'); // Replace single quotes in arrays
+      .replace(/False/g, 'false')
+      .replace(/True/g, 'true')
+      .replace(/None/g, 'null')
+      .replace(/'(\w+)'\s*:/g, '"$1":')  // Replace single quotes around keys
+      .replace(/:\s*'([^']*)'/g, ': "$1"') // Replace single quotes around string values
+      .replace(/\['(.*?)'\]/g, '["$1"]'); // Replace single quotes in arrays
 
     const each = JSON.parse(convert);
 
@@ -75,15 +75,15 @@ export default function Profile() {
             alt={`The restaurant photo of ${each.name}`}
             src={each.image_url}
             className='profile-visited-img'
-          /> : 
-          <StaticMap
-          coordinate={coordinate}
-          page={{
-            name: 'profile'
-          }}/>
+          /> :
+            <StaticMap
+              coordinate={coordinate}
+              page={{
+                name: 'profile'
+              }} />
           }
-          <CuisineTag restaurant={each} page={{name: 'profile'}}/>
-          <BeenToButton 
+          <CuisineTag restaurant={each} page={{ name: 'profile' }} />
+          <BeenToButton
             page={{
               name: 'profile',
               restaurant: each,
@@ -96,7 +96,7 @@ export default function Profile() {
     )
   })
 
-  return ( showAwards ? 
+  return (showAwards ?
     <>
       <button className='profile-button  awards-close' onClick={() => setShowAwards(prev => !prev)}>
         <span className="material-symbols-outlined">
@@ -107,89 +107,87 @@ export default function Profile() {
     </>
     :
     <div className='profile-page-container'>
+      <div style={{ right: 0, top: -70, padding:'10px',position: 'absolute', cursor:'pointer'}}><Logout /></div>
       {celebrating && <Confetti />}
-  
       <div className='profile-top-half'>
         <h1>Profile</h1>
       </div>
       <div className='profile-bottom-half'>
         <img width='120px' className='profile-avatar' src='avatar.svg' />
-        <h2>@{username}</h2>
+        <h2>@{user?.username}</h2>
         <div className='progress-bar'>
           <div className='progress-left-text'>
             <p className='progress-sum'>{restaurantList ? restaurantList?.length : 0}</p>
             <p className='progress-checkin-text'>Check-ins</p>
           </div>
-          <StepProgressBar progress={restaurantList?.length}/>
+          <StepProgressBar progress={restaurantList?.length} />
         </div>
       </div>
-      {toggleMapView ? 
-      <div className='profile-visited-map'>
-        <div className='profile-subtitle-map'>
+      {toggleMapView ?
+        <div className='profile-visited-map'>
+          <div className='profile-subtitle-map'>
             <h3>Previously Visited</h3>
             <button className='profile-button' onClick={() => setToggleMapView(false)}>Back</button>
           </div>
-        <MapView listing={ 
-          restaurantList?.map((restaurantObj) => {
+          <MapView listing={
+            restaurantList?.map((restaurantObj) => {
 
-            // Remove invalid characters from JSON string before parsing
-            const convert = restaurantObj.obj
-                            .replace(/False/g, 'false')
-                            .replace(/True/g, 'true')
-                            .replace(/None/g, 'null')
-                            .replace(/'(\w+)'\s*:/g, '"$1":')  // Replace single quotes around keys
-                            .replace(/:\s*'([^']*)'/g, ': "$1"') // Replace single quotes around string values
-                            .replace(/\['(.*?)'\]/g, '["$1"]'); // Replace single quotes in arrays
+              // Remove invalid characters from JSON string before parsing
+              const convert = restaurantObj.obj
+                .replace(/False/g, 'false')
+                .replace(/True/g, 'true')
+                .replace(/None/g, 'null')
+                .replace(/'(\w+)'\s*:/g, '"$1":')  // Replace single quotes around keys
+                .replace(/:\s*'([^']*)'/g, ': "$1"') // Replace single quotes around string values
+                .replace(/\['(.*?)'\]/g, '["$1"]'); // Replace single quotes in arrays
 
-            const each = JSON.parse(convert)
-            return each;
-          })
-         }/> 
-      </div>
-      : 
-      <>
-        <div className='profile-award-container'>
-          <div className='profile-subtitle'>
-            <h3>Awards</h3>
-            <button id='profile-collection-button' className='profile-button' onClick={() => setShowAwards(prev => !prev)}>Collection</button>
-          </div>
-          <div className='profile-award-card'>
-            <img width='53px' src='hexagonal.svg'/>
-            <div className='profile-award-texts'>
-              <div className='profile-award-text-1'>
-                <h4>Ive Got Fillings For You</h4>
-                <p>8m ago</p>
+              const each = JSON.parse(convert)
+              return each;
+            })
+          } />
+        </div>
+        :
+        <>
+          <div className='profile-award-container'>
+            <div className='profile-subtitle'>
+              <h3>Awards</h3>
+              <button className='profile-button' onClick={() => setShowAwards(prev => !prev)}>Collection</button>
+            </div>
+            <div className='profile-award-card'>
+              <img width='53px' src='hexagonal.svg' />
+              <div className='profile-award-texts'>
+                <div className='profile-award-text-1'>
+                  <h4>Feta Late Than Never</h4>
+                  <p>8m ago</p>
+                </div>
+                <p className='profile-award-text-2'>Visited 5 Greek restaurants</p>
               </div>
-              <p className='profile-award-text-2'>Visited 5 Chinese restaurants</p>
+            </div>
+            <div className='profile-award-card'>
+              <img width='53px' src='hexagonal.svg' />
+              <div className='profile-award-texts'>
+                <div className='profile-award-text-1'>
+                  <h4>I Am Pho Real</h4>
+                  <p>8m ago</p>
+                </div>
+                <p className='profile-award-text-2'>Visited 5 Vietnamese restaurants</p>
+              </div>
             </div>
           </div>
-          <div className='profile-award-card'>
-            <img width='53px' src='hexagonal.svg'/>
-            <div className='profile-award-texts'>
-              <div className='profile-award-text-1'>
-                <h4>I Am Pho Real</h4>
-                <p>8m ago</p>
-              </div>
-              <p className='profile-award-text-2'>Visited 5 Vietnamese restaurants</p>
+          <div className='profile-visited-container'>
+            <div className='profile-subtitle'>
+              <h3>Previously Visited</h3>
+              <button className='profile-button' onClick={() => setToggleMapView(true)} >Show Map <span className="material-symbols-outlined">map</span></button>
             </div>
-          </div>
-        </div>
-        <div className='profile-visited-container'>
-          <div className='profile-subtitle'>
-            <h3>Previously Visited</h3>
-            <button id='profile-map-button' className='profile-button' onClick={() => setToggleMapView(true)} >Show Map <span className="material-symbols-outlined">map</span></button>
-          </div>
 
-          <HorizontalChevron
-            page={{ name: 'profile', classname: 'profile-visited-scrollable'}}
-          >
-            {visitedCards}
-          </HorizontalChevron>
-        </div>
-      </>
+            <HorizontalChevron
+              page={{ name: 'profile', classname: 'profile-visited-scrollable' }}
+            >
+              {visitedCards}
+            </HorizontalChevron>
+          </div>
+        </>
       }
-      {isFirstTime && 
-      <GuidedTour />}
     </div>
   )
 }

@@ -81,6 +81,13 @@ const authApiSlice = apiWithTag.injectEndpoints({
 				body: { uid, token, new_password, re_new_password },
 			}),
 		}),
+		isAuth: builder.mutation({
+			query: () => ({
+				url: '/isAuth/',
+				method: 'POST',
+				body: {},
+			}),
+		}),
 	}),
 });
 
@@ -95,4 +102,5 @@ export const {
 	useActivationMutation,
 	useResetPasswordMutation,
 	useResetPasswordConfirmMutation,
+	useIsAuthMutation,
 } = authApiSlice;

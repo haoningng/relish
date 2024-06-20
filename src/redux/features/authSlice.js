@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
 	isAuthenticated: false,
 	isLoading: true,
-	username: ''
+	isMounted: false
 }
 
 const authSlice = createSlice({
@@ -14,6 +14,7 @@ const authSlice = createSlice({
 	reducers: {
 		setAuth: state => {
 			state.isAuthenticated = true
+			console.log("AUTH is SET",state.isAuthenticated)
 		},
 		logout: state => {
 			state.isAuthenticated = false
@@ -21,12 +22,12 @@ const authSlice = createSlice({
 		finishInitialLoad: state => {
 			state.isLoading = false
 		},
-		setUsername: (state, action) => {
-			state.username = action.payload
-			console.log("Set username", state.username)
-		},
+		setIsMounted : state => {
+			state.isMounted = true
+			console.log("SET_IS_MOUNTED", state.isMounted)
+		}
 	}
 })
 
-export const { setAuth, logout, finishInitialLoad, setTokens, setUsername } = authSlice.actions
+export const { setAuth, logout, finishInitialLoad, setTokens, setIsMounted } = authSlice.actions
 export default authSlice.reducer
