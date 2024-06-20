@@ -43,7 +43,7 @@ export default function CuisineOptions({ page }) {
             <img 
               style={each === selectedCuisine ? {
                 backgroundColor: '#163300',
-                border: '2px inset #9FE870',
+                border: '1px solid #9FE870',
                 borderRadius: '18px',
                 padding: '4px'
               }: {}}
