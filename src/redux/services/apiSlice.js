@@ -25,7 +25,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 				);
 				if (refreshResult.data) {
 					api.dispatch(setAuth());
-					api.dispatch(setUID(setUIDFromJWT(res.access)))
 					result = await baseQuery(args, api, extraOptions);
 				} else {
 					api.dispatch(logout());
