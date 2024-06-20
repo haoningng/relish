@@ -15,10 +15,10 @@ function NotFound() {
       <h1>404</h1>
       <div className="notfound-message">
         <img src={notFoundImage} alt="Chef Not Found" className="notfound-emoji" />
-        <h2>Whoops...<br/>Chef Not Found!</h2>
+        <h2 className='notfound-label'>Whoops...<br/>Chef Not Found!</h2>
       </div>
       <button className="back-button" onClick={handleBack}>
-        Back to find food
+        Back To Finding Food
       </button>
     </div>
   );
