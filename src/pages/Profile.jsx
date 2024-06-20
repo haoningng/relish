@@ -11,11 +11,12 @@ import CuisineTag from "../components/CuisineTag";
 import Confetti from 'react-confetti'
 import { toast } from 'react-toastify';
 import Awards from "./Awards";
-
+import GuidedTour from "../components/GuidedTour";
 
 export default function Profile() {
   const {
     setSelectedRestaurant,
+    isFirstTime,
   } = useOutletContext(); //from Layout.jsx
 
   const [toggleMapView, setToggleMapView] = useState(false)
@@ -150,7 +151,7 @@ export default function Profile() {
         <div className='profile-award-container'>
           <div className='profile-subtitle'>
             <h3>Awards</h3>
-            <button className='profile-button' onClick={() => setShowAwards(prev => !prev)}>Collection</button>
+            <button id='profile-collection-button' className='profile-button' onClick={() => setShowAwards(prev => !prev)}>Collection</button>
           </div>
           <div className='profile-award-card'>
             <img width='53px' src='hexagonal.svg'/>
@@ -176,7 +177,7 @@ export default function Profile() {
         <div className='profile-visited-container'>
           <div className='profile-subtitle'>
             <h3>Previously Visited</h3>
-            <button className='profile-button' onClick={() => setToggleMapView(true)} >Show Map <span className="material-symbols-outlined">map</span></button>
+            <button id='profile-map-button' className='profile-button' onClick={() => setToggleMapView(true)} >Show Map <span className="material-symbols-outlined">map</span></button>
           </div>
 
           <HorizontalChevron
@@ -187,6 +188,8 @@ export default function Profile() {
         </div>
       </>
       }
+      {isFirstTime && 
+      <GuidedTour />}
     </div>
   )
 }

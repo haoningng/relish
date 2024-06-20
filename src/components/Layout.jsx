@@ -13,6 +13,11 @@ export default function Layout() {
     defaultValue: ['-37.8136', '144.9631', 'Melbourne CBD']
   })
 
+  const [isFirstTime, setIsFirstTime] = useLocalStorageState('isFirstTime', {
+    // default to Melbourne coordinate
+    defaultValue: true
+  })
+
   const [filterObj, setFilterObj] = useState({
     priceLevel: 0,
     radius: 0,
@@ -158,6 +163,8 @@ export default function Layout() {
               setListing,
               loading,
               setLoading,
+              isFirstTime,
+              setIsFirstTime
             }} />
         </main>
         <Footer/>

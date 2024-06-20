@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer>
       <nav className="footer-container">
-        <NavLink className='footer-link' to="/location" style={({ isActive }) => isActive ? activeStyles : null}>
+        <NavLink id="location-button" className='footer-link' to="/location" style={({ isActive }) => isActive ? activeStyles : null}>
           <div className='footer-btn'>
             <span className="material-symbols-outlined footer-icon">
             location_on
@@ -18,7 +18,7 @@ export default function Footer() {
             <p className='footer-icon-text'>Location</p>
           </div>
         </NavLink>
-        <NavLink className='footer-link' to="/" style={({ isActive }) => isActive ? activeStyles : null}>
+        <NavLink id="home-button" className='footer-link' to="/" style={({ isActive }) => isActive ? activeStyles : null}>
           <div className='footer-btn'>
             <span className="material-symbols-outlined footer-icon">
             home
@@ -26,7 +26,7 @@ export default function Footer() {
             <p className='footer-icon-text'>Home</p>
           </div>
         </NavLink>
-        <NavLink className='footer-link' to="/profile" style={({ isActive }) => isActive ? activeStyles : null}>
+        <NavLink id="profile-button" className='footer-link' to="/profile" style={({ isActive }) => isActive ? activeStyles : null}>
           <div className='footer-btn'>
             <span className="material-symbols-outlined footer-icon">
             account_circle
