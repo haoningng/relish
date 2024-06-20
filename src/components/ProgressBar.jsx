@@ -11,6 +11,7 @@ export default class StepProgressBar extends React.Component {
     };
     return (
       <ProgressBar
+        id='progress-bar'
         width='203px'
         height='5px'
         percent={progress}

@@ -6,11 +6,13 @@ import InputSearch from "../components/InputSearch";
 import CuisineOptions from "../components/CuisineOptions";
 import FilterMenu from "../components/FilterMenu";
 import HorizontalChevron from "../components/HorizontalChevron";
+import GuidedTour from "../components/GuidedTour";
 
 export default function Home() {
   const {
     lsLocationObj,
-    selectedCuisine
+    selectedCuisine,
+    isFirstTime,
   } = useOutletContext(); //from Layout.jsx
   console.log(lsLocationObj, selectedCuisine)
   const [toggleMapView, setToggleMapView] = useState(false)
@@ -66,6 +68,8 @@ export default function Home() {
           </div>
           <Listing mapOn={toggleMapView}/>
         </div>
+        {isFirstTime && 
+        <GuidedTour />}
       </div>
   );
 }

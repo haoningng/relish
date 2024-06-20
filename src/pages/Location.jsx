@@ -3,6 +3,7 @@ import { useOutletContext, Link } from "react-router-dom";
 import "../styles/index.css";
 import StaticMap from "../components/StaticMap";
 import InputSearch from "../components/InputSearch";
+import GuidedTour from "../components/GuidedTour";
 
 export default function Location() {
   const {
@@ -13,6 +14,7 @@ export default function Location() {
     setOffset,
     setListing,
     setLoading,
+    isFirstTime,
   } = useOutletContext(); //from Layout.jsx
 
   const [permissionStatus, setPermissionStatus] = useState('prompt');
@@ -133,6 +135,8 @@ export default function Location() {
           <p className='geolocation-permission-denied'>
           - Location permission is required -<br/>Please go to your browser settings and enable location access for this website.
           </p>}
+          {isFirstTime && 
+          <GuidedTour />}
     </div>
   ) 
 }

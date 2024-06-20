@@ -16,7 +16,10 @@ export default function useLogin() {
 		email: '',
 		password: '',
 	});
-	const from = location.state?.from || "/"; // send to the original page, otherwise default send to home page
+	const isFirstTime = localStorage.getItem("isFirstTime");
+	console.log('isFirstTime ', isFirstTime)
+	// send to the original page, or location page if first time, otherwise default send to home page, 
+	const from = location.state?.from || isFirstTime === null ? "/location" : isFirstTime === 'true' ? "/location" : "/"; 
 
 	//debug
 	console.log('from = ', from)

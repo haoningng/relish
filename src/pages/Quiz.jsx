@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import "../styles/index.css";
 import InputSearch from "../components/InputSearch";
 import CuisineOptions from "../components/CuisineOptions";
+import GuidedTour from "../components/GuidedTour";
 
 export default function Quiz() {
   const {
@@ -12,7 +13,8 @@ export default function Quiz() {
     setSelectedCuisine,
     setOffset,
     setListing,
-    setLoading
+    setLoading,
+    isFirstTime,
   } = useOutletContext(); //from Layout.jsx
   console.log(lsLocationObj, selectedCuisine)
 
@@ -63,6 +65,8 @@ export default function Quiz() {
       </div>
       <h3 className='quiz-subtitle-2'> -- Try your luck --</h3>
       <button className="i-am-feeling-hungry" onClick={handleRandom}>I&#39;m Feeling Hungry</button>
+      {isFirstTime && 
+      <GuidedTour />}
     </div>
   ) : (
     <div>

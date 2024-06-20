@@ -34,6 +34,22 @@ body {
   margin: 100px auto 0;
 }
 
+/* (C) GuidedTour Component */
+
+.tour-title {
+  font-size: 1.3em;
+  text-align: left;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.tour-subtitle {
+  font-size: 1em;
+  text-align: left;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 /* (C) InputSearch Component */
 
 .input-outer-container {
@@ -450,7 +466,7 @@ input[type="radio"]:checked + .radio-label {
 /* (C) Menu component */
 
 .menu-button {
-  background-color: #9FE870;
+  background-color: #9fe870;
   color: #163300;
   width: 104px;
   height: 26px;
