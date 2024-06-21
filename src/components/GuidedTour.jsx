@@ -22,7 +22,7 @@ export default function GuidedTour() {
     } else if (location.pathname === '/') {
       return '/profile';
     } else if (location.pathname === '/profile') {
-      return '/location';
+      return '/';
     }
   }, [location.pathname])
 
