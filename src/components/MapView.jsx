@@ -9,6 +9,7 @@ import {
   Pin,
   InfoWindow,
 } from "@vis.gl/react-google-maps";
+import useWindowSize from 'react-use/lib/useWindowSize'
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY
 const MAP_ID = import.meta.env.VITE_MAP_ID
 
@@ -27,6 +28,7 @@ export default function MapView({ listing }) {
   const [activeMarkerId, setActiveMarkerId] = useState(null); // Track the active marker
   const [zoomLevel, setZoomLevel] = useState(calculateZoomLevel(filterObj.radius)); // Initial calculation
   const markerRefs = useRef([]); // Array to store marker refs
+  const { width } = useWindowSize();
 
   useEffect(() => {
     setZoomLevel(calculateZoomLevel(filterObj.radius)); // Recalculate when radius changes
@@ -63,6 +65,7 @@ export default function MapView({ listing }) {
             background={"8DA656"}
             borderColor={"#8DA656"}
             glyphColor={"white"}
+            scale={width >= 865 ? 1.3 : 1}
           />
         </AdvancedMarker>
         {activeMarkerId === each.id && (
@@ -115,7 +118,7 @@ export default function MapView({ listing }) {
               background={"green"}
               borderColor={"green"}
               glyphColor={"black"}
-              scale={1.4}
+              scale={width >= 865 ? 1.7 : 1.4}
             >👀</Pin>
           </AdvancedMarker>
 

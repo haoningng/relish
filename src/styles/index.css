@@ -1445,6 +1445,18 @@ input[type="radio"]:checked + .radio-label {
       width: auto;
       height: 73vh;
     }
+    .infowindow-container {
+      width: 270px;
+      font-size: 1.3em;
+    }
+    .infowindow-text-1 {
+      font-size: 1.6em;
+    }
+    .map-cuisine-tag {
+      width: 180px;
+      height: 23px;
+      font-size: 1em;
+    }
     .listing-container  {
       width: 85vw;
       height: 74vh;
