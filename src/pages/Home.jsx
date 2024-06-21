@@ -68,7 +68,7 @@ export default function Home() {
           </div>
           <Listing mapOn={toggleMapView}/>
         </div>
-        {isFirstTime && 
+        {isFirstTime.profile && 
         <GuidedTour />}
       </div>
   );

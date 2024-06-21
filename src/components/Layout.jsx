@@ -15,7 +15,12 @@ export default function Layout() {
 
   const [isFirstTime, setIsFirstTime] = useLocalStorageState('isFirstTime', {
     // default to Melbourne coordinate
-    defaultValue: true
+    defaultValue: {
+      location: true,
+      quiz: true,
+      home: true,
+      profile: true
+    }
   })
 
   const [filterObj, setFilterObj] = useState({
@@ -167,7 +172,7 @@ export default function Layout() {
               setIsFirstTime
             }} />
         </main>
-        <Footer/>
+        <Footer isFirstTime={isFirstTime}/>
       </div>
   )
 }

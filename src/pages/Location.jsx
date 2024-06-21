@@ -135,7 +135,7 @@ export default function Location() {
           <p className='geolocation-permission-denied'>
           - Location permission is required -<br/>Please go to your browser settings and enable location access for this website.
           </p>}
-          {isFirstTime && 
+          {isFirstTime.profile && 
           <GuidedTour />}
     </div>
   ) 

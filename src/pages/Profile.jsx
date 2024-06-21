@@ -195,7 +195,7 @@ export default function Profile() {
           </div>
         </>
       }
-      {isFirstTime && 
+      {isFirstTime.profile && 
       <GuidedTour />}
     </div>
   )

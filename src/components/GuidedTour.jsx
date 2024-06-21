@@ -1,5 +1,5 @@
 import Joyride from 'react-joyride';
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { useNavigate, useLocation, useOutletContext } from 'react-router-dom';
 import { locationPage } from './guided-tour-steps/locationPage';
 import { quizPage } from './guided-tour-steps/quizPage';
@@ -13,7 +13,6 @@ export default function GuidedTour() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  console.log('location', location)
 
   const destination = useMemo(() => {
     if (location.pathname === '/location') {
@@ -34,11 +33,48 @@ export default function GuidedTour() {
     location.pathname === '/profile' ? profilePage : ''
   )
 
+  useEffect(() => {
+    if (location.pathname === '/location') {
+      setIsFirstTime(prevState => ({
+        ...prevState,
+        location: true // make home and profile button disappear if they go back to location page
+      })); 
+    }
+    if (location.pathname === '/Quiz') {
+      setIsFirstTime(prevState => ({
+        ...prevState,
+        quiz: true // make home and profile button disappear if they go back to quiz page
+      })); 
+    }
+    if (location.pathname === '/') {
+      setIsFirstTime(prevState => ({
+        ...prevState,
+        quiz: false // makes the home and profile buttons appear when they reach homepage
+      })); 
+    }
+  }, [location.pathname, setIsFirstTime])
+  
   const handleJoyrideCallback = (data) => {
     if (data.status === 'finished' || data.status === 'skipped') {
-      if (location.pathname === '/profile') {
-        setIsFirstTime(false); 
+      if (location.pathname === '/location') {
+        setIsFirstTime(prevState => ({
+          ...prevState,
+          location: false
+        })); 
       }
+      if (location.pathname === '/') {
+        setIsFirstTime(prevState => ({
+          ...prevState,
+          home: false
+        })); 
+      }
+      if (location.pathname === '/profile') {
+        setIsFirstTime(prevState => ({
+          ...prevState,
+          profile: false
+        })); 
+      }
+      if (location.pathname ==='/' || location.pathname ==='/profile')
       setTimeout(() => {
         navigate(destination);
       }, 500); // Add a slight delay for smoother transition

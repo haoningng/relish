@@ -65,7 +65,7 @@ export default function Quiz() {
       </div>
       <h3 className='quiz-subtitle-2'> -- Try your luck --</h3>
       <button className="i-am-feeling-hungry" onClick={handleRandom}>I&#39;m Feeling Hungry</button>
-      {isFirstTime && 
+      {isFirstTime.profile && 
       <GuidedTour />}
     </div>
   ) : (
