@@ -1,5 +1,3 @@
-"use client";
-
 import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme } from '@chakra-ui/react'
 import { Global, css } from "@emotion/react";
@@ -23,7 +21,7 @@ const breakpoints = {
 const styles = {
   global: {
     body: {
-      bg:'linear-gradient(0deg, rgb(103, 161, 117), rgb(48, 61, 50))',
+      bg:'linear-gradient(0deg, #67A175, #163300)',
     },
   }
 }
@@ -107,7 +105,7 @@ export function ChakraProviders({ children }) {
   return (
     <>
       <ChakraProvider theme={theme}>
-      <GlobalStyles />
+      {/* <GlobalStyles /> */}
         {children}
       </ChakraProvider>
     </>

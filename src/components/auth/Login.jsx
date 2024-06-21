@@ -1,41 +1,28 @@
 import { LoginForm } from "../forms";
-import { useEffect } from 'react';
 import SocialButtons from "./socials/SocialButtons";
-import { useLocation } from "react-router-dom"
-import { useAppSelector } from "../../redux/hooks"
-import { toast } from 'react-toastify';
-import { Heading, Text, Flex, Link, Box } from "@chakra-ui/react";
+import { Heading, Text, Flex, Box } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 export default function Page() {
-  const location = useLocation()
-
-  // debug
-  const { isAuthenticated } = useAppSelector(state => state.auth)
-  console.log("Debug: isAuthenticated = ", isAuthenticated);
-
-
-  useEffect(() => {
-    if (location.state?.message) {
-      toast.error(location.state?.message)
-    }
-  }, [location.state?.message])
-
+  const router = useNavigate()
   return (
     <>
-      <Link href="/auth/signup" position={"absolute"} left={0} m={'1rem'}>
-        Signup
-      </Link>
-      <Flex flexDirection={"column"}>
-        <Heading textAlign={"center"}>Login</Heading>
-        <LoginForm />
-        <Box mt={"1rem"}>
-          <SocialButtons />
+      <Flex position={'relative'} w={'100%'} justifyContent={'center'}>
+        <Box as={'button'} onClick={() => { router('/auth/signup') }} position={"absolute"} left={0} m={'1rem'} _hover={{ textDecoration: 'underline' }}>
+          Signup
         </Box>
-        <Text mt={"1rem"} textAlign={"center"}>
-          <Link href="/password-reset">
-            Forget your password?
-          </Link>
-        </Text>
+        <Flex flexDirection={"column"} >
+          <Heading textAlign={"center"}>Login</Heading>
+          <LoginForm />
+          <Box mt={"1rem"}>
+            <SocialButtons />
+          </Box>
+          <Text mt={"1rem"} textAlign={"center"}>
+            <Box as={'button'} onClick={() => { router('/password-reset') }} _hover={{ textDecoration: 'underline' }}>
+              Forget your password?
+            </Box>
+          </Text>
+        </Flex>
       </Flex>
     </>
   );

@@ -11,6 +11,7 @@ export default function Test() {
 	const [getAwardList] = useGetAwardListMutation()
 	const dispatch = useAppDispatch()
 	const { awardList, isLoading } = useAppSelector((state) => state.award);
+	const { isAuthenticated } = useAppSelector((state) => state.auth);
 	function test() {
 		// not working
 		fetch('http://127.0.0.1:8000/api/award-list/',{ method: "POST",
@@ -46,6 +47,7 @@ export default function Test() {
 				<>
 					{awardList.map((e) => (
 						<Text key={e.id}>
+							{String(isAuthenticated)}
 							{e.description}
 						</Text>
 					))}
