@@ -13,10 +13,13 @@ import { toast } from 'react-toastify';
 import Awards from "./Awards";
 import { Logout } from "../components/auth";
 import { useRetrieveUserQuery } from "../redux/features/authApiSlice";
+import GuidedTour from "../components/GuidedTour";
+import useWindowSize from 'react-use/lib/useWindowSize'
 
 export default function Profile() {
   const {
     setSelectedRestaurant,
+    isFirstTime,
   } = useOutletContext(); //from Layout.jsx
 
   const [toggleMapView, setToggleMapView] = useState(false)
@@ -25,7 +28,7 @@ export default function Profile() {
 
   // from Redux Store
   const { restaurantList } = useAppSelector((state) => state.restaurant);
-  const { data: user, error, isLoading } = useRetrieveUserQuery();
+  const { data: user } = useRetrieveUserQuery();
 
   const navigate = useNavigate();
 
@@ -36,6 +39,7 @@ export default function Profile() {
     }
   }
 
+  const { width, height } = useWindowSize();
   useEffect(() => {
     const milestones = [25, 50, 75, 100];
     if (milestones.includes(restaurantList?.length)) {
@@ -108,7 +112,10 @@ export default function Profile() {
     :
     <div className='profile-page-container'>
       <div style={{ right: 0, top: -70, padding:'10px',position: 'absolute', cursor:'pointer'}}><Logout /></div>
-      {celebrating && <Confetti />}
+      {celebrating && <Confetti
+      width={width}
+      height={height}
+      />}
       <div className='profile-top-half'>
         <h1>Profile</h1>
       </div>
@@ -188,6 +195,8 @@ export default function Profile() {
           </div>
         </>
       }
+      {isFirstTime && 
+      <GuidedTour />}
     </div>
   )
 }

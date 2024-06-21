@@ -21,6 +21,132 @@ export default function SkeletonListing() {
         <div className="skeleton-line"></div>
       </div>
     </div>
+    <div className="skeleton-listing">
+      <div className="skeleton-image"></div>
+      <div className="skeleton-content">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+      </div>
+    </div>
+    <div className="skeleton-listing">
+      <div className="skeleton-image"></div>
+      <div className="skeleton-content">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+      </div>
+    </div>
+    <div className="skeleton-listing">
+      <div className="skeleton-image"></div>
+      <div className="skeleton-content">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+      </div>
+    </div>
+    <div className="skeleton-listing">
+      <div className="skeleton-image"></div>
+      <div className="skeleton-content">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+      </div>
+    </div>
+    <div className="skeleton-listing">
+      <div className="skeleton-image"></div>
+      <div className="skeleton-content">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+      </div>
+    </div>
+    <div className="skeleton-listing">
+      <div className="skeleton-image"></div>
+      <div className="skeleton-content">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+      </div>
+    </div>
+    <div className="skeleton-listing">
+      <div className="skeleton-image"></div>
+      <div className="skeleton-content">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+      </div>
+    </div>
+    <div className="skeleton-listing">
+      <div className="skeleton-image"></div>
+      <div className="skeleton-content">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+      </div>
+    </div>
+    <div className="skeleton-listing">
+      <div className="skeleton-image"></div>
+      <div className="skeleton-content">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+      </div>
+    </div>
+    <div className="skeleton-listing">
+      <div className="skeleton-image"></div>
+      <div className="skeleton-content">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+      </div>
+    </div>
+    <div className="skeleton-listing">
+      <div className="skeleton-image"></div>
+      <div className="skeleton-content">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+      </div>
+    </div>
+    <div className="skeleton-listing">
+      <div className="skeleton-image"></div>
+      <div className="skeleton-content">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+      </div>
+    </div>
+    <div className="skeleton-listing">
+      <div className="skeleton-image"></div>
+      <div className="skeleton-content">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+      </div>
+    </div>
+    <div className="skeleton-listing">
+      <div className="skeleton-image"></div>
+      <div className="skeleton-content">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+        <div className="skeleton-line"></div>
+      </div>
+    </div>
     </>
 
   );
