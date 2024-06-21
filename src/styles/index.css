@@ -1576,7 +1576,13 @@ input[type="radio"]:checked + .radio-label {
       font-size: 1.3em;
     }
     .profile-chevron {
-      top: 810px;
+      top: 840px;
+    }
+    .profile-visited-scrollable .right-chevron {
+      right: 20%;
+    }
+    .profile-visited-scrollable .left-chevron {
+      left: 200px;
     }
     .profile-visited-map {
       width: 75vw;
@@ -1606,9 +1612,6 @@ input[type="radio"]:checked + .radio-label {
     .footer-link {
       height: auto;
       }
-    .active {
-      border: 3px solid var(--primary-light-green);
-    }
     .footer-icon {
       font-size: 2.2em;
     }
