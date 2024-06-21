@@ -111,7 +111,7 @@ export default function Profile() {
     </>
     :
     <div className='profile-page-container'>
-      <div style={{ right: 0, top: -70, padding:'10px',position: 'absolute', cursor:'pointer'}}><Logout /></div>
+      <button className='profile-logout-btn'><Logout /></button>
       {celebrating && <Confetti
       width={width}
       height={height}
