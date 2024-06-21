@@ -1,15 +1,19 @@
 import { NavLink } from 'react-router-dom';
 import { PropTypes } from 'prop-types'
+import useWindowSize from 'react-use/lib/useWindowSize'
 
 export default function Footer({ isFirstTime }) {
   Footer.propTypes = {
     isFirstTime: PropTypes.object.isRequired
   };
 
+  const { width } = useWindowSize();
+
   const activeStyles = {
       fontWeight: 800,
       color: '#9FE870',
-      borderTop: '3px solid #9FE870',
+      borderTop: width >= 865 ? '' :'3px solid #9FE870',
+      borderRight: width >= 865 ? '5px solid #9FE870' : '',
   }
 
   const hiddenStyle = {
