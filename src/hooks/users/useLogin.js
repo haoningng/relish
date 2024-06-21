@@ -4,24 +4,20 @@ import { useLoginMutation } from '../../redux/features/authApiSlice';
 import { setAuth } from '../../redux/features/authSlice';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 
 export default function useLogin() {
 	const router = useNavigate();
-	const location = useLocation()
+
 	const dispatch = useAppDispatch();
 	const [login, { isLoading }] = useLoginMutation();
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
 	});
-	const isFirstTime = localStorage.getItem("isFirstTime");
-	console.log('isFirstTime ', isFirstTime)
-	// send to the original page, or location page if first time, otherwise default send to home page, 
-	const from = location.state?.from || isFirstTime === null ? "/location" : isFirstTime === 'true' ? "/location" : "/"; 
+	const isFirstTime = JSON.parse(localStorage.getItem("isFirstTime"));
 
-	//debug
-	console.log('from = ', from)
+	// send to location page if first time, otherwise default send to home page, 
+	const destination = isFirstTime === null ? "/location" : isFirstTime.profile === true ? "/location" : "/"; 
 
 	const { email, password } = formData;
 
@@ -39,7 +35,7 @@ export default function useLogin() {
 			.then(() => {
 				dispatch(setAuth());
 				toast.success('Logged in');
-				router('/location');
+				router(destination);
 			})
 			.catch((e) => {
 				console.log(e)
