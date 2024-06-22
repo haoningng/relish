@@ -9,7 +9,11 @@ export default function PasswordReset() {
       <ChakraProviders>
         <Flex flexDirection={"column"} w={"100%"} alignItems={"center"}>
           <Box>
-            <Heading mt={"2rem"} mb={"1rem"}>
+            <Heading 
+              mt={"2rem"}
+              mb={"1rem"}
+              variant="authHeader"
+            >
               Password Reset
             </Heading>
             <PasswordResetForm />
