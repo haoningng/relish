@@ -12,7 +12,10 @@ export default function Page() {
         {/* <PrivateRouterWithAuth> */}
         <Flex flexDirection={"column"} w={"100%"} alignItems={"center"}>
           <Box>
-            <Heading mb={"1rem"}>Password Reset</Heading>
+            <Heading
+              mb={"1rem"}
+              variant="authHeader"
+            >Password Reset</Heading>
             <PasswordResetConfirmForm uid={uid} token={token} />
           </Box>
         </Flex>

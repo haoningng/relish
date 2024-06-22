@@ -11,10 +11,14 @@ export default function BackToHome() {
         transition={"300ms"}
         borderRadius={"5px"}
         cursor={"pointer"}
-        _hover={{ bg: "gray" }}
+        _hover={{ fontWeight: "700" }}
       >
-        <IoHomeOutline />
-        <Text ml={"0.3rem"} onClick={() => router("/")}>
+        <IoHomeOutline color='#ffffff'/>
+        <Text
+          ml={"0.3rem"}
+          onClick={() => router("/")}
+          color='#ffffff'
+        >
           Back to home
         </Text>
       </Flex>

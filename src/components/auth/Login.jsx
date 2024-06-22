@@ -8,17 +8,37 @@ export default function Page() {
   return (
     <>
       <Flex position={'relative'} w={'100%'} justifyContent={'center'}>
-        <Box as={'button'} onClick={() => { router('/auth/signup') }} position={"absolute"} left={0} m={'1rem'} _hover={{ textDecoration: 'underline' }}>
+        <Box 
+          as={'button'}
+          onClick={() => { router('/auth/signup') }}
+          position={"absolute"}
+          left={0}
+          m={'1rem'}
+          _hover={{ fontWeight:"700" }}
+          color="#ffffff"
+          fontWeight="600"
+          fontSize="1.2em"
+        >
           Signup
         </Box>
         <Flex flexDirection={"column"} >
-          <Heading textAlign={"center"}>Login</Heading>
+          <Heading 
+            textAlign={"center"}
+            variant="authHeader"
+          >Login</Heading>
           <LoginForm />
           <Box mt={"1rem"}>
             <SocialButtons />
           </Box>
           <Text mt={"1rem"} textAlign={"center"}>
-            <Box as={'button'} onClick={() => { router('/password-reset') }} _hover={{ textDecoration: 'underline' }}>
+            <Box
+              as={'button'}
+              onClick={() => { router('/password-reset') }}
+              _hover={{ textDecoration: 'underline' }}
+              color="#ffffff"
+              fontWeight="600"
+              fontSize="1em"
+            >
               Forget your password?
             </Box>
           </Text>
