@@ -70,6 +70,7 @@ export default function CustomInput({
             variant={"outline"}
             required={required}
             borderRadius={10}
+            backgroundColor="#ffffff"
           />
           {isPassword() && (
             <InputRightElement>

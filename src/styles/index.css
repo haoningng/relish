@@ -24,6 +24,7 @@ Note
   --primary-dark-green: #163300;
   --secondary-green: #8DA656;
   --primary-red: #BF1E2C;
+  --secondary-red: #D03238;
   --primary-white: #FFFFFF;
   --secondary-white: #EDF1D6;
   --primary-light-grey: #eeeeee7c;
@@ -202,6 +203,10 @@ li.pac-item {
   cursor: pointer;
 }
 
+.location-proceed-btn:hover {
+  background-color: var(--secondary-red);
+}
+
 .use-my-location {
   display: flex;
   flex-direction: row;
@@ -313,6 +318,10 @@ input[type="radio"]:checked + .radio-label {
   text-align: center;
   box-shadow: 0px 4px 4px 0px var(--primary-box-shadow);
   cursor: pointer;
+}
+
+.i-am-feeling-hungry:hover{
+  background-color: var(--secondary-red);
 }
 
 /* (C) Horizontal Chevron */
@@ -522,6 +531,10 @@ input[type="radio"]:checked + .radio-label {
   border-radius: 0 0 18px 18px;
 }
 
+.reset-menu-item:hover {
+  background-color: var(--secondary-red);
+}
+
 .menu-item:hover {
   background-color: var(--secondary-green);
   border: 1px solid #6FBD6E;
@@ -633,6 +646,10 @@ input[type="radio"]:checked + .radio-label {
   cursor: pointer;
 }
 
+.listing-been-to-button:hover {
+  background-color: var(--secondary-red);
+}
+
 .listing-restaurant-photo {
   width: 360px;
   height: 150px;
@@ -696,6 +713,10 @@ input[type="radio"]:checked + .radio-label {
   opacity: 0;          /* Initially hidden */
   transform: translateY(20px); /* Start slightly below its final position */
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition for opacity and position */
+}
+
+.listing-see-more:hover {
+  background-color: var(--secondary-red);
 }
 
 .listing-see-more.show {  /* Style when the button is shown */
@@ -865,6 +886,10 @@ input[type="radio"]:checked + .radio-label {
   cursor: pointer;
 }
 
+.restaurant-been-to-button:hover {
+  background-color: var(--secondary-red);
+}
+
 .restaurant-text-1 {
   font-size: 36px;
   display: flex;
@@ -990,6 +1015,10 @@ input[type="radio"]:checked + .radio-label {
   color: var(--primary-white);
   font-size: 1em;
   font-weight: 600;
+}
+
+.profile-logout-btn:hover {
+  font-weight: 700;
 }
 
 .profile-avatar {
@@ -1127,6 +1156,10 @@ input[type="radio"]:checked + .radio-label {
   height: 35px;
 }
 
+.profile-been-to-button:hover {
+  background-color: var(--secondary-red);
+}
+
 
 .profile-visited-map {
   width: 370px;
@@ -1256,7 +1289,7 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .back-button:hover {
-  background-color: var(--primary-red);
+  background-color: var(--secondary-red);
 }
 
 /* (C) Award component */
@@ -1399,7 +1432,7 @@ input[type="radio"]:checked + .radio-label {
       top: -15px;
     }
     .home-cuisine-container {
-      margin-top: auto;
+      margin-top: 0vh;
       height: 100px;
       width: 80%;
       gap: 30px;
@@ -1420,7 +1453,7 @@ input[type="radio"]:checked + .radio-label {
     .menu-dropdown {
       left: 10%;
       width: 490px;
-      top: 230px;
+      top: 22vh;
     }
     .home-filter-container {
       width: 80vw;
@@ -1530,6 +1563,8 @@ input[type="radio"]:checked + .radio-label {
     /* profile */
     .profile-page-container {
       text-align: left;
+      height: 100vh;
+      overflow-y: scroll;
     }
     .profile-logout-btn {
       /* left: 1250px; */

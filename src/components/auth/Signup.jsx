@@ -8,11 +8,24 @@ export default function Page() {
   return (
     <>
       <Flex position={'relative'} w={'100%'} justifyContent={'center'}>
-        <Box as={'button'} onClick={() => { router('/auth/login') }} position={"absolute"} right={0} m={'1rem'} _hover={{ textDecoration: 'underline' }}>
+        <Box 
+          as={'button'}
+          onClick={() => { router('/auth/login') }}
+          position={"absolute"}
+          right={0}
+          m={'1rem'}
+          _hover={{ fontWeight:"700" }}
+          color="#ffffff"
+          fontWeight="600"
+          fontSize="1.2em"
+        >
           Login
         </Box>
         <Flex flexDirection={"column"} position={"relative"}>
-          <Heading textAlign={"center"}>Create an acount</Heading>
+          <Heading 
+            textAlign={"center"}
+            variant="authHeader"
+          >Create An Account</Heading>
           <RegisterForm />
           <Box mt={"1rem"}>
             <SocialButtons />

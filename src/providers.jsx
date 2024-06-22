@@ -98,6 +98,18 @@ const GlobalStyles = () => (
 
 const theme = extendTheme({
   breakpoints,
+  components: {
+    Heading: {
+      variants: {
+        authHeader: {
+          margin: "155px 0 40px",
+          color: "#FFFFFF",
+          fontSize: "4xl", 
+          fontWeight: "800",
+        },
+      },
+    },
+  },
   styles,
 });
 
