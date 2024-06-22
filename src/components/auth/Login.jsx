@@ -25,7 +25,7 @@ export default function Page() {
           <Heading 
             textAlign={"center"}
             variant="authHeader"
-          >Login</Heading>
+          >Log In</Heading>
           <LoginForm />
           <Box mt={"1rem"}>
             <SocialButtons />
