@@ -117,9 +117,9 @@ export default function Profile() {
       height={height}
       />}
       <div className='profile-top-half'>
-        <h1>Profile</h1>
       </div>
       <div className='profile-bottom-half'>
+        <h1>Profile</h1>
         <img width='120px' className='profile-avatar' src='avatar.svg' />
         <h2>@{user?.username}</h2>
         <div className='progress-bar'>
