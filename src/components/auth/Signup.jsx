@@ -18,9 +18,11 @@ export default function Page() {
           color="#ffffff"
           fontWeight="600"
           fontSize="1.2em"
+          zIndex="1"
         >
           Login
         </Box>
+        <button className='auth-relish-button' onClick={() => router('/')}>Relish</button>
         <Flex flexDirection={"column"} position={"relative"}>
           <Heading 
             textAlign={"center"}

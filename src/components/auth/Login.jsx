@@ -21,6 +21,7 @@ export default function Page() {
         >
           Signup
         </Box>
+        <button className='auth-relish-button' onClick={() => router('/')}>Relish</button>
         <Flex flexDirection={"column"} >
           <Heading 
             textAlign={"center"}
