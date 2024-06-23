@@ -14,7 +14,7 @@ export default function Page() {
           position={"absolute"}
           left={0}
           m={'1rem'}
-          _hover={{ fontWeight:"700" }}
+          _hover={{ fontWeight:"700", color:"#9FE870" }}
           color="#ffffff"
           fontWeight="600"
           fontSize="1.2em"
