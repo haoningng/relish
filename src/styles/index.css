@@ -61,6 +61,7 @@ Note
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  z-index: 1;
 }
 
 .landing-img {
@@ -72,23 +73,6 @@ Note
   z-index: -1;
 }
 
-/* .landing-cuisine-container {
-  position: fixed;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  z-index: -1;
-  bottom: 17vh;
-  opacity: 0.3;
-  width: 100vw;
-  height: 40vh;
-  gap: 20px;
-}
-
-.landing-cuisine-img {
-  width: 20vw;
-} */
-
 .landing-title {
   margin-top: 165px;
   font-size: 5em;
@@ -97,8 +81,14 @@ Note
   font-family: Menlawai, Inter, Helvetica, Arial, sans-serif;
 }
 
+.landing-input {
+  margin-top: 10vh;
+  width: 80vw;
+  text-align: center;
+}
+
 .landing-login-btn {
-  margin-top: 30vh;
+  margin-top: 10px;
   width: 240px;
   height: 60px;
   border-radius: 100px;
@@ -113,15 +103,9 @@ Note
 }
 
 @media only screen and (min-width: 865px) {
-  /* .landing-cuisine-img {
-    width: 13vw;
-  } */
   .landing-title {
     font-size: 8em;
     margin-top: 130px;
-  }
-  .landing-login-btn {
-    margin-top: 17vh;
   }
 }
 
@@ -1785,7 +1769,6 @@ input[type="radio"]:checked + .radio-label {
       margin-left: auto;
       height: 100vh;
       width: 100px;
-      z-index: 100;
     }
     .footer-link {
       height: auto;

@@ -31,7 +31,9 @@ function App() {
           </>
           :
           <>
-            <Route path="/" element={<Landing />} />
+            <Route path="/" element={<Layout />} >
+              <Route index element={<Landing />} />
+            </Route>
             <Route path="auth/login" element={<Login />} />
             <Route path="auth/signup" element={<Signup />} />
             <Route path="password-reset" element={<PasswordReset />} />
