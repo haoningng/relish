@@ -63,7 +63,7 @@ export default function BeenToButton({ page }) {
       onClick={() => {
         return isAuthenticated ? 
         handleBeenToClick(page.restaurant)
-        : navigate('auth/login')
+        : toast.error('Log in to mark a restaurant as visited');
       }}
       className={`material-symbols-outlined ${page.name}-been-to-button`}
     >
