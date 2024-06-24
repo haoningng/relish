@@ -15,6 +15,7 @@ import { Logout } from "../components/auth";
 import { useRetrieveUserQuery } from "../redux/features/authApiSlice";
 import GuidedTour from "../components/GuidedTour";
 import useWindowSize from 'react-use/lib/useWindowSize'
+import { Avatar } from "../components/profiles/avatars";
 
 export default function Profile() {
   const {
@@ -113,14 +114,16 @@ export default function Profile() {
     <div className='profile-page-container'>
       <button className='profile-logout-btn'><Logout /></button>
       {celebrating && <Confetti
-      width={width}
-      height={height}
+        width={width}
+        height={height}
       />}
       <div className='profile-top-half'>
       </div>
       <div className='profile-bottom-half'>
         <h1>Profile</h1>
-        <img width='120px' className='profile-avatar' src='avatar.svg' />
+        <div style={{position:'relative', height:'100%'}}>
+          <Avatar path={user?.avatar} />
+        </div>
         <h2>@{user?.username}</h2>
         <div className='progress-bar'>
           <div className='progress-left-text'>
@@ -195,8 +198,8 @@ export default function Profile() {
           </div>
         </>
       }
-      {isFirstTime.profile && 
-      <GuidedTour />}
+      {isFirstTime.profile &&
+        <GuidedTour />}
     </div>
   )
 }

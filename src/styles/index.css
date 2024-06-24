@@ -462,6 +462,34 @@ input[type="radio"]:checked + .radio-label {
 .profile-chevron {
   top: 620px;
 }
+.profile-avatar-wrapper {
+  position: relative,;
+  width: 100%;
+  display:flex;
+  justify-content: center
+}
+.profile-avatar-container {
+  position: relative;
+  height: 120px;
+}
+.profile-avatar {
+  width:120px;
+}
+.profile-avatar-edit {
+  position: 'absolute';
+  right: 0;
+  bottom: 0;
+  border-radius: '50vh';
+  padding: '0.2rem';
+  width: '30px';
+  height: '30px';
+  font-size: '1.3rem';
+  background: var(--primary-red);
+  cursor: 'pointer'
+}
+.profile-avatar-edit:hover {
+  background: white;
+}
 
 /* Hide chevrons when not needed */
 .home-cuisine-container .chevron.hidden,
@@ -1704,6 +1732,13 @@ input[type="radio"]:checked + .radio-label {
     .profile-avatar {
       width: 200px;
       margin-left: -60px;
+    }
+    .profile-avatar-wrapper {
+      justify-content: left;
+      width: 200px
+    }
+    .profile-avatar-container {
+      height: 200px;
     }
     .profile-bottom-half {
       padding-left: 300px;
