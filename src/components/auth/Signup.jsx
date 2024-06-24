@@ -14,13 +14,15 @@ export default function Page() {
           position={"absolute"}
           right={0}
           m={'1rem'}
-          _hover={{ fontWeight:"700" }}
+          _hover={{ fontWeight:"700", color:"#9FE870" }}
           color="#ffffff"
           fontWeight="600"
           fontSize="1.2em"
+          zIndex="1"
         >
           Login
         </Box>
+        <button className='auth-relish-button' onClick={() => router('/')}>Relish</button>
         <Flex flexDirection={"column"} position={"relative"}>
           <Heading 
             textAlign={"center"}

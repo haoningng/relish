@@ -1,7 +1,7 @@
-import { Outlet, useNavigate, useLocation, Navigate } from "react-router-dom"
+import { Outlet, useNavigate, useLocation } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { useGetRestaurantListMutation } from "../redux/features/restaurantApiSlice";
-import { useAppDispatch, useAppSelector } from "../redux/hooks"
+import { useAppDispatch } from "../redux/hooks"
 import { setRestaurants } from "../redux/features/restaurantSlice";
 import useLocalStorageState from 'use-local-storage-state'
 import Footer from "./Footer"
@@ -134,20 +134,6 @@ export default function Layout() {
     }
   }, [])
 
-  // check if user is authenticated, if not, send to login page
-  const { isAuthenticated } = useAppSelector(state => state.auth)
-  
-  if (!isAuthenticated) {
-      return (
-          <Navigate 
-              to="/auth/login" 
-              state={{
-                  message: "You must log in first",
-                  from: location.pathname
-              }} 
-              replace
-          />)
-  }
   return (
       <div className="site-wrapper" {...handlers}>
         <main>

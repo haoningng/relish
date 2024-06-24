@@ -20,6 +20,8 @@ export default function BeenToButton({ page }) {
 
   // 1. Retrieve and Update
 	const { restaurantList } = useAppSelector((state) => state.restaurant);
+  // check if user is authenticated
+  const { isAuthenticated } = useAppSelector(state => state.auth)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -52,13 +54,17 @@ export default function BeenToButton({ page }) {
     .catch((e) => {
       console.log("ERROR:", e)
       const firstErrorMsg = Object.values(e.data)[0]
-      toast.error('Failed to create a Restaurants' + '\n' + firstErrorMsg);
+      toast.error('Failed to mark restaurant as visited.' + '\n' + firstErrorMsg);
     });
   }
 
   return (
     <button
-      onClick={() => handleBeenToClick(page.restaurant)}
+      onClick={() => {
+        return isAuthenticated ? 
+        handleBeenToClick(page.restaurant)
+        : toast.error('Log in to mark a restaurant as visited');
+      }}
       className={`material-symbols-outlined ${page.name}-been-to-button`}
     >
       {buttonLoading ? <Spinner size={page.name === 'restaurant' ? 'lg' : 'md'} />

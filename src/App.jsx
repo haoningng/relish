@@ -7,9 +7,11 @@ import Home from './pages/Home';
 import Restaurant from "./pages/Restaurant";
 import NotFound from "./pages/Error";
 import Profile from "./pages/Profile";
+import Landing from "./pages/Landing";
 import { Google, Login, Signup, Tests, Activation } from "./pages/auth";
 import { PasswordReset, PasswordResetConfirmation } from "./pages/password-reset";
 import { useAppSelector } from "./redux/hooks";
+
 
 function App() {
   const { isAuthenticated } = useAppSelector(state => state.auth)
@@ -29,6 +31,9 @@ function App() {
           </>
           :
           <>
+            <Route path="/" element={<Layout />} >
+              <Route index element={<Landing />} />
+            </Route>
             <Route path="auth/login" element={<Login />} />
             <Route path="auth/signup" element={<Signup />} />
             <Route path="password-reset" element={<PasswordReset />} />

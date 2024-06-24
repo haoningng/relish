@@ -14,18 +14,19 @@ export default function Page() {
           position={"absolute"}
           left={0}
           m={'1rem'}
-          _hover={{ fontWeight:"700" }}
+          _hover={{ fontWeight:"700", color:"#9FE870" }}
           color="#ffffff"
           fontWeight="600"
           fontSize="1.2em"
         >
           Signup
         </Box>
+        <button className='auth-relish-button' onClick={() => router('/')}>Relish</button>
         <Flex flexDirection={"column"} >
           <Heading 
             textAlign={"center"}
             variant="authHeader"
-          >Login</Heading>
+          >Log In</Heading>
           <LoginForm />
           <Box mt={"1rem"}>
             <SocialButtons />
