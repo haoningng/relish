@@ -1,9 +1,7 @@
-import awardImage from '../assets/award.svg';
-import awardInactiveImage from '../assets/award_inactive.svg';
 import "../styles/index.css";
 
-function Award({ name, title, ifAchieved }) {
-  const containerClass = ifAchieved === true ? awardImage : awardInactiveImage;
+function Award({ name, title, ifAchieved, cuisine }) {
+  const containerClass = `/src/assets/${cuisine}_${ifAchieved ? '0': '1'}.svg`
   return (
     <div className= 'award-container'>
       <img src={containerClass} alt="Award" className="award-emoji" />

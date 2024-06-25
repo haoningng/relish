@@ -1792,6 +1792,12 @@ input[type="radio"]:checked + .radio-label {
       flex-wrap: wrap;
       gap: 10px;
     }
+    .awards-close {
+      margin-left: 15vw;
+    }
+    .awards-container {
+      height: calc(100vh * 0.87);
+    }
     .profile-visited-container {
       top: 660px;
     }
