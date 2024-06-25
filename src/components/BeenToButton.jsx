@@ -35,6 +35,16 @@ export default function BeenToButton({ page }) {
     setButtonLoading(false);
   }, [setButtonLoading])
 
+  function handleMilestone() {
+    const milestones = [25, 50, 75, 100];
+    console.log(restaurantList?.length)
+    console.log(restaurantList?.length + 1)
+    if (milestones.includes(restaurantList?.length + 1)) {
+      toast.success(`Congratulations for having visited ${restaurantList?.length + 1} restaurants!`)
+      setCelebrating(true);
+    }
+  }
+
   function handleAwardList() {
     getAwardList()
 			.unwrap()
@@ -73,6 +83,7 @@ export default function BeenToButton({ page }) {
         toast.success(`${restaurant.name} is marked as visited!\n You can view it in your profile page.`);
         setButtonLoading(false);
         handleAwardList();
+        handleMilestone();
         navigate('/', { state: { restaurantList }})
       } else {
         // 4. if already in Redux store, remove it from Redux store.

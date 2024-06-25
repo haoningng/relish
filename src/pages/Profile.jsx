@@ -45,12 +45,8 @@ export default function Profile() {
 
   const { width, height } = useWindowSize();
   useEffect(() => {
-    const milestones = [25, 50, 75, 100];
-    if (milestones.includes(restaurantList?.length)) {
-      toast.success(`Congratulations for having visited ${restaurantList?.length} restaurants!`)
-      setCelebrating(true);
-
-      // Wait for the confetti animation to complete (e.g., 5 seconds)
+    if (celebrating) {
+      // Wait for the confetti animation to complete (e.g., 10 seconds)
       setTimeout(() => setCelebrating(false), 5000);
     }
   }, [restaurantList?.length]);

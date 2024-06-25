@@ -34,8 +34,8 @@ export default function Home() {
   const { width, height } = useWindowSize();
   useEffect(() => {
     if (celebrating) {
-      // Wait for the confetti animation to complete (e.g., 5 seconds)
-      setTimeout(() => setCelebrating(false), 5000);
+      // Wait for the confetti animation to complete (e.g., 10 seconds)
+      setTimeout(() => setCelebrating(false), 10000);
     }
   }, [celebrating, setCelebrating]);
 
