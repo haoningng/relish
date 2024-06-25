@@ -9,7 +9,6 @@ import HorizontalChevron from "../components/HorizontalChevron";
 import MapView from "../components/MapView";
 import CuisineTag from "../components/CuisineTag";
 import Confetti from 'react-confetti'
-import { toast } from 'react-toastify';
 import Awards from "./Awards";
 import { Logout } from "../components/auth";
 import { useRetrieveUserQuery } from "../redux/features/authApiSlice";

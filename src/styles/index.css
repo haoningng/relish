@@ -664,15 +664,12 @@ input[type="radio"]:checked + .radio-label {
   user-select: none;
   font-size: 20px;
   font-weight: 600;
+  border: 1px solid transparent;
 }
 
 .reset-menu-item {
   background-color: var(--primary-red);
   border-radius: 0 0 18px 18px;
-}
-
-.reset-menu-item:hover {
-  background-color: var(--secondary-red);
 }
 
 .menu-item:hover {
@@ -683,6 +680,11 @@ input[type="radio"]:checked + .radio-label {
 
 .menu-item:not(:last-child) {
   border-bottom: 1px solid #6B7280;
+}
+
+.reset-menu-item:hover {
+  background-color: var(--secondary-red);
+  border-radius: 0 0 18px 18px;
 }
 
 /* (C) SkeletonListing component */
@@ -1385,6 +1387,7 @@ input[type="radio"]:checked + .radio-label {
   width: 100px;
   height: 100%;
   padding-top: 7px;
+  border-top: 3px solid transparent;
 }
 
 .footer-icon-text {
@@ -1863,6 +1866,7 @@ input[type="radio"]:checked + .radio-label {
     }
     .footer-link {
       height: auto;
+      border-right: 5px solid transparent;
       }
     .footer-icon {
       font-size: 2.2em;
