@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef }  from 'react';
+import { useEffect, useState }  from 'react';
 import { useOutletContext, useNavigate, useLocation } from "react-router-dom";
 import { useAppSelector } from "../redux/hooks"
 import { PropTypes } from 'prop-types'
@@ -23,7 +23,7 @@ export default function Listing({ mapOn }) {
     mapOn: PropTypes.bool.isRequired
   };
 
-  const [showSeeMore, setShowSeeMore] = useState(false);
+  const [showSeeMore, setShowSeeMore] = useState(true);
   const [errorCode, setErrorCode] = useState(0);
 
   // Access visted list from Redux Store
@@ -37,33 +37,6 @@ export default function Listing({ mapOn }) {
     setOffset(prevOffset => prevOffset + 20) // show the next 20 listing from Yelp API
     navigate('/');
   }
-  
-  const listingContainerRef = useRef(null); // Add ref to the scrollable div
-  
-  useEffect(() => {
-    const listingContainer = listingContainerRef.current;
-    
-    const handleScroll = () => {
-      if (
-        listingContainer.scrollTop + listingContainer.clientHeight >=
-        listingContainer.scrollHeight - 0.3 * listingContainer.scrollHeight
-      ) {
-        setShowSeeMore(true);
-      } else {
-        setShowSeeMore(false);
-      }
-    };
-    
-    if (listingContainer) {
-      listingContainer.addEventListener('scroll', handleScroll);
-    }
-    
-    return () => {
-      if (listingContainer) {
-        listingContainer.removeEventListener('scroll', handleScroll);
-      }
-    };
-  }, []);
   
   useEffect(() => {
     console.log(restaurantList.map(each => each.place_id))
@@ -91,12 +64,19 @@ export default function Listing({ mapOn }) {
         return response.json()
       })
       .then(data => {
+        const newLength = data.businesses?.length;
+        if (newLength === 0) {
+          setShowSeeMore(false);
+        } else {
+          setShowSeeMore(true);
+        }
+
         // 1. Filter the data to remove the been-to restaurants, if there are any been-to restaurants
         const filteredNewListing = restaurantList ?  (data.businesses?.filter((each) => {
           const isNotInBeenTo = !restaurantList?.some(been => been.place_id === each.id);
           return isNotInBeenTo;
         })) : data.businesses;
-
+        
         setListing(prevListing => {
           // 2. Before pressing the see more button / been-to button, render the filtered list straighaway
           if (prevListing?.length === 0) {
@@ -148,11 +128,13 @@ export default function Listing({ mapOn }) {
   </p> :
     mapOn 
     ? <MapView listing={ listing }/> 
-    : <div className="listing-container" ref={listingContainerRef}>
+    : <div className="listing-container" >
         {loading ? <SkeletonListing/> :
         <>
           <CardsView listing={ listing }/>
-          <button className={`listing-see-more ${showSeeMore ? 'show' : ''}`} onClick={handleSeeMoreClick}>See More</button>
+          <div className='see-more-container'>
+            {showSeeMore ? <button className='listing-see-more'  onClick={handleSeeMoreClick}>See More</button> : <p className='no-more-listing'>-- No more listings --</p>}
+          </div>
           <br/>
           <br/>
         </>}

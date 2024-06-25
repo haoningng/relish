@@ -752,7 +752,7 @@ input[type="radio"]:checked + .radio-label {
 
 .listing-container {
   width: 365px;
-  height: calc(100vh * 0.6);
+  height: calc(100vh * 0.58);
   overflow-y: scroll;
   overflow-x: hidden;
   display: flex;
@@ -849,20 +849,19 @@ input[type="radio"]:checked + .radio-label {
 .listing-see-more{
   cursor: pointer;
   box-shadow: 0px 4px 4px 0px var(--primary-box-shadow);
-  position: fixed;  
-  bottom: 80px;  
+  position: relative;  
+  bottom: 20px;  
   width: 200px;
-  height: 45px;
   border-radius: 70px;
   border: none;
   background-color: var(--primary-red);
   color: var(--primary-white);
   font-size: 20px;
   font-weight: 500;
-  visibility: hidden;
-  opacity: 0;          /* Initially hidden */
-  transform: translateY(20px); /* Start slightly below its final position */
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition for opacity and position */
+  /* visibility: hidden;
+  opacity: 0; 
+  transform: translateY(20px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;  */
 }
 
 .listing-see-more:hover {
@@ -1661,7 +1660,7 @@ input[type="radio"]:checked + .radio-label {
     }
     .listing-container  {
       width: 85vw;
-      height: 74vh;
+      height: 60vh;
       flex-direction: row;
       justify-content: center;
       gap: 15px;
@@ -1671,6 +1670,19 @@ input[type="radio"]:checked + .radio-label {
     .listing-cuisine-tag {
       width: 120px;
       font-size: 1em;
+    }
+    .see-more-container {
+      height: 260px;
+      width: 360px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .listing-see-more,
+    .no-more-listing {
+      position: relative;
+      height: 2em;
     }
     /* Restaurant */
     .restaurant-desc {
