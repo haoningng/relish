@@ -488,7 +488,15 @@ input[type="radio"]:checked + .radio-label {
   cursor: 'pointer'
 }
 .profile-avatar-edit:hover {
-  background: white;
+  background: var(--secondary-red);
+}
+.profile-avatar-popup-btn {
+  border-radius: 18px;
+  color: var(--primary-dark-green);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  padding: 0 1rem;
 }
 
 /* Hide chevrons when not needed */
@@ -1186,7 +1194,7 @@ input[type="radio"]:checked + .radio-label {
 
 .profile-award-container,
 .profile-visited-container {
-  width: 360px;
+  width: 370px;
   text-align: left;
   padding-left: 20px;
   margin: -12px auto;
@@ -1209,6 +1217,8 @@ input[type="radio"]:checked + .radio-label {
 
 .profile-award-card {
   margin-top: -10px;
+  margin-left: 0px;
+  margin-right: 20px;
   display: flex;
   gap: 10px;
   height: 77px;
@@ -1223,7 +1233,7 @@ input[type="radio"]:checked + .radio-label {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 260px;
+  width: 270px;
   height: 70px;
   border-bottom: 1px solid var(--primary-white);
 }
@@ -1242,6 +1252,7 @@ input[type="radio"]:checked + .radio-label {
   width: 80px;
   font-weight: 200;
   font-size: 0.8em;
+  margin-right: -10px;
 }
 
 .profile-award-text-2 {
@@ -1789,7 +1800,7 @@ input[type="radio"]:checked + .radio-label {
     }
     .profile-award-cards {
       height: 150px;
-      width: 660px;
+      width: 700px;
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;

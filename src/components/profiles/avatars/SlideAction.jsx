@@ -68,7 +68,7 @@ export default function SlideAction({ svgArray, eachSlideWidth, setFun, setSelec
 					transform="scale(-1)"
 					transition={".3s"}
 					cursor={'pointer'}
-					_hover={{ bg: "rgba(0,0,0,.7)" }}
+					_hover={{ bg: "#163300" , color:'#9FE870' }}
 					onClick={() => (edge ? "" : paginate(-1))}
 				>
 					<Box display="inline-block">{"❯"}</Box>
@@ -112,7 +112,7 @@ export default function SlideAction({ svgArray, eachSlideWidth, setFun, setSelec
 					fontSize={"16px"}
 					transition={".3s"}
 					cursor={'pointer'}
-					_hover={{ bg: "rgba(0,0,0,.7)" }}
+					_hover={{ bg: "#163300" , color:'#9FE870' }}
 					onClick={() => (edge ? "" : paginate(1))}
 				>
 					<Box>{"❯"}</Box>

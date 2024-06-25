@@ -27,16 +27,16 @@ export default function Avatar({ path }) {
 			<div className={'profile-avatar-container'}>
 				{!isLoading ? (
 					<>
-						<img className={'profile-avatar'} src={getAvaterObj(isClicked&&!isError?icon:path)} style={{ background: '#b6b6b6', borderRadius: '50vh' }} ></img>
+						<img className={'profile-avatar'} src={getAvaterObj(isClicked&&!isError?icon:path)} style={{ background: '#95A593', borderRadius: '50vh' }} ></img>
 					</>
 				) : (
 					<>
-						<img className={'profile-avatar'} src={'avatar.svg'} style={{ background: '#b6b6b6', borderRadius: '50vh' }} />
+						<img className={'profile-avatar'} src={'avatar.svg'} style={{ background: '#95A593', borderRadius: '50vh' }} />
 					</>
 				)}
 				{!isOpen ? (
 					<>
-						<FaImages onClick={() => setIsOpen(pre => !pre)} className={'profile-avatar-edit'} as={'button'} style={{ position: 'absolute', right: 0, bottom: 0, borderRadius: '50vh', padding: '0.2rem', width: '30px', height: '30px', fontSize: '1.3rem', background: '#BF1E2C', cursor: 'pointer' }} />
+						<FaImages onClick={() => setIsOpen(pre => !pre)} className={'profile-avatar-edit'} as={'button'} style={{ position: 'absolute', right: 0, bottom: 0, borderRadius: '50vh', padding: '0.2rem', width: '30px', height: '30px', fontSize: '1.3rem', cursor: 'pointer' }} />
 					</>
 				) : (
 					<>

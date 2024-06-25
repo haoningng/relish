@@ -63,7 +63,7 @@ export default function Profile() {
     const diffInDays = Math.floor(diffInMs / 86400000); // 86400000 ms = 1 day
   
     if (diffInMinutes < 60) {
-      return `${diffInMinutes} min ago`;
+      return `${diffInMinutes} min${diffInMinutes > 1 ? 's' : ''}  ago`;
     } else if (diffInHours < 24) {
       // const minutes = diffInMinutes % 60;
       // ${minutes} min
