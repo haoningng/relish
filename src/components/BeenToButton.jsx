@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { useRestaurantCreateOrDeleteMutation } from '../redux/features/restaurantApiSlice';
+import { useGetAwardListMutation } from '../redux/features/awardApiSlice';
 import { useAppSelector, useAppDispatch } from '../redux/hooks';
 import { setRestaurants, deleteRestaurant } from '../redux/features/restaurantSlice';
+import { setAwards } from '../redux/features/awardSlice';
 import { getCuisineType } from '../foods/food_to_cuisine';
 import { toast } from 'react-toastify';
 import Spinner from "./common/Spinner";
 import { PropTypes } from 'prop-types';
 
 export default function BeenToButton({ page }) {
+  const {
+    setCelebrating
+  } = useOutletContext(); //from Layout.jsx
 
   BeenToButton.propTypes = {
     page: PropTypes.object.isRequired,
@@ -16,8 +21,10 @@ export default function BeenToButton({ page }) {
   
   const navigate = useNavigate();
   const [RestaurantsCreate] = useRestaurantCreateOrDeleteMutation();
+  const [getAwardList] = useGetAwardListMutation()
   const [buttonLoading, setButtonLoading] = useState(false)
 
+  const { awardList } = useAppSelector((state) => state.award);
   // 1. Retrieve and Update
 	const { restaurantList } = useAppSelector((state) => state.restaurant);
   // check if user is authenticated
@@ -28,7 +35,29 @@ export default function BeenToButton({ page }) {
     setButtonLoading(false);
   }, [setButtonLoading])
 
-
+  function handleAwardList() {
+    getAwardList()
+			.unwrap()
+			.then((res) => {
+        console.log("GET AWARDS", res)
+				dispatch(setAwards(res))
+        const oldAwdList = awardList.filter(each => each?.user ? true : false)
+        const newAwdList = res.filter(each => each?.user ? true : false)
+        const oddOneOut = newAwdList.filter(newAwdItem => {
+          return !oldAwdList.some(oldAwdItem => oldAwdItem.id === newAwdItem.id); 
+        });
+        if (oddOneOut.length) {
+          toast.success('Congratulation for unlocking a new award! Check it out in your profile page');
+          setCelebrating(true);
+        }
+			})
+			.catch((e) => {
+				console.log("ERROR:", e)
+				const firstErrorMsg = Object.values(e.data)[0]
+				console.log(firstErrorMsg)
+			});
+  }
+  
   function handleBeenToClick(restaurant) {
     const cuisineType = getCuisineType(restaurant);
     console.log(`${restaurant.name} is classified as ${cuisineType}`);
@@ -38,18 +67,22 @@ export default function BeenToButton({ page }) {
     .unwrap()
     .then((res) => {
       if (res) {
+        console.log(awardList);
         // 3. if successful, append it to Redux store (global state)
         dispatch(setRestaurants(res))
         toast.success(`${restaurant.name} is marked as visited!\n You can view it in your profile page.`);
         setButtonLoading(false);
+        handleAwardList();
         navigate('/', { state: { restaurantList }})
       } else {
         // 4. if already in Redux store, remove it from Redux store.
         dispatch(deleteRestaurant(restaurant.id))
         toast.success(`${restaurant.name} is removed from the previously visited list!`);
         setButtonLoading(false);
+        handleAwardList();
         navigate('/profile')
       }
+      
     })
     .catch((e) => {
       console.log("ERROR:", e)

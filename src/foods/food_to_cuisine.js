@@ -55,7 +55,6 @@ export function getCuisineType(restaurant) {
 
     // Combine all text to search for keywords
     const allText = categories.join(' ') + ' ' + name + ' ' + alias;
-    console.log(allText)
     // Check if any keywords match
     for (const cuisine in foodToCuisine) {
       const keywords = foodToCuisine[cuisine];

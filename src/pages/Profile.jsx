@@ -21,14 +21,17 @@ export default function Profile() {
   const {
     setSelectedRestaurant,
     isFirstTime,
+    celebrating,
+    setCelebrating,
   } = useOutletContext(); //from Layout.jsx
 
   const [toggleMapView, setToggleMapView] = useState(false)
-  const [celebrating, setCelebrating] = useState(false);
+  
   const [showAwards, setShowAwards] = useState(false);
 
   // from Redux Store
   const { restaurantList } = useAppSelector((state) => state.restaurant);
+  const { awardList } = useAppSelector((state) => state.award);
   const { data: user } = useRetrieveUserQuery();
 
   const navigate = useNavigate();
@@ -53,6 +56,42 @@ export default function Profile() {
   }, [restaurantList?.length]);
 
   const newList = restaurantList.map(each => each)
+  const newAwardList = awardList.map(each => each)
+
+  function getTimeAgo(timestamp) {
+    const now = new Date();
+    const pastDate = new Date(timestamp);
+    const diffInMs = now - pastDate;
+  
+    const diffInMinutes = Math.floor(diffInMs / 60000); // 60000 ms = 1 minute
+    const diffInHours = Math.floor(diffInMs / 3600000); // 3600000 ms = 1 hour
+    const diffInDays = Math.floor(diffInMs / 86400000); // 86400000 ms = 1 day
+  
+    if (diffInMinutes < 60) {
+      return `${diffInMinutes} min ago`;
+    } else if (diffInHours < 24) {
+      // const minutes = diffInMinutes % 60;
+      // ${minutes} min
+      return `${diffInHours} hour${diffInHours > 1 ? 's' : ''} ago`;
+    } else {
+      return `${diffInDays} day${diffInDays > 1 ? 's' : ''} ago`;
+    }
+  }
+
+  const awardCard = newAwardList.reverse().slice(0, 4).reverse().map((awardObj) => {
+    return ( awardObj?.user &&
+      <div key={awardObj.id} className='profile-award-card'>
+        <img width='53px' src={`/src/assets/${awardObj.cuisine_type}_${awardObj?.user ? '0' : '1'}.svg`} />
+        <div className='profile-award-texts'>
+          <div className='profile-award-text-1'>
+            <h4>{awardObj.name}</h4>
+            <p>{getTimeAgo(awardObj.created_on)}</p>
+          </div>
+          <p className='profile-award-text-2'>{awardObj.description}</p>
+        </div>
+      </div>
+    )
+  })
 
   const visitedCards = newList?.reverse().map((restaurantObj) => {
 
@@ -163,25 +202,8 @@ export default function Profile() {
               <h3>Awards</h3>
               <button className='profile-button' onClick={() => setShowAwards(prev => !prev)}>Collection</button>
             </div>
-            <div className='profile-award-card'>
-              <img width='53px' src='hexagonal.svg' />
-              <div className='profile-award-texts'>
-                <div className='profile-award-text-1'>
-                  <h4>Feta Late Than Never</h4>
-                  <p>8m ago</p>
-                </div>
-                <p className='profile-award-text-2'>Visited 5 Greek restaurants</p>
-              </div>
-            </div>
-            <div className='profile-award-card'>
-              <img width='53px' src='hexagonal.svg' />
-              <div className='profile-award-texts'>
-                <div className='profile-award-text-1'>
-                  <h4>I Am Pho Real</h4>
-                  <p>8m ago</p>
-                </div>
-                <p className='profile-award-text-2'>Visited 5 Vietnamese restaurants</p>
-              </div>
+            <div className='profile-award-cards'>
+              {newAwardList.some(each => each?.user ? true : false) ? awardCard : <p>You haven&apos;t earned any award yet.</p>}
             </div>
           </div>
           <div className='profile-visited-container'>
@@ -193,7 +215,7 @@ export default function Profile() {
             <HorizontalChevron
               page={{ name: 'profile', classname: 'profile-visited-scrollable' }}
             >
-              {visitedCards}
+              {restaurantList.length ? visitedCards : <p>You haven&apos;t visited any restaurant yet.</p>}
             </HorizontalChevron>
           </div>
         </>

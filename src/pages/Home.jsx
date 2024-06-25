@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState , useEffect } from "react"
 import { useOutletContext, useNavigate } from "react-router-dom";
 import "../styles/index.css";
 import Listing from "../components/Listing";
@@ -7,12 +7,16 @@ import CuisineOptions from "../components/CuisineOptions";
 import FilterMenu from "../components/FilterMenu";
 import HorizontalChevron from "../components/HorizontalChevron";
 import GuidedTour from "../components/GuidedTour";
+import useWindowSize from 'react-use/lib/useWindowSize'
+import Confetti from 'react-confetti'
 
 export default function Home() {
   const {
     lsLocationObj,
     selectedCuisine,
     isFirstTime,
+    celebrating,
+    setCelebrating
   } = useOutletContext(); //from Layout.jsx
   console.log(lsLocationObj, selectedCuisine)
   const [toggleMapView, setToggleMapView] = useState(false)
@@ -27,8 +31,20 @@ export default function Home() {
     setToggleMapView(prevToggleMapView => !prevToggleMapView);
   }
 
+  const { width, height } = useWindowSize();
+  useEffect(() => {
+    if (celebrating) {
+      // Wait for the confetti animation to complete (e.g., 5 seconds)
+      setTimeout(() => setCelebrating(false), 5000);
+    }
+  }, [celebrating, setCelebrating]);
+
   return (
       <div className="input-outer-container">
+          {celebrating && <Confetti
+          width={width}
+          height={height}
+        />}
         <h3 onClick={handleClick} className='home-location-link-container'>
           <span className='home-location-link'>{lsLocationObj[2]} ▼</span>
         </h3>

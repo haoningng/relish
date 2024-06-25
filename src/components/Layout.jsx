@@ -1,8 +1,10 @@
 import { Outlet, useNavigate, useLocation } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { useGetRestaurantListMutation } from "../redux/features/restaurantApiSlice";
+import { useGetAwardListMutation } from "../redux/features/awardApiSlice";
 import { useAppDispatch } from "../redux/hooks"
 import { setRestaurants } from "../redux/features/restaurantSlice";
+import { setAwards } from "../redux/features/awardSlice";
 import useLocalStorageState from 'use-local-storage-state'
 import Footer from "./Footer"
 import { useSwipeable } from 'react-swipeable';
@@ -36,7 +38,10 @@ export default function Layout() {
 
   const [loading, setLoading] = useState(true); // if true, home page will render skeleton animation until yelp api is fetched
 
+  const [celebrating, setCelebrating] = useState(false);
+
 	const [getRestaurantList] = useGetRestaurantListMutation()
+  const [getAwardList] = useGetAwardListMutation()
 	const dispatch = useAppDispatch()
 
 	function handleRestaurantList() {
@@ -45,6 +50,20 @@ export default function Layout() {
 			.then((res) => {
 				console.log("GET REST", res)
 				dispatch(setRestaurants(res))
+			})
+			.catch((e) => {
+				console.log("ERROR:", e)
+				const firstErrorMsg = Object.values(e.data)[0]
+				console.log(firstErrorMsg)
+			});
+	}
+
+  function handleAwardList() {
+		getAwardList()
+			.unwrap()
+			.then((res) => {
+        console.log("GET AWARDS", res)
+				dispatch(setAwards(res))
 			})
 			.catch((e) => {
 				console.log("ERROR:", e)
@@ -134,6 +153,12 @@ export default function Layout() {
     }
   }, [])
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      return handleAwardList()
+    }
+  }, [])
+
   return (
       <div className="site-wrapper" {...handlers}>
         <main>
@@ -155,7 +180,9 @@ export default function Layout() {
               loading,
               setLoading,
               isFirstTime,
-              setIsFirstTime
+              setIsFirstTime,
+              celebrating,
+              setCelebrating,
             }} />
         </main>
         <Footer isFirstTime={isFirstTime}/>
