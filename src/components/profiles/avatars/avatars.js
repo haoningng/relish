@@ -14,15 +14,15 @@ export const avatarSvgArray = [
 ];
 
 
-// export const avatars = avatarSvgArray.map((a) => {
-//     const obj = {
-//       name: a,
-//       svg: `/svgs/friends/${a}`
-//     };
-//     return obj;
-// });
+export const avatars = avatarSvgArray.map((a) => {
+    const obj = {
+      name: a,
+      path: `avatars/${a}`
+    };
+    return obj;
+});
 
-// export default function getAvaterObj(){
-//     const avatar = avatars.find((e) => e.name === name);
-//     return avatar?avatar.svg:''
-// }
+export default function getAvaterObj(name){
+    const avatar = avatars.find((e) => e.name === name);
+    return avatar?avatar.path:'avatar.svg'
+}
