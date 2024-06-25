@@ -5,6 +5,7 @@ import getAvaterObj from "./avatars";
 import useUserAvatarUpdate from "../../../hooks/users/useUserAvatarUpdate";
 import { FaImages } from "react-icons/fa6";
 import { Popup } from ".";
+import Spinner from "../../common/Spinner";
 
 export default function Avatar({ path }) {
 	const [isOpen, setIsOpen] = useState(false)
@@ -30,7 +31,7 @@ export default function Avatar({ path }) {
 					</>
 				) : (
 					<>
-						<img className={'profile-avatar'} src={'avatar.svg'} style={{ background: '#b6b6b6', borderRadius: '50vh' }} ></img>
+						<img className={'profile-avatar'} src={'avatar.svg'} style={{ background: '#b6b6b6', borderRadius: '50vh' }} />
 					</>
 				)}
 				{!isOpen ? (
