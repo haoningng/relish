@@ -32,8 +32,6 @@ export default function Profile() {
   const { restaurantList } = useAppSelector((state) => state.restaurant);
   const { awardList } = useAppSelector((state) => state.award);
   const { user } = useAppSelector((state) => state.auth);
-  console.log("USER:", user)
-  // const { data: user } = useRetrieveUserQuery();
 
   const navigate = useNavigate();
 
