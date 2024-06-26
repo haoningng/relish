@@ -1,9 +1,8 @@
 import { useAppSelector, useAppDispatch } from "./redux/hooks";
 import { useIsAuthMutation } from "./redux/features/authApiSlice";
 import { useEffect } from "react";
-import { setIsMounted, setAuth } from "./redux/features/authSlice";
+import { setIsMounted, setAuth, setUser } from "./redux/features/authSlice";
 import { useDispatch } from "react-redux";
-import Spinner from "./components/common/Spinner";
 
 export default function AuthRestrictProvider({ children }) {
 	const dispatch = useDispatch()
@@ -14,7 +13,8 @@ export default function AuthRestrictProvider({ children }) {
 			isAuth()
 				.unwrap()
 				.then((res) => {
-					dispatch(setAuth(res))
+					dispatch(setUser(res))
+					dispatch(setAuth(true))
 				})
 				.catch((e) => {
 					const firstErrorMsg = Object.values(e.data)[0]
@@ -35,7 +35,7 @@ export default function AuthRestrictProvider({ children }) {
 				:
 				<>
 					<div style={{ height: '100vh', width: '100vw', justifyContent: 'center', display: 'flex' }}>
-					<img className='logo-animation' src={'/Relish.svg'}/>
+						<img className='logo-animation' src={'/Relish.svg'} />
 					</div>
 				</>
 			}

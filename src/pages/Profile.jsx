@@ -31,7 +31,9 @@ export default function Profile() {
   // from Redux Store
   const { restaurantList } = useAppSelector((state) => state.restaurant);
   const { awardList } = useAppSelector((state) => state.award);
-  const { data: user } = useRetrieveUserQuery();
+  const { user } = useAppSelector((state) => state.auth);
+  console.log("USER:", user)
+  // const { data: user } = useRetrieveUserQuery();
 
   const navigate = useNavigate();
 
