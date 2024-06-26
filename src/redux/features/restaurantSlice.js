@@ -22,15 +22,11 @@ const restaurantSlice = createSlice({
 			} else {
 				state.restaurantList = [...state.restaurantList, action.payload];
 			}
-			console.log("restaurant is set", state.restaurantList)
 		},
 		deleteRestaurant: (state, action) => {
-			console.log("action", action.payload)
       const place_id = action.payload;
-			// const place_id = action.payload;
       const updatedList = state.restaurantList.filter(obj => obj.place_id !== place_id);
       state.restaurantList = updatedList;
-			console.log( state.restaurantList)
     },
 
 	}

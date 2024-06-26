@@ -20,7 +20,6 @@ const awardSlice = createSlice({
 
 		setAwards: (state, action) => {
 			state.awardList = action.payload
-			console.log("SET:", state.awardList)
 		},
 	}
 })
