@@ -7,7 +7,7 @@ import { setRestaurants, deleteRestaurant } from '../redux/features/restaurantSl
 import { setAwards } from '../redux/features/awardSlice';
 import { getCuisineType } from '../foods/food_to_cuisine';
 import { toast } from 'react-toastify';
-import Spinner from "./common/Spinner";
+import CustomSpinner from './common/CustomSpinner';
 import { PropTypes } from 'prop-types';
 
 export default function BeenToButton({ page }) {
@@ -111,7 +111,7 @@ export default function BeenToButton({ page }) {
       }}
       className={`material-symbols-outlined ${page.name}-been-to-button`}
     >
-      {buttonLoading ? <Spinner size={page.name === 'restaurant' ? 'lg' : 'md'} />
+      {buttonLoading ? <CustomSpinner size={page.name === 'restaurant' ? 'md' : 'sm'} />
       : page.visited ? `cancel` : `where_to_vote`}
     </button>
     

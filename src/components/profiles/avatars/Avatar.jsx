@@ -5,7 +5,6 @@ import getAvaterObj from "./avatars";
 import useUserAvatarUpdate from "../../../hooks/users/useUserAvatarUpdate";
 import { FaImages } from "react-icons/fa6";
 import { Popup } from ".";
-import Spinner from "../../common/Spinner";
 
 export default function Avatar({ path }) {
 	const [isOpen, setIsOpen] = useState(false)

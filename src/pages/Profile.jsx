@@ -38,7 +38,7 @@ export default function Profile() {
   function handleClick(event, restaurant) {
     if (event.target.closest('.profile-visited-img')) {
       setSelectedRestaurant(restaurant);
-      navigate(`/listing/${restaurant.id}`)
+      navigate(`/listing/${restaurant.id}/${restaurant.distance}`)
     }
   }
 
