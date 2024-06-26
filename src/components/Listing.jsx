@@ -121,11 +121,14 @@ export default function Listing({ mapOn }) {
   }, [restaurantList, saved.state?.restaurantList, filterObj.priceLevel, filterObj.radius, filterObj.sort, lsLocationObj, offset, selectedCuisine, setListing]);
 
   return ( errorCode == 429 ? 
-  <p className='error-message'>
-    <strong>You have reached the access limit for Yelp API</strong><br/>
-    As this is currently a non-for-profit project, there is a daily rate limit of 300 call (Starter Plan) to Yelp Fusion API which powers this application.<br/>
-    Please try again tomorrow when rate limit is reset (after midnight UTC).
-  </p> :
+    <div className="listing-container" >
+      <p className='error-message'>
+        <strong>You have reached the access limit for Yelp API</strong><br/>
+        As this is currently a non-for-profit project, there is a daily rate limit of 300 call (Starter Plan) to Yelp Fusion API which powers this application.<br/>
+        Please try again tomorrow when rate limit is reset (after midnight UTC).
+      </p> 
+    </div>
+    :
     mapOn 
     ? <MapView listing={ listing }/> 
     : <div className="listing-container" >
