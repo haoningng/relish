@@ -55,7 +55,7 @@ export default function Landing() {
   return (
     !homeView ? 
     <div className="landing-container"> 
-      <Box 
+      {/* <Box 
         as={'button'}
         onClick={() => { navigate('/auth/signup') }}
         position={"absolute"}
@@ -86,7 +86,7 @@ export default function Landing() {
         cursor='pointer'
         >
           Login
-        </Box>
+        </Box> */}
       <img 
         className='landing-img'
         src={`/landing-background.jpg`}
