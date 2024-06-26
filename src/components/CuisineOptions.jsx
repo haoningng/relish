@@ -43,9 +43,9 @@ export default function CuisineOptions({ page }) {
             <img 
               style={each === selectedCuisine ? {
                 backgroundColor: '#163300',
-                border: '1px solid #9FE870',
-                borderRadius: '18px',
-                padding: '4px'
+                borderRadius: '50px',
+                padding: '2px',
+                transform: 'rotate(15deg)'
               }: {}}
               className='cuisine-img'
               src={`/Cuisines/${each}.svg`}

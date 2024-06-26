@@ -17,7 +17,7 @@ export default function useUserAvatarUpdate() {
 		updateUser({ avatar: icon })
 			.unwrap()
 			.then((res) => {
-				toast.success('Syccessfully updated!');
+				toast.success('Updated successfully!');
 			})
 			.catch((e) => {
 				const firstErrorMsg = Object.values(e.data)[0]
