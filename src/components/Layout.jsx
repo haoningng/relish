@@ -38,7 +38,9 @@ export default function Layout() {
 
   const [loading, setLoading] = useState(true); // if true, home page will render skeleton animation until yelp api is fetched
 
-  const [celebrating, setCelebrating] = useState(false);
+  const [celebrating, setCelebrating] = useState(false); // if true, confetti effect will take place on home page and profile page
+
+  const [scrollPosition, setScrollPosition] = useState(0); // to track the scroll position of listing-container in listing.jsx
 
 	const [getRestaurantList] = useGetRestaurantListMutation()
   const [getAwardList] = useGetAwardListMutation()
@@ -183,7 +185,9 @@ export default function Layout() {
               setIsFirstTime,
               celebrating,
               setCelebrating,
-              handleRestaurantList
+              handleRestaurantList,
+              scrollPosition,
+              setScrollPosition,
             }} />
         </main>
         <Footer isFirstTime={isFirstTime}/>

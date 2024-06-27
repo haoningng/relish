@@ -18,6 +18,8 @@ export default function Listing({ mapOn }) {
     setListing,
     loading,
     setLoading,
+    scrollPosition,
+    setScrollPosition,
   } = useOutletContext(); //from Layout.jsx
 
   Listing.propTypes = {
@@ -121,6 +123,37 @@ export default function Listing({ mapOn }) {
         setLoading(false);
         });
   }, [restaurantList, saved.state?.restaurantList, filterObj.priceLevel, filterObj.radius, filterObj.sort, lsLocationObj, offset, selectedCuisine, setListing]);
+
+  // track scroll position
+  useEffect(() => {
+    const listingContainer = document.querySelector('.listing-container');
+  
+    const handleScroll = () => {
+      setScrollPosition(listingContainer.scrollTop);
+    };
+  
+    listingContainer.addEventListener('scroll', handleScroll);
+    
+    // Set scroll position just before navigating away.
+    const beforeUnloadHandler = () => {
+      setScrollPosition(listingContainer.scrollTop);
+    }
+    window.addEventListener('beforeunload', beforeUnloadHandler);
+    
+    return () => {
+      listingContainer.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('beforeunload', beforeUnloadHandler); // Cleanup beforeunload event
+    };
+  }, [setScrollPosition]);
+
+  // set scroll position to where user was before navigating away
+  useEffect(() => {
+    const listingContainer = document.querySelector('.listing-container');
+    if (listingContainer && scrollPosition > 0) {
+      listingContainer.scrollTop = scrollPosition;
+    }
+  }, [scrollPosition]); // Run only when scrollPosition changes
+
 
   return ( errorCode == 429 ? 
     <div className="listing-container" >
