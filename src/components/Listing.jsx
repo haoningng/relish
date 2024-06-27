@@ -188,10 +188,10 @@ export default function Listing({ mapOn }) {
                       <div className="skeleton-line desktop-hidden"></div>
                     </div>
                   </div> 
-                : <p className='no-more-listing'>-- No more listings --</p>
+                : listing.length !== 0 && <p className='no-more-listing'>-- No more listings --</p>
               : width < 865 && showSeeMore 
                 ? <button className='listing-see-more'  onClick={handleSeeMoreClick}>See More</button> 
-                : <p className='no-more-listing'>-- No more listings --</p>}
+                : listing.length !== 0 && <p className='no-more-listing'>-- No more listings --</p>}
             </div>
             <br/>
             <br/>
