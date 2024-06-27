@@ -55,38 +55,6 @@ export default function Landing() {
   return (
     !homeView ? 
     <div className="landing-container"> 
-      <Box 
-        as={'button'}
-        onClick={() => { navigate('/auth/signup') }}
-        position={"absolute"}
-        left={0}
-        m={'1rem'}
-        _hover={{ fontWeight:"700", color:"#9FE870" }}
-        backgroundColor='transparent'
-        border='none'
-        color="#ffffff"
-        fontWeight="600"
-        fontSize="1.2em"
-        cursor='pointer'
-      >
-        Signup
-      </Box>
-      <Box 
-        as={'button'}
-        onClick={() => { navigate('/auth/login') }}
-        position={"absolute"}
-        right={0}
-        m={'1rem'}
-        _hover={{ fontWeight:"700", color:"#9FE870" }}
-        backgroundColor='transparent'
-        border='none'
-        color="#ffffff"
-        fontWeight="600"
-        fontSize="1.2em"
-        cursor='pointer'
-        >
-          Login
-        </Box>
       <img 
         className='landing-img'
         src={`/landing-background.jpg`}
@@ -121,14 +89,6 @@ export default function Landing() {
         Login
       </Box>
       </span>
-      {/* <button 
-        className='landing-login-btn'
-        onClick={() => navigate('/auth/login')}
-      >Log In</button>
-      <button
-        className='landing-firsttime-btn'
-        onClick={() => navigate('/auth/signup')}
-      >First Time Here?</button> */}
     </div>
     :
     <LandingHome/>

@@ -37,8 +37,6 @@ export default function BeenToButton({ page }) {
 
   function handleMilestone() {
     const milestones = [25, 50, 75, 100];
-    console.log(restaurantList?.length)
-    console.log(restaurantList?.length + 1)
     if (milestones.includes(restaurantList?.length + 1)) {
       toast.success(`Congratulations for having visited ${restaurantList?.length + 1} restaurants!`)
       setCelebrating(true);
@@ -70,14 +68,12 @@ export default function BeenToButton({ page }) {
   
   function handleBeenToClick(restaurant) {
     const cuisineType = getCuisineType(restaurant);
-    console.log(`${restaurant.name} is classified as ${cuisineType}`);
     setButtonLoading(true);
     // 2. Store in database
     RestaurantsCreate({ place_id: restaurant.id, obj: restaurant, cuisine_type: cuisineType, has_been: true })
     .unwrap()
     .then((res) => {
       if (res) {
-        console.log(awardList);
         // 3. if successful, append it to Redux store (global state)
         dispatch(setRestaurants(res))
         toast.success(`${restaurant.name} is marked as visited!\n You can view it in your profile page.`);

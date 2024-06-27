@@ -9,7 +9,8 @@ export default function CuisineOptions({ page }) {
     setSelectedCuisine,
     setOffset,
     setListing,
-    setLoading
+    setLoading,
+    setScrollPosition
   } = useOutletContext(); //from Layout.jsx
 
   const navigate = useNavigate()
@@ -23,7 +24,8 @@ export default function CuisineOptions({ page }) {
     setSelectedCuisine(value);
     setOffset(0);
     setLoading(true);
-    setListing([]);
+    setListing([]); 
+    setScrollPosition(0); // why doesn't this reset the scroll position?
     navigate('/');
   }
 

@@ -149,16 +149,17 @@ export default function Restaurant() {
         >
           <button className="restaurant-buttons">
             <img className='cuisine-img' src={`/googleReview.svg`} alt={`Google Review icon`} /><br />
-            Yelp Reviews
-          </button>
-        </a>
-      </div>
-      {coordinate.lat ?
-        <a
-          href={`https://www.google.com/maps/search/?api=1&query=${selectedRestaurant.name}+${selectedRestaurant.location.address1}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+              Reviews
+            </button>
+          </a>
+        </div>
+        {coordinate.lat ? 
+          <a
+            href={`https://www.google.com/maps/search/?api=1&query=${selectedRestaurant.name}+${selectedRestaurant.location.address1}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className='restaurant-map-container'
+          >
           <StaticMap
             coordinate={coordinate}
             page={{

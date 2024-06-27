@@ -137,12 +137,7 @@ export default function Profile() {
 
   return (showAwards ?
     <>
-      <button className='profile-button  awards-close' onClick={() => setShowAwards(prev => !prev)}>
-        <span className="material-symbols-outlined">
-          close
-        </span>
-      </button>
-      <Awards />
+      <Awards setShowAwards={setShowAwards}/>
     </>
     :
     <div className='profile-page-container'>
