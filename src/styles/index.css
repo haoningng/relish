@@ -1617,6 +1617,9 @@ input[type="radio"]:checked + .radio-label {
       width: 140px;
       padding-left: 2px;
       padding-right: 2px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .menu-dropdown {
       left: 10%;
@@ -1625,14 +1628,11 @@ input[type="radio"]:checked + .radio-label {
     }
     .home-filter-container {
       width: 80vw;
+      justify-content: start;
       gap: 30px;
       display: flex;
-      flex-flow: row no-wrap;
+      justify-content: center;
       align-items: center;
-      justify-content: space-between;
-      padding-left: 0px;
-      margin-left: auto;
-      margin-right: auto;
     }
     .result-header-container {
       width: 80vw;
