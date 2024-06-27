@@ -43,7 +43,6 @@ export default function Listing({ mapOn }) {
   }
   
   useEffect(() => {
-    console.log(restaurantList.map(each => each.place_id))
     if (!listing) {
       setLoading(true);
     }
