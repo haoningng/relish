@@ -130,16 +130,6 @@ Note
   cursor: pointer;
 }
 
-@media only screen and (min-width: 865px) {
-  .logo-animation {
-    width: 30vw;
-  }
-  .landing-title {
-    font-size: 8em;
-    margin-top: 130px;
-  }
-}
-
 .landing-login-btn:hover {
   background-color: var(--secondary-red);
 }
@@ -197,7 +187,9 @@ Note
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;
+  justify-content: flex-start;
+  margin: -57px auto;
+  position: relative;
   z-index: 1;
   top: 4%;
   height: 100px;
@@ -253,10 +245,11 @@ Note
   font-size: 1em;
   width: 360px;
   list-style-type: none;
+  cursor: pointer;
 }
 
 .pac-item:hover {
-  background: #f4f4f4;
+  background: var(--primary-light-grey);
 }
 .pac-container:after {
   /* remove 'powered by Google' logo */
@@ -448,13 +441,13 @@ input[type="radio"]:checked + .radio-label {
 
 .left-chevron {
   position: fixed;
-  top: 170px;
+  top: 150px;
   left: 8px;
 }
 
 .right-chevron {
   position: fixed;
-  top: 170px;
+  top: 150px;
   right: 8px;
 }
 
@@ -523,12 +516,17 @@ input[type="radio"]:checked + .radio-label {
   position: relative;
   top: -0.6em;
   width: 350px;
+  z-index: 2;
 }
 
 .home-location-link {
   font-size: 0.8em;
   font-weight: 500;
   cursor: pointer;
+}
+
+.home-location-link:hover {
+  color: var(--primary-light-green);
 }
 
 .home-cuisine-container {
@@ -538,7 +536,7 @@ input[type="radio"]:checked + .radio-label {
   overflow-x: scroll;
   overflow-y: hidden;
   position: relative;
-  margin-top: 63px; 
+  margin-top: 60px; 
   margin-bottom: 4px;
   display: flex;
   flex-direction: row;
@@ -642,7 +640,7 @@ input[type="radio"]:checked + .radio-label {
   z-index: 1;
   position: fixed;
   left: 5%;
-  top: 240px;
+  top: 220px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 3px;
@@ -651,13 +649,6 @@ input[type="radio"]:checked + .radio-label {
   border-radius: 18px;
   width: 90%;
   opacity: 0.7;
-}
-
-@media only screen and (min-width: 600px) {
-  .menu-dropdown {
-    left: 25%;
-    width: 50%;
-  }
 }
 
 .menu-item {
@@ -761,7 +752,7 @@ input[type="radio"]:checked + .radio-label {
 
 .listing-container {
   width: 365px;
-  height: calc(100vh * 0.58);
+  height: calc(100vh * 0.64);
   overflow-y: scroll;
   overflow-x: hidden;
   display: flex;
@@ -1153,23 +1144,6 @@ input[type="radio"]:checked + .radio-label {
   overflow-y: hidden;
 }
 
-@media only screen and (max-height: 667px) {
-  .profile-page-container {
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
-  .profile-page-container::-webkit-scrollbar {
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    display: None;
-  }
-  
-  .profile-page-container {
-    /* Hide scrollbar for IE, Edge and Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-}
-
 .profile-top-half {
   background-color: var(--primary-dark-green);
   position: fixed;
@@ -1205,6 +1179,7 @@ input[type="radio"]:checked + .radio-label {
 
 .profile-logout-btn:hover {
   font-weight: 700;
+  color: var(--primary-light-green);
 }
 
 .profile-avatar {
@@ -1558,7 +1533,47 @@ input[type="radio"]:checked + .radio-label {
     margin-left: 20px;
   }
 
+  @media only screen and (max-height: 860px) {
+    .listing-container {
+      height: calc(100vh * 0.62);
+    }
+  }
+
+  @media only screen and (max-height: 667px) {
+    .listing-container {
+      height: calc(100vh * 0.55);
+    }
+    .profile-page-container {
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+    .profile-page-container::-webkit-scrollbar {
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      display: None;
+    }
+    
+    .profile-page-container {
+      /* Hide scrollbar for IE, Edge and Firefox */
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+  }
+
+  @media only screen and (min-width: 600px) {
+    .menu-dropdown {
+      left: 25%;
+      width: 50%;
+    }
+  }
+
   @media only screen and (min-width: 865px) {
+    .logo-animation {
+      width: 30vw;
+    }
+    .landing-title {
+      font-size: 8em;
+      margin-top: 130px;
+    }
     /* Input */
     .input-title {
       font-size: 3em;
@@ -1621,9 +1636,12 @@ input[type="radio"]:checked + .radio-label {
       font-size: 1.5em;
     }
     .input-container-home{
+      margin: auto;
+      position: fixed;
       width: auto;
       right: 10%;
       top: -19px;
+      z-index: 3;
     }
     .home-cuisine-container {
       margin-top: 0vh;

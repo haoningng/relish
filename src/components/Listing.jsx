@@ -144,7 +144,6 @@ export default function Listing({ mapOn }) {
                 ? <div className="desktop-seemore-container">
                     <button className="desktop-seemore-btn" onClick={handleSeeMoreClick}>
                       See More <span className="material-symbols-outlined">chevron_right</span>
-                      {/* <button className='listing-see-more'  onClick={handleSeeMoreClick}>See More</button>  */}
                     </button>
                     <div className="skeleton-content desktop-hidden">
                       <div className="skeleton-title desktop-hidden"></div>
