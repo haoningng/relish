@@ -1498,7 +1498,7 @@ input[type="radio"]:checked + .radio-label {
 /* (P) Awards page */
 
   .awards-page {
-    margin-top: -80px;
+    /* margin-top: 0px; */
     padding: 15px;
   }
 
@@ -1509,6 +1509,7 @@ input[type="radio"]:checked + .radio-label {
   
   .awards-container {
     display: grid;
+    /* margin-top: 0px; */
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     height: calc(100vh * 0.78);
@@ -1528,9 +1529,21 @@ input[type="radio"]:checked + .radio-label {
   }
 
   .awards-close {
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    cursor: pointer;
     height: 40px;
-    margin-top: 20px;
-    margin-left: 20px;
+    width: 40px;
+    border: none;
+    border-radius: 50px;
+    padding: 0;
+    font-weight: 600;
+    font-size: 2em;
+  }
+  .awards-close:hover {
+    background-color: var(--primary-light-green);
+    color: var(--primary-dark-green);
   }
 
   @media only screen and (max-height: 860px) {
@@ -1893,7 +1906,10 @@ input[type="radio"]:checked + .radio-label {
       gap: 10px;
     }
     .awards-close {
-      margin-left: 15vw;
+      right: 14vw;
+      width: 50px;
+      height: 50px;
+      font-size: 2em;
     }
     .awards-container {
       height: calc(100vh * 0.87);
