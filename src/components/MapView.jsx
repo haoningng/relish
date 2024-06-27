@@ -40,7 +40,7 @@ export default function MapView({ listing }) {
 
   function handleClick(restaurant) {
     setSelectedRestaurant(restaurant);
-    navigate(`/listing/${restaurant.id}`)
+    navigate(`/listing/${restaurant.id}/${restaurant.distance}`)
   }
 
   const userPosition = {

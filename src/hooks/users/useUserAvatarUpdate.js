@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useUpdateUserMutation } from '../../redux/features/authApiSlice';
 import { useAppDispatch } from '../../redux/hooks';
+import { setUser } from '../../redux/features/authSlice';
 
 export default function useUserAvatarUpdate() {
 	const [updateUser, { isLoading, error, isSuccess, isError }] = useUpdateUserMutation();
@@ -17,6 +18,7 @@ export default function useUserAvatarUpdate() {
 		updateUser({ avatar: icon })
 			.unwrap()
 			.then((res) => {
+				dispatch(setUser(res))
 				toast.success('Updated successfully!');
 			})
 			.catch((e) => {

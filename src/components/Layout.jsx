@@ -183,6 +183,7 @@ export default function Layout() {
               setIsFirstTime,
               celebrating,
               setCelebrating,
+              handleRestaurantList
             }} />
         </main>
         <Footer isFirstTime={isFirstTime}/>

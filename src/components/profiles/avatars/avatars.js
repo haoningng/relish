@@ -24,5 +24,5 @@ export const avatars = avatarSvgArray.map((a) => {
 
 export default function getAvaterObj(name){
     const avatar = avatars.find((e) => e.name === name);
-    return avatar?avatar.path:'avatar.svg'
+    return avatar?avatar.path:'avatars/avatar-default.svg'
 }
