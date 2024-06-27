@@ -5,6 +5,7 @@ import { PropTypes } from 'prop-types'
 import CardsView from './CardsView';
 import MapView from './MapView';
 import SkeletonListing from "../components/SkeletonListing";
+import useWindowSize from 'react-use/lib/useWindowSize'
 
 export default function Listing({ mapOn }) {
   const {
@@ -32,6 +33,7 @@ export default function Listing({ mapOn }) {
   const saved = useLocation();
   
   const navigate = useNavigate();
+  const { width } = useWindowSize();
   
   function handleSeeMoreClick() {
     setOffset(prevOffset => prevOffset + 20) // show the next 20 listing from Yelp API
@@ -132,15 +134,33 @@ export default function Listing({ mapOn }) {
     mapOn 
     ? <MapView listing={ listing }/> 
     : <div className="listing-container" >
-        {loading ? <SkeletonListing/> :
-        <>
-          <CardsView listing={ listing }/>
-          <div className='see-more-container'>
-            {showSeeMore ? <button className='listing-see-more'  onClick={handleSeeMoreClick}>See More</button> : <p className='no-more-listing'>-- No more listings --</p>}
-          </div>
-          <br/>
-          <br/>
-        </>}
+        {loading 
+        ? <SkeletonListing/> 
+        : <>
+            <CardsView listing={ listing }/>
+            <div className='see-more-container'>
+              {width >= 865 
+              ? showSeeMore 
+                ? <div className="desktop-seemore-container">
+                    <button className="desktop-seemore-btn" onClick={handleSeeMoreClick}>
+                      See More <span className="material-symbols-outlined">chevron_right</span>
+                      {/* <button className='listing-see-more'  onClick={handleSeeMoreClick}>See More</button>  */}
+                    </button>
+                    <div className="skeleton-content desktop-hidden">
+                      <div className="skeleton-title desktop-hidden"></div>
+                      <div className="skeleton-line desktop-hidden"></div>
+                      <div className="skeleton-line desktop-hidden"></div>
+                      <div className="skeleton-line desktop-hidden"></div>
+                    </div>
+                  </div> 
+                : <p className='no-more-listing'>-- No more listings --</p>
+              : width < 865 && showSeeMore 
+                ? <button className='listing-see-more'  onClick={handleSeeMoreClick}>See More</button> 
+                : <p className='no-more-listing'>-- No more listings --</p>}
+            </div>
+            <br/>
+            <br/>
+          </>}
       </div>
   );
 }
