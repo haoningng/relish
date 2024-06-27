@@ -1631,7 +1631,6 @@ input[type="radio"]:checked + .radio-label {
       justify-content: start;
       gap: 30px;
       display: flex;
-      justify-content: center;
       align-items: center;
     }
     .result-header-container {
