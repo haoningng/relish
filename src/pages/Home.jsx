@@ -13,12 +13,10 @@ import Confetti from 'react-confetti'
 export default function Home() {
   const {
     lsLocationObj,
-    selectedCuisine,
     isFirstTime,
     celebrating,
     setCelebrating
   } = useOutletContext(); //from Layout.jsx
-  console.log(lsLocationObj, selectedCuisine)
   const [toggleMapView, setToggleMapView] = useState(false)
 
   const navigate = useNavigate();

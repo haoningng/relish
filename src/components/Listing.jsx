@@ -69,7 +69,7 @@ export default function Listing({ mapOn }) {
       })
       .then(data => {
         const newLength = data.businesses?.length;
-        if (newLength === 0) {
+        if (newLength < 20) {
           setShowSeeMore(false);
         } else {
           setShowSeeMore(true);
@@ -149,10 +149,13 @@ export default function Listing({ mapOn }) {
   // set scroll position to where user was before navigating away
   useEffect(() => {
     const listingContainer = document.querySelector('.listing-container');
+    if (listingContainer) {
+      listingContainer.scrollTop = 0;
+    }
     if (listingContainer && scrollPosition > 0) {
       listingContainer.scrollTop = scrollPosition;
     }
-  }, [scrollPosition]); // Run only when scrollPosition changes
+  }, [scrollPosition, selectedCuisine, filterObj]); // Run only when scrollPosition changes
 
 
   return ( errorCode == 429 ? 
