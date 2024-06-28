@@ -31,14 +31,14 @@ export default function Profile() {
   // from Redux Store
   const { restaurantList } = useAppSelector((state) => state.restaurant);
   const { awardList } = useAppSelector((state) => state.award);
-  const { data: user } = useRetrieveUserQuery();
+  const { user } = useAppSelector((state) => state.auth);
 
   const navigate = useNavigate();
 
   function handleClick(event, restaurant) {
     if (event.target.closest('.profile-visited-img')) {
       setSelectedRestaurant(restaurant);
-      navigate(`/listing/${restaurant.id}`)
+      navigate(`/listing/${restaurant.id}/${restaurant.distance}`)
     }
   }
 
@@ -137,12 +137,7 @@ export default function Profile() {
 
   return (showAwards ?
     <>
-      <button className='profile-button  awards-close' onClick={() => setShowAwards(prev => !prev)}>
-        <span className="material-symbols-outlined">
-          close
-        </span>
-      </button>
-      <Awards />
+      <Awards setShowAwards={setShowAwards}/>
     </>
     :
     <div className='profile-page-container'>

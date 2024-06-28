@@ -15,6 +15,7 @@ export default function Location() {
     setListing,
     setLoading,
     isFirstTime,
+    setScrollPosition
   } = useOutletContext(); //from Layout.jsx
 
   const [permissionStatus, setPermissionStatus] = useState('prompt');
@@ -51,6 +52,7 @@ export default function Location() {
     })),
     setOffset(0);
     setListing([]);
+    setScrollPosition(0);
     setLoading(true);
   }, [])
 

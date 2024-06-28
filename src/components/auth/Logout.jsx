@@ -2,7 +2,7 @@ import { logout as setLogout } from "../../redux/features/authSlice";
 import { toast } from "react-toastify";
 import { useLogoutMutation } from "../../redux/features/authApiSlice";
 import { useAppDispatch } from "../../redux/hooks";
-import Spinner from "../common/Spinner";
+import CustomSpinner from "../common/CustomSpinner";
 
 export default function Logout() {
   const [logout, { isLoading }] = useLogoutMutation();
@@ -22,7 +22,7 @@ export default function Logout() {
   };
   return (
     <>
-    {isLoading ? <><Spinner/></>:<div onClick={handleLogout}>Logout</div>}
+    {isLoading ? <><CustomSpinner/></>:<div onClick={handleLogout}>Logout</div>}
     </>
   )
 }

@@ -19,7 +19,7 @@ export default function CardsView({ listing }) {
   function handleClick(event, restaurant) {
     if (event.target.closest('.listing-restaurant-photo')) {
       setSelectedRestaurant(restaurant);
-      navigate(`/listing/${restaurant.id}`)
+      navigate(`/listing/${restaurant.id}/${restaurant.distance}`)
     }
   }
   
@@ -78,7 +78,7 @@ export default function CardsView({ listing }) {
 return (
     listing?.length ? cards 
     : <p className='error-message'>
-        {`0 Results of ${selectedCuisine} at this range or price level\nTry again`}
+        {`0 Results of ${selectedCuisine} at this range or price level.\nPlease Try again.`}
       </p>
   )
 }

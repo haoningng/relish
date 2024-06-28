@@ -8,7 +8,8 @@ export default function MenuItem({ children, value, name }) {
     setFilterObj,
     setOffset,
     setListing,
-    setLoading
+    setLoading,
+    setScrollPosition
   } = useOutletContext(); //from Layout.jsx
 
   MenuItem.propTypes = {
@@ -45,6 +46,7 @@ export default function MenuItem({ children, value, name }) {
       setOffset(0);
       setLoading(true);
       setListing([]);
+      setScrollPosition(0);
       navigate('/')
     } else if (value == 0) {
       if (name === 'Price' && filterObj.priceLevel != 0) {
@@ -55,6 +57,7 @@ export default function MenuItem({ children, value, name }) {
         setOffset(0);
         setLoading(true);
         setListing([]);
+        setScrollPosition(0);
         navigate('/')
       } else if (name === 'Distance' && filterObj.radius != 0) {
         setFilterObj((filterObj) => ({
@@ -64,6 +67,7 @@ export default function MenuItem({ children, value, name }) {
         setOffset(0);
         setLoading(true);
         setListing([]);
+        setScrollPosition(0);
         navigate('/')
       } else if (name === 'Sort By' && filterObj.sort != 0) {
         setFilterObj((filterObj) => ({
@@ -73,6 +77,7 @@ export default function MenuItem({ children, value, name }) {
         setOffset(0);
         setLoading(true);
         setListing([]);
+        setScrollPosition(0);
         navigate('/')
       }
     }

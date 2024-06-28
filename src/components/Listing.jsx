@@ -5,6 +5,7 @@ import { PropTypes } from 'prop-types'
 import CardsView from './CardsView';
 import MapView from './MapView';
 import SkeletonListing from "../components/SkeletonListing";
+import useWindowSize from 'react-use/lib/useWindowSize'
 
 export default function Listing({ mapOn }) {
   const {
@@ -17,6 +18,8 @@ export default function Listing({ mapOn }) {
     setListing,
     loading,
     setLoading,
+    scrollPosition,
+    setScrollPosition,
   } = useOutletContext(); //from Layout.jsx
 
   Listing.propTypes = {
@@ -32,6 +35,7 @@ export default function Listing({ mapOn }) {
   const saved = useLocation();
   
   const navigate = useNavigate();
+  const { width } = useWindowSize();
   
   function handleSeeMoreClick() {
     setOffset(prevOffset => prevOffset + 20) // show the next 20 listing from Yelp API
@@ -39,7 +43,6 @@ export default function Listing({ mapOn }) {
   }
   
   useEffect(() => {
-    console.log(restaurantList.map(each => each.place_id))
     if (!listing) {
       setLoading(true);
     }
@@ -65,7 +68,7 @@ export default function Listing({ mapOn }) {
       })
       .then(data => {
         const newLength = data.businesses?.length;
-        if (newLength === 0) {
+        if (newLength < 20) {
           setShowSeeMore(false);
         } else {
           setShowSeeMore(true);
@@ -120,24 +123,78 @@ export default function Listing({ mapOn }) {
         });
   }, [restaurantList, saved.state?.restaurantList, filterObj.priceLevel, filterObj.radius, filterObj.sort, lsLocationObj, offset, selectedCuisine, setListing]);
 
+  // track scroll position
+  useEffect(() => {
+    const listingContainer = document.querySelector('.listing-container');
+  
+    const handleScroll = () => {
+      setScrollPosition(listingContainer.scrollTop);
+    };
+  
+    listingContainer.addEventListener('scroll', handleScroll);
+    
+    // Set scroll position just before navigating away.
+    const beforeUnloadHandler = () => {
+      setScrollPosition(listingContainer.scrollTop);
+    }
+    window.addEventListener('beforeunload', beforeUnloadHandler);
+    
+    return () => {
+      listingContainer.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('beforeunload', beforeUnloadHandler); // Cleanup beforeunload event
+    };
+  }, [setScrollPosition]);
+
+  // set scroll position to where user was before navigating away
+  useEffect(() => {
+    const listingContainer = document.querySelector('.listing-container');
+    if (listingContainer) {
+      listingContainer.scrollTop = 0;
+    }
+    if (listingContainer && scrollPosition > 0) {
+      listingContainer.scrollTop = scrollPosition;
+    }
+  }, [scrollPosition, selectedCuisine, filterObj]); // Run only when scrollPosition changes
+
+
   return ( errorCode == 429 ? 
-  <p className='error-message'>
-    <strong>You have reached the access limit for Yelp API</strong><br/>
-    As this is currently a non-for-profit project, there is a daily rate limit of 300 call (Starter Plan) to Yelp Fusion API which powers this application.<br/>
-    Please try again tomorrow when rate limit is reset (after midnight UTC).
-  </p> :
+    <div className="listing-container" >
+      <p className='error-message'>
+        <strong>You have reached the access limit for Yelp API</strong><br/>
+        As this is currently a non-for-profit project, there is a daily rate limit of 300 call (Starter Plan) to Yelp Fusion API which powers this application.<br/>
+        Please try again tomorrow when rate limit is reset (after midnight UTC).
+      </p> 
+    </div>
+    :
     mapOn 
     ? <MapView listing={ listing }/> 
     : <div className="listing-container" >
-        {loading ? <SkeletonListing/> :
-        <>
-          <CardsView listing={ listing }/>
-          <div className='see-more-container'>
-            {showSeeMore ? <button className='listing-see-more'  onClick={handleSeeMoreClick}>See More</button> : <p className='no-more-listing'>-- No more listings --</p>}
-          </div>
-          <br/>
-          <br/>
-        </>}
+        {loading 
+        ? <SkeletonListing/> 
+        : <>
+            <CardsView listing={ listing }/>
+            <div className='see-more-container'>
+              {width >= 865 
+              ? showSeeMore 
+                ? <div className="desktop-seemore-container">
+                    <button className="desktop-seemore-btn" onClick={handleSeeMoreClick}>
+                      See More <span className="material-symbols-outlined">chevron_right</span>
+                    </button>
+                    <div className="skeleton-content desktop-hidden">
+                      <div className="skeleton-title desktop-hidden"></div>
+                      <div className="skeleton-line desktop-hidden"></div>
+                      <div className="skeleton-line desktop-hidden"></div>
+                      <div className="skeleton-line desktop-hidden"></div>
+                    </div>
+                  </div> 
+                : listing.length !== 0 && <p className='no-more-listing'>-- No more listings --</p>
+              : width < 865 && showSeeMore 
+                ? <button className='listing-see-more'  onClick={handleSeeMoreClick}>See More</button> 
+                : listing.length !== 0 && <p className='no-more-listing'>-- No more listings --</p>}
+            </div>
+            <br/>
+            <br/>
+          </>}
       </div>
   );
 }
