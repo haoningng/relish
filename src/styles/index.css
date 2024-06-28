@@ -1270,7 +1270,7 @@ input[type="radio"]:checked + .radio-label {
   position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: normal;
   align-items: start;
   gap: 15px;
   white-space: nowrap;
@@ -1675,6 +1675,9 @@ input[type="radio"]:checked + .radio-label {
       width: 140px;
       padding-left: 2px;
       padding-right: 2px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .menu-dropdown {
       left: 10%;
@@ -1685,6 +1688,8 @@ input[type="radio"]:checked + .radio-label {
       width: 80vw;
       justify-content: start;
       gap: 30px;
+      display: flex;
+      align-items: center;
     }
     .result-header-container {
       width: 80vw;
