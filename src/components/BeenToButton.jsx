@@ -105,9 +105,10 @@ export default function BeenToButton({ page }) {
         handleBeenToClick(page.restaurant)
         : toast.error('Log in to mark a restaurant as visited');
       }}
+      disabled={buttonLoading}
       className={`material-symbols-outlined ${page.name}-been-to-button`}
     >
-      {buttonLoading ? <CustomSpinner size={page.name === 'restaurant' ? 'md' : 'sm'} />
+      {buttonLoading ? <CustomSpinner size={page.name === 'sm'} />
       : page.visited ? `cancel` : `where_to_vote`}
     </button>
     
