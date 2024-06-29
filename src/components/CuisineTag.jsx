@@ -34,7 +34,7 @@ export default function CuisineTag({ restaurant, page}) {
     "Spanish": "#8B4513",
     "Korean": "#E43996",
     "Vietnamese": "#6B8E23",
-    "MiddleEast": "#663399", 
+    "MiddleEast": "#7147CA", 
     "Mediterranean": "#A365E1", 
     "Halal": "#786DE7",
     "Burger": "#994024",
