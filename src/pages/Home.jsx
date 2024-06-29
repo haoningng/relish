@@ -43,8 +43,8 @@ export default function Home() {
           width={width}
           height={height}
         />}
-        <h3 onClick={handleClick} className='home-location-link-container'>
-          <span className='home-location-link'>{lsLocationObj[2]} ▼</span>
+        <h3 className='home-location-link-container'>
+          <button onClick={handleClick} className='home-location-link'>{lsLocationObj[2]} ▼</button>
         </h3>
         <InputSearch 
           page={{

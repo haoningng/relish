@@ -129,10 +129,10 @@ export default function Location() {
         <Link to="/Quiz">
           <button className='location-proceed-btn'>Proceed</button>
         </Link>
-        <div className='use-my-location'>
+        <button onClick={getMyLocation} className='use-my-location'>
           <p className="material-symbols-outlined">my_location</p>
-          <p onClick={getMyLocation}>Use my current location</p>
-        </div>
+          <p>Use my current location</p>
+        </button>
           {permissionStatus === 'denied' && 
           <p className='geolocation-permission-denied'>
           - Location permission is required -<br/>Please go to your browser settings and enable location access for this website.
