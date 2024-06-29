@@ -4,6 +4,7 @@ import { setAuth } from '../../redux/features/authSlice';
 import { toast } from 'react-toastify';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { setUser } from '../../redux/features/authSlice';
 
 export default function useSocialAuth(authenticate, provider) {
 	const dispatch = useAppDispatch();
@@ -16,12 +17,10 @@ export default function useSocialAuth(authenticate, provider) {
 		const code = searchParams.get('code');
 
 		if (state && code && !effectRan.current) {
-			console.log("state:",state)
-			console.log(" code", code)
-			console.log(searchParams)
 			authenticate({ provider, state, code })
 				.unwrap()
-				.then(() => {
+				.then((res) => {
+					dispatch(setUser(res?.user));
 					dispatch(setAuth());
 					router('/location');
 					toast.success('Logged in');
