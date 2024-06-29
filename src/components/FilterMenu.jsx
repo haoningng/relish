@@ -90,9 +90,9 @@ export default function FilterMenu() {
         setActiveButton(null); // Close dropdown if click is inside the dropdown content
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
       clearTimeout(timeoutId);}
   }, [defaultState]);
 
@@ -100,7 +100,7 @@ export default function FilterMenu() {
   const dspPriceLevel = filterObj.priceLevel !== 0 ?
   ` ${'$'.repeat(filterObj.priceLevel)}` : 'Price';
   const dspRadius = filterObj.radius !== 0 ? `<${filterObj.radius/1000}km` : 'Distance';
-  const dspSort = filterObj.sort === 'review_count' ? 'Review' : filterObj.sort === 'rating' ?  'Ratings' : filterObj.sort === 'distance' ? `Distance` : 'Sort By';
+  const dspSort = filterObj.sort === 'review_count' ? 'Review' : filterObj.sort === 'rating' ?  'Ratings' : filterObj.sort === 'distance' ? `Distance` : filterObj.sort === 'best_match' ? `Best Match` : 'Sort By';
   
   return (
     <div className="home-filter-container" ref={dropdownRef}>
@@ -116,7 +116,7 @@ export default function FilterMenu() {
                 (isFilterApplied && (
                   buttonObj.name === 'Price' && filterObj.priceLevel !== 0 ||
                   buttonObj.name === 'Distance' && filterObj.radius !== 0 ||
-                  buttonObj.name === 'Sort By' && (filterObj.sort === 'rating' || filterObj.sort === 'review_count' || filterObj.sort === 'distance')
+                  buttonObj.name === 'Sort By' && (filterObj.sort === 'best_match' || filterObj.sort === 'rating' || filterObj.sort === 'review_count' || filterObj.sort === 'distance')
                 ))
                 ? {
                     backgroundColor: '#163300',
