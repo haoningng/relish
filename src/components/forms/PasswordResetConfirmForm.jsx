@@ -30,7 +30,7 @@ export default function PasswordResetConfirmForm({ uid, token }) {
     <Form
       config={config}
       isLoading={isLoading}
-      btnText="Request password reset"
+      btnText="Request"
       btnPosition="center"
       onChange={onChange}
       onSubmit={onSubmit}

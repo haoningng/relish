@@ -16,7 +16,7 @@ export default function LoginForm() {
     {
       labelText: "Password",
       labelId: "password",
-      placeholder: "Password.",
+      placeholder: "Password",
       type: "password",
       value: password,
       required: true,

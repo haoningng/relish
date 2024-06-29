@@ -63,6 +63,8 @@ export default function CustomInput({
           )} */}
           <Input
             placeholder={placeholder}
+            _placeholder={{ opacity: 1, color: 'gray.500' }}
+            color={'gray.500'}
             name={labelId}
             type={isPassword() && showPassword ? "text" : type}
             value={value}
