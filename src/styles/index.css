@@ -893,7 +893,7 @@ input[type="radio"]:checked + .radio-label {
   position: relative;
   top: -150px;
   left: 7px;
-  width: 80px;
+  width: 88px;
   height: 20px;
   background-color: var(--secondary-green);
   border-radius: 18px;
