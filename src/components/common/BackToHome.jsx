@@ -1,5 +1,4 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
-import { IoHomeOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 export default function BackToHome() {
   const router = useNavigate();
@@ -13,13 +12,12 @@ export default function BackToHome() {
         cursor={"pointer"}
         _hover={{ fontWeight: "700" }}
       >
-        <IoHomeOutline color='#ffffff'/>
         <Text
           ml={"0.3rem"}
           onClick={() => router("/")}
           color='#ffffff'
         >
-          Back to home
+          Go Back
         </Text>
       </Flex>
     </Box>
