@@ -1559,6 +1559,24 @@ input[type="radio"]:checked + .radio-label {
   }
 
   @media only screen and (max-height: 667px) {
+    .location-img {
+      margin-top: 160px;
+      height: 15em;
+      width: 15em;
+    }
+    .location-proceed-btn {
+      margin-top: 15px;
+    }
+
+    .quiz-cuisine-container {
+      height: 40vh;
+    }
+    .quiz-subtitle-1 {
+      margin-top: -200px;
+    }
+    .quiz-subtitle-2 {
+      margin-top: 440px;
+    }
     .listing-container {
       height: calc(100vh * 0.55);
     }
@@ -1575,6 +1593,43 @@ input[type="radio"]:checked + .radio-label {
       /* Hide scrollbar for IE, Edge and Firefox */
       -ms-overflow-style: none;  /* IE and Edge */
       scrollbar-width: none;  /* Firefox */
+    }
+    .footer-link {
+      padding-top: 2px;
+    }
+  }
+
+  @media only screen and (max-width: 375px) {
+    .input-field,
+    .pac-container,
+    .chevron-container,
+    .home-filter-container,
+    .result-header-container,
+    .listing-container,
+    .listing-restaurant-photo,
+    .listing-desc,
+    .restaurant-desc,
+    .restaurant-buttons-container,
+    .restaurant-map {
+      width: 330px;
+    }
+    .left-chevron {
+      margin-left: -320px;
+    }
+    .right-chevron {
+      margin-right: -320px;
+    }
+
+    .restaurant-buttons {
+      width: 150px;
+      font-size: 1.2em;
+    }
+
+    .listing-been-to-button {
+      left: 280px;
+    }
+    .restaurant-been-to-button {
+      left: 270px;
     }
   }
 
