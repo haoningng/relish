@@ -1411,7 +1411,6 @@ input[type="radio"]:checked + .radio-label {
   width: 100px;
   height: 100%;
   padding-top: 7px;
-  border-top: 3px solid transparent;
 }
 
 .footer-icon-text {
@@ -1998,7 +1997,6 @@ input[type="radio"]:checked + .radio-label {
     }
     .footer-link {
       height: auto;
-      border-right: 5px solid transparent;
       }
     .footer-icon {
       font-size: 2.2em;
