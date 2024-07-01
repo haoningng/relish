@@ -1,4 +1,4 @@
-import { useOutletContext, useNavigate } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import { useEffect, useState, useMemo } from 'react';
 import { useAppSelector } from '../redux/hooks';
 import StaticMap from '../components/StaticMap';
@@ -115,7 +115,7 @@ export default function Restaurant() {
         </div>
         <h3 className='restaurant-text-1'>{selectedRestaurant.name}</h3>
         <div className='restaurant-text-2'>
-          <p>{`${selectedRestaurant.rating} ★ (${selectedRestaurant.review_count}+)`}</p>
+          <p>{`${selectedRestaurant.rating}★ (${selectedRestaurant.review_count}+)`}</p>
           <p>{selectedRestaurant.price ? `${selectedRestaurant.price}` : ''}</p>
         </div>
         <a

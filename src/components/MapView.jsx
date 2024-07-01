@@ -84,7 +84,7 @@ export default function MapView({ listing }) {
                 <CuisineTag restaurant={each} page={{name: 'map'}}/>
                 <h3 className='infowindow-text-1'>{each.name}</h3>
                 <div className='infowindow-text-2'>
-                  <p>{`${each.rating} ★ (${each.review_count})`}</p>
+                  <p>{`${each.rating}★ (${each.review_count})`}</p>
                   <p>{`${each.price ? each.price : ''}`}</p>
                 </div>
                 <p>
