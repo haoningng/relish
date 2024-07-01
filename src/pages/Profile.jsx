@@ -199,7 +199,7 @@ export default function Profile() {
           <div className='profile-visited-container'>
             <div className='profile-subtitle'>
               <h3>Previously Visited</h3>
-              <button className='profile-button' onClick={() => setToggleMapView(true)} >Show Map <span className="material-symbols-outlined">map</span></button>
+              <button className='profile-button' onClick={() => setToggleMapView(true)} >View in Map</button>
             </div>
 
             <HorizontalChevron
