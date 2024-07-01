@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom"
 import './styles/index.css'
 import Layout from './components/Layout';
 import Location from './pages/Location';
@@ -12,6 +12,11 @@ import { Google, Login, Signup, Tests, Activation } from "./pages/auth";
 import { PasswordReset, PasswordResetConfirmation } from "./pages/password-reset";
 import { useAppSelector } from "./redux/hooks";
 
+export const LocationDisplay = () => {
+  const location = useLocation()
+
+  return <div data-testid="location-display">{location.pathname}</div>
+}
 
 function App() {
   const { isAuthenticated } = useAppSelector(state => state.auth)
