@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom"
-import './styles/index.css'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import './styles/index.css';
 import Layout from './components/Layout';
 import Location from './pages/Location';
 import Quiz from './pages/Quiz';
@@ -12,6 +12,7 @@ import { Google, Login, Signup, Tests, Activation } from "./pages/auth";
 import { PasswordReset, PasswordResetConfirmation } from "./pages/password-reset";
 import { useAppSelector } from "./redux/hooks";
 
+// For Unit Testing
 export const LocationDisplay = () => {
   const location = useLocation()
 
@@ -46,7 +47,7 @@ function App() {
             <Route path="activation/:uid/:token" element={<Activation />} />
             <Route path="tests" element={<Tests />} />
             <Route path="auth/google" element={<Google />} />
-            <Route path="*" element={<Navigate to="/auth/login" replace />} />
+            <Route path="*" element={<Navigate to="/auth/login" replace state={{key: 'from home'}}/>} />
           </>}
       </Routes>
     </BrowserRouter>
