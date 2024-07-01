@@ -1640,6 +1640,7 @@ input[type="radio"]:checked + .radio-label {
     /* Chevron */
     .chevron-container {
       width: 100vw;
+      padding-left: 50px;
     }
     .chevron {
       margin-top: 0vh;
@@ -1652,6 +1653,7 @@ input[type="radio"]:checked + .radio-label {
     }
     /* Home */
     .home-location-link-container {
+      padding-left: 50px;
       margin-top: 7vh;
       width: 100vw;
       left: 10%;
@@ -1700,11 +1702,15 @@ input[type="radio"]:checked + .radio-label {
       gap: 30px;
       display: flex;
       align-items: center;
+      padding-left: 50px;
+    }
+    .result-container {
+      padding-left: 70px;
     }
     .result-header-container {
       width: 80vw;
       justify-content: space-between;
-      padding-left: 0px;
+      padding-left: 30px;
       margin-left: auto;
       margin-right: auto;
       font-size: 1.5em;
@@ -1923,6 +1929,9 @@ input[type="radio"]:checked + .radio-label {
       width: 30px;
       height: 30px;
       font-size: 1.5em;
+    }
+    .awards-page {
+      padding-left: 50px;
     }
     .awards-container {
       height: calc(100vh * 0.87);
