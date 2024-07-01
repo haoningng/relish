@@ -437,28 +437,39 @@ input[type="radio"]:checked + .radio-label {
 
 /* (C) Horizontal Chevron */
 
+.chevron-container {
+  display: flex;
+  width: 360px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 360px;
+}
+
 .chevron {
   position: absolute;
-  top: 50%;
+  margin-top: 80px; 
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
 }
 
 .left-chevron {
-  position: fixed;
-  top: 150px;
-  left: 8px;
+  position: absolute;
+  margin-left: -360px;
 }
 
 .right-chevron {
-  position: fixed;
-  top: 150px;
-  right: 8px;
+  position: absolute;
+  margin-right: -360px;
+}
+
+.profile-chevron-container {
+  width: 340px;
 }
 
 .profile-chevron {
-  top: 600px;
+  top: 510px;
 }
 .profile-avatar-wrapper {
   position: relative,;
@@ -500,23 +511,11 @@ input[type="radio"]:checked + .radio-label {
 }
 
 /* Hide chevrons when not needed */
-.home-cuisine-container .chevron.hidden,
-.profile-visited-scrollable .chevron.hidden {
+.chevron-container .chevron.hidden {
   opacity: 0;
   pointer-events: none; /* Disable clicks when hidden */
 }
 
-/* Show/hide based on scroll position (using JavaScript) */
-.home-cuisine-container.scrollable-left .left-chevron,
-.profile-visited-scrollable.scrollable-left .left-chevron { 
-  opacity: 1;
-  pointer-events: auto; 
-}
-.home-cuisine-container.scrollable-right .right-chevron,
-.profile-visited-scrollable.scrollable-right .right-chevron { 
-  opacity: 1;
-  pointer-events: auto; 
-}
 /* (P) Home page */
 
 .home-location-link-container {
@@ -1123,8 +1122,9 @@ input[type="radio"]:checked + .radio-label {
   align-items: center;
 }
 
-.progress-left-text {
-  font-size: 12px;
+.progress-left-text,
+.progress-right-text {
+  font-size: 14px;
   text-wrap: wrap;
   text-align: center;
   margin: 0 6px;
@@ -1133,19 +1133,14 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .progress-sum {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 600;
   margin: 0;
   margin-bottom: -10px;
 }
 
-.progress-checkin-text {
+.progress-small-text {
   margin: 0;
-}
-
-.progress-bar::after {
-  content: '100 Goal';
-  text-align: center;
 }
 
 .profile-page-container {
@@ -1411,7 +1406,6 @@ input[type="radio"]:checked + .radio-label {
   width: 100px;
   height: 100%;
   padding-top: 7px;
-  border-top: 3px solid transparent;
 }
 
 .footer-icon-text {
@@ -1565,6 +1559,24 @@ input[type="radio"]:checked + .radio-label {
   }
 
   @media only screen and (max-height: 667px) {
+    .location-img {
+      margin-top: 160px;
+      height: 15em;
+      width: 15em;
+    }
+    .location-proceed-btn {
+      margin-top: 15px;
+    }
+
+    .quiz-cuisine-container {
+      height: 40vh;
+    }
+    .quiz-subtitle-1 {
+      margin-top: -200px;
+    }
+    .quiz-subtitle-2 {
+      margin-top: 440px;
+    }
     .listing-container {
       height: calc(100vh * 0.55);
     }
@@ -1581,6 +1593,53 @@ input[type="radio"]:checked + .radio-label {
       /* Hide scrollbar for IE, Edge and Firefox */
       -ms-overflow-style: none;  /* IE and Edge */
       scrollbar-width: none;  /* Firefox */
+    }
+    .footer-link {
+      padding-top: 2px;
+    }
+  }
+
+  @media only screen and (max-width: 375px) {
+    .home-location-link {
+      padding-left: 10px;
+    }
+
+    .input-field,
+    .pac-container,
+    .pac-container-home,
+    .pac-item,
+    .chevron-container,
+    .home-filter-container,
+    .result-header-container,
+    .listing-container,
+    .listing-restaurant-photo,
+    .listing-desc,
+    .restaurant-desc,
+    .restaurant-buttons-container,
+    .restaurant-map {
+      width: 330px;
+    }
+    .left-chevron {
+      margin-left: -320px;
+    }
+    .right-chevron {
+      margin-right: -320px;
+    }
+
+    .restaurant-buttons {
+      width: 150px;
+      font-size: 1.2em;
+    }
+
+    .listing-been-to-button {
+      left: 280px;
+    }
+    .restaurant-been-to-button {
+      left: 270px;
+    }
+    .awards-container {
+      gap: 0;
+      height: calc(100vh * 0.75);
     }
   }
 
@@ -1644,16 +1703,22 @@ input[type="radio"]:checked + .radio-label {
     }
   
     /* Chevron */
+    .chevron-container {
+      width: 100vw;
+      padding-left: 50px;
+    }
+    .chevron {
+      margin-top: 0vh;
+    }
     .left-chevron {
-      left: 9%;
-      top: 160px;
+      margin-left: -80vw;
     }
     .right-chevron{
-      right: 7%;
-      top: 165px;
+      margin-right: -80vw;
     }
     /* Home */
     .home-location-link-container {
+      padding-left: 50px;
       margin-top: 7vh;
       width: 100vw;
       left: 10%;
@@ -1702,11 +1767,15 @@ input[type="radio"]:checked + .radio-label {
       gap: 30px;
       display: flex;
       align-items: center;
+      padding-left: 50px;
+    }
+    .result-container {
+      padding-left: 70px;
     }
     .result-header-container {
       width: 80vw;
       justify-content: space-between;
-      padding-left: 0px;
+      padding-left: 30px;
       margin-left: auto;
       margin-right: auto;
       font-size: 1.5em;
@@ -1902,12 +1971,9 @@ input[type="radio"]:checked + .radio-label {
     .progress-left-text {
       width: 100px;
     }
-    .progress-checkin-text {
-      font-size: 1.3em;
-      width: 100px;
-    }
-    .progress-bar::after {
+    .progress-small-text {
       font-size: 1.2em;
+      width: 100%;
     }
     .profile-award-container, .profile-visited-container {
       width: 80vw;
@@ -1928,6 +1994,9 @@ input[type="radio"]:checked + .radio-label {
       width: 30px;
       height: 30px;
       font-size: 1.5em;
+    }
+    .awards-page {
+      padding-left: 50px;
     }
     .awards-container {
       height: calc(100vh * 0.87);
@@ -1962,14 +2031,18 @@ input[type="radio"]:checked + .radio-label {
       font-size: 1.2em;
       line-height: 1.2em;
     }
+    .profile-chevron-container {
+      width: 60vw;
+      padding-left: 0px;
+    }
     .profile-chevron {
-      top: 680px;
+      top: 130px;
     }
-    .profile-visited-scrollable .right-chevron {
-      right: 20%;
+    .profile-chevron-container .right-chevron {
+      margin-right: -62vw;
     }
-    .profile-visited-scrollable .left-chevron {
-      left: 200px;
+    .profile-chevron-container .left-chevron {
+      margin-left: -62vw;
     }
     .profile-visited-map {
       width: 75vw;
@@ -1998,7 +2071,6 @@ input[type="radio"]:checked + .radio-label {
     }
     .footer-link {
       height: auto;
-      border-right: 5px solid transparent;
       }
     .footer-icon {
       font-size: 2.2em;

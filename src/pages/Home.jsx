@@ -56,13 +56,15 @@ export default function Home() {
         <HorizontalChevron
           page={{classname: 'home-cuisine-container'}}
         >
-          <CuisineOptions 
-            page={{
-              name: 'home',
-              className: 'horizontal-radio-label',
-              descClassName: 'horizontal-radio-label-desc'
-            }}
-          />
+          <div className='home-cuisine-container'>
+            <CuisineOptions 
+              page={{
+                name: 'home',
+                className: 'horizontal-radio-label',
+                descClassName: 'horizontal-radio-label-desc'
+              }}
+            />
+          </div>
         </HorizontalChevron>
         <FilterMenu/>
         <div className='result-container'>

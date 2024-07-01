@@ -63,7 +63,7 @@ export default function CardsView({ listing }) {
         <div className='listing-desc'>
           <h3 className='listing-desc-text-1'>{each.name}</h3>
           <div className='listing-desc-text-2'>
-            <p>{`${each.rating} ★ (${each.review_count}+)`}</p>
+            <p>{`${each.rating}★ (${each.review_count}+)`}</p>
             <p>{`${each.price ? each.price : ''}`}</p>
           </div>
           <div className='listing-desc-text-3'>
