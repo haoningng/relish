@@ -1123,8 +1123,9 @@ input[type="radio"]:checked + .radio-label {
   align-items: center;
 }
 
-.progress-left-text {
-  font-size: 12px;
+.progress-left-text,
+.progress-right-text {
+  font-size: 14px;
   text-wrap: wrap;
   text-align: center;
   margin: 0 6px;
@@ -1133,19 +1134,14 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .progress-sum {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 600;
   margin: 0;
   margin-bottom: -10px;
 }
 
-.progress-checkin-text {
+.progress-small-text {
   margin: 0;
-}
-
-.progress-bar::after {
-  content: '100 Goal';
-  text-align: center;
 }
 
 .profile-page-container {
@@ -1901,12 +1897,9 @@ input[type="radio"]:checked + .radio-label {
     .progress-left-text {
       width: 100px;
     }
-    .progress-checkin-text {
-      font-size: 1.3em;
-      width: 100px;
-    }
-    .progress-bar::after {
+    .progress-small-text {
       font-size: 1.2em;
+      width: 100%;
     }
     .profile-award-container, .profile-visited-container {
       width: 80vw;

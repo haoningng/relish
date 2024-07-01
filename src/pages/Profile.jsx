@@ -157,9 +157,13 @@ export default function Profile() {
         <div className='progress-bar'>
           <div className='progress-left-text'>
             <p className='progress-sum'>{restaurantList ? restaurantList?.length : 0}</p>
-            <p className='progress-checkin-text'>Check-ins</p>
+            <p className='progress-small-text'>Visited</p>
           </div>
           <StepProgressBar progress={restaurantList?.length} />
+          <div className='progress-right-text'>
+            <p className='progress-sum'>100</p>
+            <p className='progress-small-text'>Goal</p>
+          </div>
         </div>
       </div>
       {toggleMapView ?
