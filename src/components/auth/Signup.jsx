@@ -8,13 +8,13 @@ export default function Page() {
   return (
     <>
       <Flex position={'relative'} w={'100%'} justifyContent={'center'}>
-        <Box 
+        <Box
           as={'button'}
           onClick={() => { router('/auth/login') }}
           position={"absolute"}
           right={0}
           m={'1rem'}
-          _hover={{ fontWeight:"700", color:"#9FE870" }}
+          _hover={{ fontWeight: "700", color: "#9FE870" }}
           color="#ffffff"
           fontWeight="600"
           fontSize="1.2em"
@@ -23,12 +23,14 @@ export default function Page() {
           Login
         </Box>
         <button className='auth-relish-button' onClick={() => router('/')}>Relish</button>
-        <Flex flexDirection={"column"} position={"relative"}>
-          <Heading 
+        <Flex flexDirection={"column"} position={"relative"} alignItems={'center'}>
+          <Heading
             textAlign={"center"}
             variant="authHeader"
           >Create An Account</Heading>
-          <RegisterForm />
+          <Box w={'300px'}>
+            <RegisterForm />
+          </Box>
           <Box mt={"1rem"}>
             <SocialButtons />
           </Box>
