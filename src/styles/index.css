@@ -1600,8 +1600,14 @@ input[type="radio"]:checked + .radio-label {
   }
 
   @media only screen and (max-width: 375px) {
+    .home-location-link {
+      padding-left: 10px;
+    }
+
     .input-field,
     .pac-container,
+    .pac-container-home,
+    .pac-item,
     .chevron-container,
     .home-filter-container,
     .result-header-container,
@@ -1630,6 +1636,10 @@ input[type="radio"]:checked + .radio-label {
     }
     .restaurant-been-to-button {
       left: 270px;
+    }
+    .awards-container {
+      gap: 0;
+      height: calc(100vh * 0.75);
     }
   }
 
