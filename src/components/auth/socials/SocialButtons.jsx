@@ -14,7 +14,7 @@ export default function SocialButtons({ setEmailOpen, noEmail }) {
       onClick={continueWithGoogle}
     >
       <Flex
-        w={"100%"}
+        w={'240px'}
         p={"0.6rem"}
         position={"relative"}
         justifyContent={"center"}
