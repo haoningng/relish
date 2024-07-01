@@ -14,14 +14,13 @@ export default function SocialButtons({ setEmailOpen, noEmail }) {
       onClick={continueWithGoogle}
     >
       <Flex
-        w={"250px"}
+        w={'240px'}
         p={"0.6rem"}
         position={"relative"}
         justifyContent={"center"}
         alignItems={"center"}
         border={"1px"}
-        borderColor={"black"}
-        borderRadius={"5px"}
+        borderRadius={"10px"}
         bg={'white'}
       >
         <Icon as={FcGoogle} left={3} position={"absolute"} />

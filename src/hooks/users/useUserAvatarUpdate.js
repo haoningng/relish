@@ -10,7 +10,6 @@ export default function useUserAvatarUpdate() {
 
 	const [icon, setIcon] = useState('')
 	const onChange = (icon) => {
-		console.log("SET", icon)
 		setIcon(icon)
 	};
 

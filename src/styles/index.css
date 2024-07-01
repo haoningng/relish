@@ -473,6 +473,7 @@ input[type="radio"]:checked + .radio-label {
 }
 .profile-avatar {
   width:100px;
+  height:100px
 }
 .profile-avatar-edit {
   position: 'absolute';
@@ -1868,6 +1869,7 @@ input[type="radio"]:checked + .radio-label {
     }
     .profile-avatar {
       width: 150px;
+      height: 150px;
       margin-left: -40px;
     }
     .profile-avatar-wrapper {
