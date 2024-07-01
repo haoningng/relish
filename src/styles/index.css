@@ -1646,10 +1646,10 @@ input[type="radio"]:checked + .radio-label {
       margin-top: 0vh;
     }
     .left-chevron {
-      margin-left: -82vw;
+      margin-left: -80vw;
     }
     .right-chevron{
-      margin-right: -82vw;
+      margin-right: -80vw;
     }
     /* Home */
     .home-location-link-container {
@@ -1968,6 +1968,7 @@ input[type="radio"]:checked + .radio-label {
     }
     .profile-chevron-container {
       width: 60vw;
+      padding-left: 0px;
     }
     .profile-chevron {
       top: 130px;
