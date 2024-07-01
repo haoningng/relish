@@ -11,9 +11,10 @@ export default function HorizontalChevron({ children, page }) {
   };
 
   useEffect(() => {
-    const scrollableContainer = document.querySelector(`.${page.classname}`);
-    const leftChevron = scrollableContainer.querySelector('.left-chevron');
-    const rightChevron = scrollableContainer.querySelector('.right-chevron');
+    const chevronContainer = document.querySelector(`.chevron-container`);
+    const leftChevron = chevronContainer.querySelector('.left-chevron');
+    const rightChevron = chevronContainer.querySelector('.right-chevron');
+    const scrollableContainer = document.querySelector(`.${page.classname}`)
   
     const updateChevronVisibility = () => {
       const isScrolledLeft = scrollableContainer.scrollLeft > 0;
@@ -33,7 +34,7 @@ export default function HorizontalChevron({ children, page }) {
   }, [])
 
   return (
-    <div className={`${page.classname}`}>
+    <div className={`chevron-container ${page.name === 'profile' ? 'profile-chevron-container' : ''}`}>
       <div className={`chevron left-chevron ${page.name === 'profile' ? 'profile-chevron' : ''}`}>
         <span className="material-symbols-outlined">
         arrow_back_ios

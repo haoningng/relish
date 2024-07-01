@@ -209,7 +209,9 @@ export default function Profile() {
             <HorizontalChevron
               page={{ name: 'profile', classname: 'profile-visited-scrollable' }}
             >
-              {restaurantList.length ? visitedCards : <p>You haven&apos;t visited any restaurant yet.</p>}
+              <div className='profile-visited-scrollable'>
+                {restaurantList.length ? visitedCards : <p>You haven&apos;t visited any restaurant yet.</p>}
+              </div>
             </HorizontalChevron>
           </div>
         </>

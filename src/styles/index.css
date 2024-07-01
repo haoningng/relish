@@ -437,28 +437,39 @@ input[type="radio"]:checked + .radio-label {
 
 /* (C) Horizontal Chevron */
 
+.chevron-container {
+  display: flex;
+  width: 360px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 360px;
+}
+
 .chevron {
   position: absolute;
-  top: 50%;
+  margin-top: 80px; 
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
 }
 
 .left-chevron {
-  position: fixed;
-  top: 150px;
-  left: 8px;
+  position: absolute;
+  margin-left: -360px;
 }
 
 .right-chevron {
-  position: fixed;
-  top: 150px;
-  right: 8px;
+  position: absolute;
+  margin-right: -360px;
+}
+
+.profile-chevron-container {
+  width: 340px;
 }
 
 .profile-chevron {
-  top: 600px;
+  top: 510px;
 }
 .profile-avatar-wrapper {
   position: relative,;
@@ -500,23 +511,11 @@ input[type="radio"]:checked + .radio-label {
 }
 
 /* Hide chevrons when not needed */
-.home-cuisine-container .chevron.hidden,
-.profile-visited-scrollable .chevron.hidden {
+.chevron-container .chevron.hidden {
   opacity: 0;
   pointer-events: none; /* Disable clicks when hidden */
 }
 
-/* Show/hide based on scroll position (using JavaScript) */
-.home-cuisine-container.scrollable-left .left-chevron,
-.profile-visited-scrollable.scrollable-left .left-chevron { 
-  opacity: 1;
-  pointer-events: auto; 
-}
-.home-cuisine-container.scrollable-right .right-chevron,
-.profile-visited-scrollable.scrollable-right .right-chevron { 
-  opacity: 1;
-  pointer-events: auto; 
-}
 /* (P) Home page */
 
 .home-location-link-container {
@@ -1639,13 +1638,17 @@ input[type="radio"]:checked + .radio-label {
     }
   
     /* Chevron */
+    .chevron-container {
+      width: 100vw;
+    }
+    .chevron {
+      margin-top: 0vh;
+    }
     .left-chevron {
-      left: 9%;
-      top: 160px;
+      margin-left: -82vw;
     }
     .right-chevron{
-      right: 7%;
-      top: 165px;
+      margin-right: -82vw;
     }
     /* Home */
     .home-location-link-container {
@@ -1954,14 +1957,17 @@ input[type="radio"]:checked + .radio-label {
       font-size: 1.2em;
       line-height: 1.2em;
     }
+    .profile-chevron-container {
+      width: 60vw;
+    }
     .profile-chevron {
-      top: 680px;
+      top: 130px;
     }
-    .profile-visited-scrollable .right-chevron {
-      right: 20%;
+    .profile-chevron-container .right-chevron {
+      margin-right: -62vw;
     }
-    .profile-visited-scrollable .left-chevron {
-      left: 200px;
+    .profile-chevron-container .left-chevron {
+      margin-left: -62vw;
     }
     .profile-visited-map {
       width: 75vw;
