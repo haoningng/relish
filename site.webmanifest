@@ -15,56 +15,56 @@
     ],
   "screenshots": [
     {
-      "src": "screenshots/landing-desktop.png",
+      "src": "/screenshots/landing-desktop.png",
        "sizes": "2880x1632",
        "type": "image/png",
        "form_factor": "wide",
        "label": "Landing Page"
      },
     {
-      "src": "screenshots/home-desktop.png",
+      "src": "/screenshots/home-desktop.png",
        "sizes": "2880x1632",
        "type": "image/png",
        "form_factor": "wide",
        "label": "Home Page"
      },
      {
-      "src": "screenshots/map-desktop.png",
+      "src": "/screenshots/map-desktop.png",
        "sizes": "2880x1632",
        "type": "image/png",
        "form_factor": "wide",
        "label": "Map View"
      },
      {
-      "src": "screenshots/profile-desktop.png",
+      "src": "/screenshots/profile-desktop.png",
        "sizes": "2880x1632",
        "type": "image/png",
        "form_factor": "wide",
        "label": "Profile Page"
      },
     {
-     "src": "screenshots/landing.png",
+     "src": "/screenshots/landing.png",
       "sizes": "706x1536",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Landing Page"
     },
     {
-      "src": "screenshots/home.png",
+      "src": "/screenshots/home.png",
        "sizes": "706x1536",
        "type": "image/png",
        "form_factor": "narrow",
        "label": "Home Page"
      },
      {
-      "src": "screenshots/map.png",
+      "src": "/screenshots/map.png",
        "sizes": "706x1536",
        "type": "image/png",
        "form_factor": "narrow",
        "label": "Map View"
      },
      {
-      "src": "screenshots/profile.png",
+      "src": "/screenshots/profile.png",
        "sizes": "706x1536",
        "type": "image/png",
        "form_factor": "narrow",
