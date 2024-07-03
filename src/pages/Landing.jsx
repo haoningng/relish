@@ -2,6 +2,7 @@ import { useState, useMemo, useRef, useEffect } from "react"
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Box } from "@chakra-ui/react";
 import LandingHome from "./LandingHome";
+import InstallPWA from "../components/InstallPWA";
 
 export default function Landing() {
   const {
@@ -89,6 +90,7 @@ export default function Landing() {
         Login
       </Box>
       </span>
+      <InstallPWA/>
     </div>
     :
     <LandingHome/>

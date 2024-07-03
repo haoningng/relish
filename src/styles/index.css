@@ -143,6 +143,26 @@ Note
   font-weight: 600;
   color: var(--primary-white);
 }
+.pwa-install-button {
+  position: fixed;
+  bottom: 2em;
+  background-color: var(--primary-dark-green);
+  border-radius: 18px;
+  height: 1.3em;
+  font-size: 1.3em;
+  font-weight: 600;
+  border: none;
+  color: var(--primary-light-green);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2em;
+  cursor: pointer;
+}
+.pwa-install-button:hover {
+  background-color: var(--primary-light-green);
+  color: var(--primary-dark-green);
+}
 /* (C) GuidedTour Component */
 
 .tour-title {
