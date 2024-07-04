@@ -1,4 +1,3 @@
-// import { apiSlice } from '../services/apiSlice';
 import { createSlice } from "@reduxjs/toolkit"
 
 
@@ -6,7 +5,9 @@ const initialState = {
 	isAuthenticated: false,
 	isLoading: true,
 	isMounted: false,
-	user: ''
+	isThrottled: false,
+	user: '',
+	time:0 //# seconds
 }
 
 const authSlice = createSlice({
@@ -27,10 +28,17 @@ const authSlice = createSlice({
 		},
 		setUser: (state, action) => {
 			state.user = action.payload
-			console.log("SET_USER",state.user)
-		}
+		},
+		setIsThrottled: (state, action) => {
+			state.isThrottled = action.payload
+			console.log('SET_ISTH:', state.isThrottled)
+		},
+		setTime: (state, action) => {
+			state.time = action.payload
+			console.log('SET_TIME:', state.time)
+		},
 	}
 })
 
-export const { setAuth, logout, finishInitialLoad, setTokens, setIsMounted, setUser } = authSlice.actions
+export const { setAuth, logout, finishInitialLoad, setTokens, setIsMounted, setUser, setIsThrottled, setTime } = authSlice.actions
 export default authSlice.reducer
