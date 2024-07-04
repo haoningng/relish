@@ -79,8 +79,7 @@ export default function LandingHome() {
                   onClick={handleToggle}
                   style={toggleMapView ? {
                     backgroundColor: '#163300',
-                    color: '#9FE870',
-                    border: '1px solid #9FE870'} : {}}
+                    color: '#9FE870'} : {}}
               >
                 View in {toggleMapView ? 'List' : 'Map'}
               </button>
