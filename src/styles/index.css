@@ -477,7 +477,7 @@ input[type="radio"]:checked + .radio-label {
 
 .chevron {
   position: absolute;
-  margin-top: 80px; 
+  margin-top: 60px; 
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
@@ -498,7 +498,7 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .profile-chevron {
-  top: 510px;
+  top: 530px;
 }
 .profile-avatar-wrapper {
   position: relative,;
