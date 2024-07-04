@@ -1630,6 +1630,12 @@ input[type="radio"]:checked + .radio-label {
   }
 
   @media only screen and (max-width: 375px) {
+    .landing-title {
+      margin-top: 120px;
+    }
+    .landing-input {
+      margin-top: 0px;
+    }
     .home-location-link {
       padding-left: 10px;
     }
@@ -1673,7 +1679,6 @@ input[type="radio"]:checked + .radio-label {
     }
     .download-instruction-img,
     .pwa-install-button {
-      margin-top: -30px;
       width: 340px;
     }
   }
@@ -1692,6 +1697,10 @@ input[type="radio"]:checked + .radio-label {
     .landing-title {
       font-size: 8em;
       margin-top: 130px;
+    }
+    .pwa-install-button,
+    .download-instruction-img {
+      visibility: hidden;
     }
     /* Input */
     .input-title {
