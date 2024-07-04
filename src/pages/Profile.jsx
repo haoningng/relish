@@ -11,7 +11,7 @@ import CuisineTag from "../components/CuisineTag";
 import Confetti from 'react-confetti'
 import Awards from "./Awards";
 import { Logout } from "../components/auth";
-import { useRetrieveUserQuery } from "../redux/features/authApiSlice";
+import InstallPWA from "../components/InstallPWA";
 import GuidedTour from "../components/GuidedTour";
 import useWindowSize from 'react-use/lib/useWindowSize'
 import { Avatar } from "../components/profiles/avatars";
@@ -214,6 +214,7 @@ export default function Profile() {
               </div>
             </HorizontalChevron>
           </div>
+          <InstallPWA/>
         </>
       }
       {isFirstTime.profile &&
