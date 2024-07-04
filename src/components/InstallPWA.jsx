@@ -1,45 +1,50 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { MdDownload } from "react-icons/md";
 
 const InstallPWA = () => {
-  // const [supportsPWA, setSupportsPWA] = useState(false);
-  const [promptInstall, setPromptInstall] = useState(null);
   const [click, setClick] = useState(false);
 
-  useEffect(() => {
-    const handler = e => {
-      e.preventDefault();
-      // setSupportsPWA(true);
-      setPromptInstall(e);
-    };
-    window.addEventListener("beforeinstallprompt", handler);
-    return () => window.removeEventListener("transitionend", handler);
-  }, []);
+  const deferredPrompt = useRef(null)
 
-  const onClick = evt => {
-    evt.preventDefault();
-    setClick(true);
-    if (promptInstall) {
-      promptInstall.prompt();
-      // return;
+  useEffect(() => {
+    const handlePrompt = (e) => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault()
+      // Stash the event so it can be triggered later.
+      deferredPrompt.current = e
     }
-  };
-  // if (!supportsPWA) {
-  //   return null;
-  // }
-  return ( !click ?
-    <button
-      className="pwa-install-button"
-      id="setup_button"
-      aria-label="Install app"
-      title="Install app"
-      onClick={onClick}
-    >
-      Install Relish 📲
-    </button>
+
+    window.addEventListener('beforeinstallprompt', handlePrompt)
+    return () => window.removeEventListener('beforeinstallprompt', handlePrompt)
+  })
+
+  const installPWA = () => {
+    setClick(true);
+    if (!deferredPrompt.current) return
+    deferredPrompt.current.prompt()
+    // Wait for the user to respond to the prompt
+    deferredPrompt.current.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        localStorage.setItem("pwa-is-installed", 'true')
+      }
+    })
+  }
+
+  return ( !click 
+    ? !JSON.parse(localStorage.getItem("pwa-is-installed")) &&
+      <button
+        className="pwa-install-button"
+        id="setup_button"
+        aria-label="Install app"
+        title="Install app"
+        onClick={installPWA}
+      >
+        <MdDownload />
+      </button>
     :
-    <div style={{position: 'fixed', bottom:'0px'}}>
-      <img onClick={() => setClick(false)} alt='download instruction' height='100vh' width='100%' style={{ borderRadius:'18px'}} src='/download-instruction.jpg'/>
-    </div>
+      <div style={{position: 'relative', margin:'auto auto 20px'}}>
+        <img onClick={() => setClick(false)} alt='download instruction' width='360px' className='download-instruction-img' src='/download-instruction.jpg'/>
+      </div>
   );
 };
 

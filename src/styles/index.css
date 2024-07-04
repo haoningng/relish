@@ -144,25 +144,34 @@ Note
   color: var(--primary-white);
 }
 .pwa-install-button {
-  position: fixed;
-  bottom: 2em;
-  background-color: var(--primary-dark-green);
+  position: relative;
+  margin: auto auto 20px;
+  background-color: transparent;
   border-radius: 18px;
   height: 1.3em;
-  font-size: 1.3em;
+  font-size: 2em;
   font-weight: 600;
   border: none;
-  color: var(--primary-light-green);
+  color: var(--primary-white);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1.2em;
   cursor: pointer;
 }
+
 .pwa-install-button:hover {
-  background-color: var(--primary-light-green);
-  color: var(--primary-dark-green);
+  color: var(--primary-light-green);
 }
+
+.download-instruction-img {
+  border-radius: 18px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0px 4px 4px 0px var(--primary-box-shadow);
+}
+
 /* (C) GuidedTour Component */
 
 .tour-title {
@@ -1292,6 +1301,7 @@ input[type="radio"]:checked + .radio-label {
 .profile-visited-scrollable {
   width: 320px;
   margin-left: 0;
+  margin-bottom: 20px;
   overflow-x: scroll;
   overflow-y: hidden;
   position: relative;
@@ -1660,6 +1670,11 @@ input[type="radio"]:checked + .radio-label {
     .awards-container {
       gap: 0;
       height: calc(100vh * 0.75);
+    }
+    .download-instruction-img,
+    .pwa-install-button {
+      margin-top: -30px;
+      width: 340px;
     }
   }
 
