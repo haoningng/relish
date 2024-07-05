@@ -1,5 +1,5 @@
 import { useNavigate, Navigate } from "react-router-dom";
-import notFoundImage from '../assets/notfound.svg';
+import notFoundImage from '/assets/notfound.svg';
 import Countdown from "react-countdown";
 import "../styles/index.css";
 import { useAppSelector } from "../redux/hooks";
