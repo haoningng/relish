@@ -6,6 +6,7 @@ import Quiz from './pages/Quiz';
 import Home from './pages/Home';
 import Restaurant from "./pages/Restaurant";
 import NotFound from "./pages/Error";
+import TooManyRequests from "./pages/TooManyRequests";
 import Profile from "./pages/Profile";
 import Landing from "./pages/Landing";
 import { Google, Login, Signup, Tests, Activation } from "./pages/auth";
@@ -33,6 +34,7 @@ function App() {
               <Route path="listing/:id/:distance" element={<Restaurant />} />
               <Route path="profile" element={<Profile />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/429" element={<TooManyRequests />} />
             </Route>
           </>
           :

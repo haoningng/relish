@@ -2,7 +2,7 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom"
 import { useState, useEffect, useCallback } from "react"
 import { useGetRestaurantListMutation } from "../redux/features/restaurantApiSlice";
 import { useGetAwardListMutation } from "../redux/features/awardApiSlice";
-import { useAppDispatch } from "../redux/hooks"
+import { useAppDispatch, useAppSelector } from "../redux/hooks"
 import { setRestaurants } from "../redux/features/restaurantSlice";
 import { setAwards } from "../redux/features/awardSlice";
 import useLocalStorageState from 'use-local-storage-state'
@@ -26,6 +26,7 @@ function debounce(func, wait, immediate) {
 }
 
 export default function Layout() {
+  const navigate = useNavigate();
   const [lsLocationObj, setLsLocationObj] = useLocalStorageState('locationObj', {
     // default to Melbourne coordinate
     defaultValue: ['-37.8136', '144.9631', 'Melbourne CBD']
@@ -157,7 +158,6 @@ export default function Layout() {
     ] // cuisine options
 
   // if locationObj is not initialised in localStorage
-  const navigate = useNavigate();
   useEffect(() => {
     if (lsLocationObj[0] === 'undefined' || !lsLocationObj) {
       setLsLocationObj(() => (
@@ -178,6 +178,14 @@ export default function Layout() {
       return handleAwardList()
     }
   }, [])
+
+  const { isThrottled } = useAppSelector(state => state.auth)
+
+  useEffect(() => {
+    if (isThrottled) {
+      navigate('/429');
+    }
+  }, [isThrottled, navigate])
 
   return (
       <div className="site-wrapper" {...handlers}>

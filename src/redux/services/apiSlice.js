@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { setAuth, logout } from '../features/authSlice';
+import { setAuth, logout, setIsThrottled, setTime } from '../features/authSlice';
 import { Mutex } from 'async-mutex';
 
 const mutex = new Mutex();
@@ -36,6 +36,12 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 			await mutex.waitForUnlock();
 			result = await baseQuery(args, api, extraOptions);
 		}
+	}
+	if (result.error && result.error.status === 429) {
+		const time = Number(result.error.data.detail.replace(/[^0-9]/g, ""))
+		api.dispatch(setIsThrottled(true))
+		api.dispatch(setTime(time))
+
 	}
 	return result;
 };
