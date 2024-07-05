@@ -1856,7 +1856,7 @@ input[type="radio"]:checked + .radio-label {
       position: fixed;
       width: auto;
       right: 10%;
-      top: -28px;
+      top: -33px;
       z-index: 3;
     }
     .home-cuisine-container {
