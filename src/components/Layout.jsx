@@ -1,5 +1,5 @@
 import { Outlet, useNavigate, useLocation } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useGetRestaurantListMutation } from "../redux/features/restaurantApiSlice";
 import { useGetAwardListMutation } from "../redux/features/awardApiSlice";
 import { useAppDispatch } from "../redux/hooks"
@@ -8,6 +8,22 @@ import { setAwards } from "../redux/features/awardSlice";
 import useLocalStorageState from 'use-local-storage-state'
 import Footer from "./Footer"
 import { useSwipeable } from 'react-swipeable';
+
+
+function debounce(func, wait, immediate) {
+  var timeout;
+  return function() {
+      var context = this, args = arguments;
+      var later = function() {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+  };
+}
 
 export default function Layout() {
   const [lsLocationObj, setLsLocationObj] = useLocalStorageState('locationObj', {
@@ -45,6 +61,8 @@ export default function Layout() {
 	const [getRestaurantList] = useGetRestaurantListMutation()
   const [getAwardList] = useGetAwardListMutation()
 	const dispatch = useAppDispatch()
+
+  const debounceSetScrollPosition = useCallback(debounce(setScrollPosition, 100), [])
 
 	function handleRestaurantList() {
 		getRestaurantList()
@@ -187,7 +205,7 @@ export default function Layout() {
               setCelebrating,
               handleRestaurantList,
               scrollPosition,
-              setScrollPosition,
+              setScrollPosition:debounceSetScrollPosition,
             }} />
         </main>
         <Footer isFirstTime={isFirstTime}/>

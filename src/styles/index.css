@@ -7,6 +7,84 @@ Note
 
 */
 
+/* CSS RESET
+   http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	/* margin: 0; */
+	/* padding: 0; */
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+h1,h2,h3,h4,h5,h6,p,label {
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+h2 {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+}
+h4 {
+  font-size: 1em;
+  font-weight: bold;
+}
+h5 {
+  font-size: .83em;
+  font-weight: bold;
+}
+h6 {
+  font-size: .67em;
+  font-weight: bold;
+}
+
 @font-face { 
   font-family: 'Menlawai'; 
   src: url('/src/styles/menlawai-font/MenlawaiRegular-YzLAO.otf') format('opentype'); 
@@ -264,7 +342,7 @@ Note
   opacity: 0.9;
   width: 360px;
   position: relative;
-  top: -13px;
+  top: -15px;
 }
 
 .pac-item,
@@ -477,7 +555,7 @@ input[type="radio"]:checked + .radio-label {
 
 .chevron {
   position: absolute;
-  margin-top: 80px; 
+  margin-top: 60px; 
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
@@ -498,7 +576,7 @@ input[type="radio"]:checked + .radio-label {
 }
 
 .profile-chevron {
-  top: 510px;
+  top: 530px;
 }
 .profile-avatar-wrapper {
   position: relative,;
@@ -704,6 +782,7 @@ input[type="radio"]:checked + .radio-label {
   font-size: 20px;
   font-weight: 600;
   border: 1px solid transparent;
+  font-family: Inter;
 }
 
 .reset-menu-item {
@@ -834,6 +913,7 @@ input[type="radio"]:checked + .radio-label {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  padding: 0px;
 }
 
 .listing-been-to-button:hover {
@@ -1007,6 +1087,7 @@ input[type="radio"]:checked + .radio-label {
 
 .infowindow-text-1{
   font-weight: 600;
+  padding-top: 5px;
   margin-bottom: -5px;
   text-align: left;
 }
@@ -1401,7 +1482,7 @@ input[type="radio"]:checked + .radio-label {
   background-color: var(--primary-dark-green);
   height: 7%;
   width: 100%;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   margin-left: -8px;
   display: flex;
@@ -1630,6 +1711,12 @@ input[type="radio"]:checked + .radio-label {
   }
 
   @media only screen and (max-width: 375px) {
+    .landing-title {
+      margin-top: 120px;
+    }
+    .landing-input {
+      margin-top: 0px;
+    }
     .home-location-link {
       padding-left: 10px;
     }
@@ -1642,6 +1729,7 @@ input[type="radio"]:checked + .radio-label {
     .home-filter-container,
     .result-header-container,
     .listing-container,
+    .mapview-container,
     .listing-restaurant-photo,
     .listing-desc,
     .restaurant-desc,
@@ -1673,7 +1761,6 @@ input[type="radio"]:checked + .radio-label {
     }
     .download-instruction-img,
     .pwa-install-button {
-      margin-top: -30px;
       width: 340px;
     }
   }
@@ -1692,6 +1779,10 @@ input[type="radio"]:checked + .radio-label {
     .landing-title {
       font-size: 8em;
       margin-top: 130px;
+    }
+    .pwa-install-button,
+    .download-instruction-img {
+      visibility: hidden;
     }
     /* Input */
     .input-title {
@@ -1754,10 +1845,10 @@ input[type="radio"]:checked + .radio-label {
     /* Home */
     .home-location-link-container {
       padding-left: 50px;
-      margin-top: 7vh;
+      margin-top: 3vh;
       width: 100vw;
       left: 10%;
-      top: -2px;
+      top: auto;
       font-size: 1.5em;
     }
     .input-container-home{
@@ -1765,7 +1856,7 @@ input[type="radio"]:checked + .radio-label {
       position: fixed;
       width: auto;
       right: 10%;
-      top: -19px;
+      top: -33px;
       z-index: 3;
     }
     .home-cuisine-container {
@@ -2083,7 +2174,7 @@ input[type="radio"]:checked + .radio-label {
       width: 75vw;
       height: 20vh;
       margin-left: 220px;
-      margin-top: 130px;
+      margin-top: 63px;
     }
     .profile-visited-map .mapview-container {
       height: 460px;

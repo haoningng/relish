@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import ReactDOM from 'react-dom';
 import { useOutletContext } from "react-router-dom";
 import "../styles/index.css";
@@ -16,6 +16,19 @@ export default function FilterMenu() {
       values: []
     }
   },[])
+
+  const priceButtonRef = useRef(null);  // Ref specifically for the Price button
+  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
+
+  const calculateDropdownPosition = useCallback(() => {
+    if (priceButtonRef.current) { // Always calculate based on the Price button
+      const buttonRect = priceButtonRef.current.getBoundingClientRect();
+      setDropdownPosition({
+        top: buttonRect.bottom + window.scrollY, 
+        left: buttonRect.left + window.scrollX,  
+      });
+    }
+  }, []);
 
   const [activeButton, setActiveButton] = useState(defaultState);
   const dropdownRef = useRef(null);
@@ -90,11 +103,14 @@ export default function FilterMenu() {
         setActiveButton(null); // Close dropdown if click is inside the dropdown content
       }
     };
+    calculateDropdownPosition(); // Initial calculation
     document.addEventListener('click', handleClickOutside);
+    window.addEventListener("resize", calculateDropdownPosition);
     return () => {
       document.removeEventListener('click', handleClickOutside);
+      window.removeEventListener("resize", calculateDropdownPosition);
       clearTimeout(timeoutId);}
-  }, [defaultState]);
+  }, [calculateDropdownPosition, defaultState]);
 
   // Dynamic label for the filter button
   const dspPriceLevel = filterObj.priceLevel !== 0 ?
@@ -109,7 +125,10 @@ export default function FilterMenu() {
           <div >
             <button
               className="menu-button"
-              onClick={() => handleButtonClick(buttonObj)}
+              ref={buttonObj.name === 'Price' ? priceButtonRef : null} // Only attach ref to Price button
+              onClick={() => {
+                handleButtonClick(buttonObj);
+              }}
               style={
                 // Apply active style if the dropdown is open OR a filter is applied for this button
                 buttonObj.name === activeButton.name ||
@@ -128,7 +147,7 @@ export default function FilterMenu() {
               buttonObj.name === 'Sort By' ? dspSort : ''}
             </button>
             {activeButton.name !== defaultState.name && ReactDOM.createPortal(
-              <div className="menu-dropdown">
+              <div className="menu-dropdown" style={{ top: dropdownPosition.top, left: dropdownPosition.left }}>
                 <MenuItem name={activeButton.name} value={activeButton.labels[0].value}>{activeButton.labels[0].label}</MenuItem>
                 <MenuItem name={activeButton.name} value={activeButton.labels[1].value}>{activeButton.labels[1].label}</MenuItem>
                 <MenuItem name={activeButton.name} value={activeButton.labels[2].value}>{activeButton.labels[2].label}</MenuItem>

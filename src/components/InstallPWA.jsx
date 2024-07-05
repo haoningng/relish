@@ -3,6 +3,7 @@ import { MdDownload } from "react-icons/md";
 
 const InstallPWA = () => {
   const [click, setClick] = useState(false);
+  const [showButton, setShowButton] = useState(true);
 
   const deferredPrompt = useRef(null)
 
@@ -18,20 +19,24 @@ const InstallPWA = () => {
     return () => window.removeEventListener('beforeinstallprompt', handlePrompt)
   })
 
+  const isInStandaloneMode = () =>
+    (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone) || document.referrer.includes('android-app://');
+
+  useEffect(() => {
+    // if PWA is installed
+    if (isInStandaloneMode()) {
+      setShowButton(false);
+    }
+  }, [])
+
   const installPWA = () => {
     setClick(true);
     if (!deferredPrompt.current) return
     deferredPrompt.current.prompt()
-    // Wait for the user to respond to the prompt
-    deferredPrompt.current.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        localStorage.setItem("pwa-is-installed", 'true')
-      }
-    })
   }
 
   return ( !click 
-    ? !JSON.parse(localStorage.getItem("pwa-is-installed")) &&
+    ? showButton &&
       <button
         className="pwa-install-button"
         id="setup_button"
