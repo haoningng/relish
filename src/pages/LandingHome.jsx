@@ -22,6 +22,14 @@ export default function LandingHome() {
 
   const navigate = useNavigate();
 
+  // reposition the homepage to viewport
+  useEffect(() => {
+    const handleFocus = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    handleFocus();
+  }, []);
+
   // reset the cuisine choice and filters
   useEffect(() => {
     setSelectedCuisine('');

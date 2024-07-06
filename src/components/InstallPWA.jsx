@@ -47,7 +47,7 @@ const InstallPWA = () => {
         <MdDownload />
       </button>
     :
-      <div style={{position: 'relative', margin:'auto auto 60px'}}>
+      <div style={{position: 'relative', margin:'auto auto 80px'}}>
         <img onClick={() => setClick(false)} alt='download instruction' width='360px' className='download-instruction-img' src='/download-instruction.jpg'/>
       </div>
   );

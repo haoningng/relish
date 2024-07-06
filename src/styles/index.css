@@ -188,7 +188,7 @@ h6 {
 }
 
 .landing-input {
-  margin-top: 10vh;
+  margin-top: 8vh;
   width: 80vw;
   text-align: center;
 }
@@ -223,7 +223,7 @@ h6 {
 }
 .pwa-install-button {
   position: relative;
-  margin: auto auto 40px;
+  margin: auto auto 80px;
   background-color: transparent;
   border-radius: 18px;
   height: 1.3em;
@@ -1482,8 +1482,10 @@ input[type="radio"]:checked + .radio-label {
   background-color: var(--primary-dark-green);
   height: 7%;
   width: 100%;
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0; */
+  position: fixed;
+  bottom: env(safe-area-inset-bottom);
   margin-left: -8px;
   display: flex;
   justify-content: space-around;
@@ -1575,6 +1577,39 @@ input[type="radio"]:checked + .radio-label {
 
 .back-button:hover {
   background-color: var(--secondary-red);
+}
+  
+/* (P) 429 page */
+.toomanyrequests-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.toomanyrequests-message {
+  background: var(--primary-white);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 8px var(--primary-box-shadow);
+  display: flex;
+  color: #515151;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.notfound-emoji {
+  display: flex;
+  margin-right: 20px;
+}
+
+.toomanyrequests-label {
+  width: 100%;
 }
 
 /* (C) Award component */
@@ -1712,10 +1747,10 @@ input[type="radio"]:checked + .radio-label {
 
   @media only screen and (max-width: 375px) {
     .landing-title {
-      margin-top: 120px;
+      margin-top: 100px;
     }
     .landing-input {
-      margin-top: 0px;
+      margin-top: -37px;
     }
     .home-location-link {
       padding-left: 10px;
@@ -2208,39 +2243,6 @@ input[type="radio"]:checked + .radio-label {
       border: none;
     }
   }
-  
-  /* index.css */
-.toomanyrequests-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  justify-content: center;
-  margin-top: 100px;
-}
-
-.toomanyrequests-message {
-  background: var(--primary-white);
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0px 4px 8px var(--primary-box-shadow);
-  display: flex;
-  color: #515151;
-  font-family: Inter;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-
-.notfound-emoji {
-  display: flex;
-  margin-right: 20px;
-}
-
-.toomanyrequests-label {
-  width: 100%;
-}
 
   @media only screen and (min-width: 1160px) {
     /* Location */
