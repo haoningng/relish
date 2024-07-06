@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../redux/hooks';
 import { useLoginMutation } from '../../redux/features/authApiSlice';
-import { setAuth } from '../../redux/features/authSlice';
+import { setAuth, setUser } from '../../redux/features/authSlice';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -32,8 +32,10 @@ export default function useLogin() {
 
 		login({ email, password })
 			.unwrap()
-			.then(() => {
+			.then((res) => {
 				dispatch(setAuth());
+				dispatch(setUser(res?.user));
+				console.log("RES", res)
 				toast.success('Logged in');
 				router(destination);
 			})

@@ -2,7 +2,6 @@
 
 # dependencies
 Work.code-workspace
-index.html
 /node_modules
 /.pnp
 .pnp.js
