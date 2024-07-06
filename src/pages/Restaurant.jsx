@@ -49,9 +49,9 @@ export default function Restaurant() {
       return null;
     }
   }, [restaurantList, selectedRestaurant?.id])
-
   useEffect(() => {
     const fetchOpenNowStatus = async () => {
+      const proxyId = import.meta.env.VITE_PROXY_ID
       try {
         const options = {
           method: 'POST',
@@ -60,7 +60,7 @@ export default function Restaurant() {
           },
           body: JSON.stringify({
             "endpoint": `https://api.yelp.com/v3/businesses/${id}`,
-            "id": `django-insecure-0ezwicnx+&u=g+d3e2&9-u!c9un559($jq7--dpd*8p-bshh4$`
+            "id": proxyId
           }),
         };
 
@@ -149,17 +149,17 @@ export default function Restaurant() {
         >
           <button className="restaurant-buttons">
             <img className='cuisine-img' src={`/googleReview.svg`} alt={`Google Review icon`} /><br />
-              Reviews
-            </button>
-          </a>
-        </div>
-        {coordinate.lat ? 
-          <a
-            href={`https://www.google.com/maps/search/?api=1&query=${selectedRestaurant.name}+${selectedRestaurant.location.address1}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className='restaurant-map-container'
-          >
+            Reviews
+          </button>
+        </a>
+      </div>
+      {coordinate.lat ?
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${selectedRestaurant.name}+${selectedRestaurant.location.address1}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className='restaurant-map-container'
+        >
           <StaticMap
             coordinate={coordinate}
             page={{
