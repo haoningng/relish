@@ -11,6 +11,12 @@
 
 Relish Restaurant Discovery App offers a one-stop-shop solution that enables passionate food lovers to explore new restaurants in their beloved cities in Australia. Engineered with the latest technology in reactive programming and a robust backend architecture, Relish provides a seamless user experience which spark their curiosity for food, and a secure environment for users to track their culinary journey.
 
+## Demo 📱💻🖥️
+
+Click HERE -> [relish.quest](relish.quest)
+
+The link is working as of July 18, 2024. However, as there is a 30 days free trial period associated with the Yelp Fusion API Key which powers the app, on top of that, Google Map API key (which powers location autocomplete and dynamic map) only comes with 90 days free trial, the app may no longer work optimally on this link. Please refer to the [Installation](#-installation) section below to learn more about how to set up locally.
+
 ## 🧰 Front End Technologies:
 <div align="center">
   <code><img src="https://github.com/devicons/devicon/blob/master/icons/vitejs/vitejs-original.svg" title="Vite" alt="Vite" width="50" height="50"/>&nbsp;</code>
@@ -102,19 +108,18 @@ VITE_GOOGLE_API_KEY=<YOUR OWN GOOGLE API KEY>
 VITE_MAP_ID=<YOUR OWN GOOGLE MAP ID>
 ```
 
-Next, insert your GOOGLE API KEY into index.html:
-```bash
-    <script async
-    src="https://maps.googleapis.com/maps/api/js?key=<YOUR OWN GOOGLE API KEY>&loading=async&libraries=places&callback=initMap" >
-    </script>
-```
-
+Head over [here](https://developers.google.com/maps/documentation/javascript/get-api-key) to get your Google API key.<br/>
+Head over [here](https://developers.google.com/maps/documentation/get-map-id) to get your Google Map ID.
 
 ### Back-end
 
 Find the repo @ https://github.com/Goaty-yagi/Relish_backend
 
 Follow the steps in the README.md to set up local docker container before running local backend server.
+
+Find the repo for Yelp API Proxy Server @ https://github.com/Goaty-yagi/proxy-server
+
+Set up the proxy server with your own [Yelp Fusion API Key](https://docs.developer.yelp.com/docs/fusion-intro).
 
 ## 👨‍💻👩‍💻 Authors
 
