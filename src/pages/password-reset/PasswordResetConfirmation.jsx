@@ -7,7 +7,7 @@ import { ChakraProviders } from "../../providers";
 export default function Page() {
   const { uid, token } = useParams();
   return (
-    <>
+    <div style={{position: 'fixed', width: '100dvw', height:'100dvh'}}>
       <ChakraProviders>
         {/* <PrivateRouterWithAuth> */}
         <Flex flexDirection={"column"} w={"100%"} alignItems={"center"}>
@@ -21,6 +21,6 @@ export default function Page() {
         </Flex>
         {/* </PrivateRouterWithAuth> */}
       </ChakraProviders>
-    </>
+    </div>
   );
 }

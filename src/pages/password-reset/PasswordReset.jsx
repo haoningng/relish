@@ -5,7 +5,7 @@ import { BackToHome } from "../../components/common";
 
 export default function PasswordReset() {
   return (
-    <>
+    <div style={{position: 'fixed', width: '100dvw', height:'100dvh'}}>
       <ChakraProviders>
         <Flex flexDirection={"column"} w={"100%"} alignItems={"center"}>
           <Box>
@@ -23,6 +23,6 @@ export default function PasswordReset() {
           </Box>
         </Flex>
       </ChakraProviders>
-    </>
+    </div>
   );
 }

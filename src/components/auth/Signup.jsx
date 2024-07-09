@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function Page() {
   const router = useNavigate()
   return (
-    <>
+    <div style={{position: 'fixed', width: '100dvw', height:'100dvh'}}>
       <Flex position={'relative'} w={'100%'} justifyContent={'center'}>
         <Box
           as={'button'}
@@ -36,6 +36,6 @@ export default function Page() {
           </Box>
         </Flex>
       </Flex>
-    </>
+    </div>
   );
 }
