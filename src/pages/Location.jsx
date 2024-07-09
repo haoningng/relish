@@ -133,10 +133,9 @@ export default function Location() {
           <p className="material-symbols-outlined">my_location</p>
           <p>Use my current location</p>
         </button>
-          {permissionStatus === 'denied' && 
-          <p className='geolocation-permission-denied'>
+          <p className={`geolocation-permission-denied ${permissionStatus === 'denied' ? '' : 'hide'}`} >
           - Location permission is required -<br/>Please go to your browser settings and enable location access for this website.
-          </p>}
+          </p>
           {isFirstTime.profile && 
           <GuidedTour />}
     </div>
