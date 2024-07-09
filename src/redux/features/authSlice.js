@@ -7,7 +7,7 @@ const initialState = {
 	isMounted: false,
 	isThrottled: false,
 	user: '',
-	time:0 //# seconds
+	time: 0 //# seconds
 }
 
 const authSlice = createSlice({
@@ -29,16 +29,16 @@ const authSlice = createSlice({
 		setUser: (state, action) => {
 			state.user = action.payload
 		},
-		setIsThrottled: (state, action) => {
-			state.isThrottled = action.payload
-			console.log('SET_ISTH:', state.isThrottled)
+		setIsThrottledFalse: (state) => {
+			state.isThrottled = false
 		},
-		setTime: (state, action) => {
-			state.time = action.payload
-			console.log('SET_TIME:', state.time)
-		},
+		throttledErrorHandler: (state, action) => {
+			const time = Number(action.payload.replace(/[^0-9]/g, ""))
+			state.time = time
+			state.isThrottled = true
+		}
 	}
 })
 
-export const { setAuth, logout, finishInitialLoad, setTokens, setIsMounted, setUser, setIsThrottled, setTime } = authSlice.actions
+export const { setAuth, logout, finishInitialLoad, setTokens, setIsMounted, setUser, setIsThrottledFalse, throttledErrorHandler } = authSlice.actions
 export default authSlice.reducer

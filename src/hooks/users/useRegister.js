@@ -26,7 +26,7 @@ export default function useRegister() {
 		register({ username, email, password, re_password })
 			.unwrap()
 			.then(() => {
-				toast.success('Please check email to verify account');
+				toast.success('Please check your email to verify your account. This may take a few moments.');
 			})
 			.catch((e) => {
 				const firstErrorMsg = Object.values(e.data)[0]
