@@ -18,12 +18,12 @@ export default function CardsView({ listing }) {
 
   const navigate = useNavigate();
 
-  const { isAthenticated } = useAppSelector((state) => state.auth)
+  const { isAuthenticated } = useAppSelector(state => state.auth)
   function handleClick(event, restaurant) {
     if (event.target.closest('.listing-restaurant-photo')) {
       setSelectedRestaurant(restaurant);
       navigate(`/listing/${restaurant.id}/${restaurant.distance}`)
-      if (!isAthenticated) {
+      if (!isAuthenticated) {
         toast.error('This feature is only available after logging in.')
       }
     }
