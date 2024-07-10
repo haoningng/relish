@@ -1,17 +1,17 @@
 import { FcGoogle } from "react-icons/fc";
-import { continueWithGoogle } from "../../../utils";
 import { Flex, Icon, Text } from "@chakra-ui/react";
-
+import useContinueWithSocialAuth from "../../../hooks/users/useContinueWithSocialAuth";
 
 
 export default function SocialButtons({ setEmailOpen, noEmail }) {
+  const { continueWithSocialAuth } = useContinueWithSocialAuth();
   return (
     <Flex
       className={"social"}
       w={"100%"}
       justifyContent={'center'}
       cursor={'pointer'}
-      onClick={continueWithGoogle}
+      onClick={() => continueWithSocialAuth('google-oauth2', 'google')}
     >
       <Flex
         w={'240px'}

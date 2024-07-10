@@ -322,6 +322,8 @@ h6 {
   border: none;
   font-size: 16px;
   font-weight: 500;
+  background-color: white;
+  color: black;
 }
 
 ::placeholder {
@@ -624,6 +626,7 @@ input[type="radio"]:checked + .radio-label {
   border: none;
   cursor: pointer;
   padding: 0 1rem;
+  background: #efefef;
 }
 
 /* Hide chevrons when not needed */

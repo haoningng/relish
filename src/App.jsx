@@ -9,7 +9,8 @@ import NotFound from "./pages/Error";
 import TooManyRequests from "./pages/TooManyRequests";
 import Profile from "./pages/Profile";
 import Landing from "./pages/Landing";
-import { Google, Login, Signup, Tests, Activation } from "./pages/auth";
+import { Google, Login, Signup, Activation } from "./pages/auth";
+import { AuthLayout } from "./components/auth";
 import { PasswordReset, PasswordResetConfirmation } from "./pages/password-reset";
 import { useAppSelector } from "./redux/hooks";
 
@@ -21,10 +22,11 @@ export const LocationDisplay = () => {
 }
 
 function App() {
-  const { isAuthenticated } = useAppSelector(state => state.auth)
+  const { isAuthenticated, isThrottled } = useAppSelector(state => state.auth)
   return (
     <BrowserRouter>
       <Routes>
+        {isThrottled && (<><Route path="429" element={<TooManyRequests />} /></>)}
         {isAuthenticated ?
           <>
             <Route path="/" element={<Layout />}>
@@ -34,7 +36,6 @@ function App() {
               <Route path="listing/:id/:distance" element={<Restaurant />} />
               <Route path="profile" element={<Profile />} />
               <Route path="*" element={<NotFound />} />
-              <Route path="/429" element={<TooManyRequests />} />
             </Route>
           </>
           :
@@ -42,14 +43,17 @@ function App() {
             <Route path="/" element={<Layout />} >
               <Route index element={<Landing />} />
             </Route>
-            <Route path="auth/login" element={<Login />} />
-            <Route path="auth/signup" element={<Signup />} />
-            <Route path="password-reset" element={<PasswordReset />} />
-            <Route path="password-reset/:uid/:token" element={<PasswordResetConfirmation />} />
-            <Route path="activation/:uid/:token" element={<Activation />} />
-            <Route path="tests" element={<Tests />} />
-            <Route path="auth/google" element={<Google />} />
-            <Route path="*" element={<Navigate to="/auth/login" replace state={{key: 'from home'}}/>} />
+            <Route path="auth/" element={<AuthLayout />}>
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<Signup />} />
+            </Route>
+            <Route path="/" element={<AuthLayout />}>
+              <Route path="auth/google" element={<Google />} />
+              <Route path="password-reset" element={<PasswordReset />} />
+              <Route path="password-reset/:uid/:token" element={<PasswordResetConfirmation />} />
+              <Route path="activation/:uid/:token" element={<Activation />} />
+            </Route>
+            <Route path="*" element={<Navigate to="/auth/login" />} />
           </>}
       </Routes>
     </BrowserRouter>

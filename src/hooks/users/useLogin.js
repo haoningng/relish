@@ -35,12 +35,10 @@ export default function useLogin() {
 			.then((res) => {
 				dispatch(setAuth());
 				dispatch(setUser(res?.user));
-				console.log("RES", res)
 				toast.success('Logged in');
 				router(destination);
 			})
 			.catch((e) => {
-				console.log(e)
 				toast.error('Failed to log in, please try again');
 			});
 	};

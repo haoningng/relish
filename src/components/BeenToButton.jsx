@@ -18,7 +18,7 @@ export default function BeenToButton({ page }) {
   BeenToButton.propTypes = {
     page: PropTypes.object.isRequired,
   };
-  
+
   const navigate = useNavigate();
   const [RestaurantsCreate] = useRestaurantCreateOrDeleteMutation();
   const [getAwardList] = useGetAwardListMutation()
@@ -26,7 +26,7 @@ export default function BeenToButton({ page }) {
 
   const { awardList } = useAppSelector((state) => state.award);
   // 1. Retrieve and Update
-	const { restaurantList } = useAppSelector((state) => state.restaurant);
+  const { restaurantList } = useAppSelector((state) => state.restaurant);
   // check if user is authenticated
   const { isAuthenticated } = useAppSelector(state => state.auth)
   const dispatch = useAppDispatch()
@@ -45,72 +45,72 @@ export default function BeenToButton({ page }) {
 
   function handleAwardList() {
     getAwardList()
-			.unwrap()
-			.then((res) => {
-        console.log("GET AWARDS", res)
-				dispatch(setAwards(res))
+      .unwrap()
+      .then((res) => {
+        dispatch(setAwards(res))
         const oldAwdList = awardList.filter(each => each?.user ? true : false)
         const newAwdList = res.filter(each => each?.user ? true : false)
         const oddOneOut = newAwdList.filter(newAwdItem => {
-          return !oldAwdList.some(oldAwdItem => oldAwdItem.id === newAwdItem.id); 
+          return !oldAwdList.some(oldAwdItem => oldAwdItem.id === newAwdItem.id);
         });
         if (oddOneOut.length) {
           toast.success('Congratulation for unlocking a new award! Check it out in your profile page');
           setCelebrating(true);
         }
-			})
-			.catch((e) => {
-				console.log("ERROR:", e)
-				const firstErrorMsg = Object.values(e.data)[0]
-				console.log(firstErrorMsg)
-			});
+      })
+      .catch((e) => {
+        const firstErrorMsg = Object.values(e.data)[0]
+        console.log(firstErrorMsg)
+      });
   }
-  
+
   function handleBeenToClick(restaurant) {
     const cuisineType = getCuisineType(restaurant);
     setButtonLoading(true);
     // 2. Store in database
     RestaurantsCreate({ place_id: restaurant.id, obj: restaurant, cuisine_type: cuisineType, has_been: true })
-    .unwrap()
-    .then((res) => {
-      if (res) {
-        // 3. if successful, append it to Redux store (global state)
-        dispatch(setRestaurants(res))
-        toast.success(`${restaurant.name} is marked as visited!\n You can view it in your profile page.`);
-        setButtonLoading(false);
-        handleAwardList();
-        handleMilestone();
-        navigate('/', { state: { restaurantList }})
-      } else {
-        // 4. if already in Redux store, remove it from Redux store.
-        dispatch(deleteRestaurant(restaurant.id))
-        toast.success(`${restaurant.name} is removed from the previously visited list!`);
-        setButtonLoading(false);
-        handleAwardList();
-        navigate('/profile')
-      }
-      
-    })
-    .catch((e) => {
-      console.log("ERROR:", e)
-      const firstErrorMsg = Object.values(e.data)[0]
-      toast.error('Failed to mark restaurant as visited.' + '\n' + firstErrorMsg);
-    });
-  }
+      .unwrap()
+      .then((res) => {
+        if (res) {
+          // 3. if successful, append it to Redux store (global state)
+          dispatch(setRestaurants(res))
+          toast.success(`${restaurant.name} is marked as visited!\n You can view it in your profile page.`);
+          setButtonLoading(false);
+          handleAwardList();
+          handleMilestone();
+          navigate('/', { state: { restaurantList } })
+        } else {
+          // 4. if already in Redux store, remove it from Redux store.
+          dispatch(deleteRestaurant(restaurant.id))
+          toast.success(`${restaurant.name} is removed from the previously visited list!`);
+          setButtonLoading(false);
+          handleAwardList();
+          navigate('/profile')
+        }
 
+      })
+      .catch((e) => {
+        const firstErrorMsg = Object.values(e.data)[0]
+        toast.error('Failed to mark restaurant as visited.' + '\n' + firstErrorMsg)
+      });
+  }
+  function unknownUserhandler() {
+    toast.error('Log in to mark a restaurant as visited')
+    navigate('auth/login')
+  }
   return (
     <button
       onClick={() => {
-        return isAuthenticated ? 
-        handleBeenToClick(page.restaurant)
-        : toast.error('Log in to mark a restaurant as visited');
+        return isAuthenticated ?
+          handleBeenToClick(page.restaurant)
+          : unknownUserhandler();
       }}
       disabled={buttonLoading}
       className={`material-symbols-outlined ${page.name}-been-to-button`}
     >
       {buttonLoading ? <CustomSpinner size={page.name === 'sm'} />
-      : page.visited ? `cancel` : `where_to_vote`}
+        : page.visited ? `cancel` : `where_to_vote`}
     </button>
-    
+
   )
 }

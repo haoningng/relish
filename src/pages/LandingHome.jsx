@@ -17,7 +17,6 @@ export default function LandingHome() {
     setListing,
     setLoading,
   } = useOutletContext(); //from Layout.jsx
-  console.log(lsLocationObj, selectedCuisine)
   const [toggleMapView, setToggleMapView] = useState(false)
 
   const navigate = useNavigate();

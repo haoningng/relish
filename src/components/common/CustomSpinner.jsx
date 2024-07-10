@@ -21,7 +21,7 @@ export default function CustomSpinner({
 	};
 	const Wrapper = ({ children }) => {
 		if (isCentered) {
-			return <div style={{display:'flex',height:'100vh',width:'100vw', alignItems:'center', justifyContent:'center'}}>{children}</div>;
+			return <div style={{ display: 'flex', height: '100vh', width: '100vw', alignItems: 'center', justifyContent: 'center' }}>{children}</div>;
 		} else {
 			return <>{children}</>;
 		}
@@ -33,7 +33,7 @@ export default function CustomSpinner({
 				transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
 				style={{ fontSize: spinnerSize(), display: 'flex', justifyContent: 'center', alignItems: 'center' }}
 			>
-				<ImSpinner3 style={{ fontSize: spinnerSize() }} />
+				<ImSpinner3 style={{ fontSize: spinnerSize(), color: 'white' }} />
 			</motion.div>
 		</Wrapper>
 	);

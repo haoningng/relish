@@ -69,11 +69,9 @@ export default function Layout() {
 		getRestaurantList()
 			.unwrap()
 			.then((res) => {
-				console.log("GET REST", res)
 				dispatch(setRestaurants(res))
 			})
 			.catch((e) => {
-				console.log("ERROR:", e)
 				const firstErrorMsg = Object.values(e.data)[0]
 				console.log(firstErrorMsg)
 			});
@@ -83,11 +81,9 @@ export default function Layout() {
 		getAwardList()
 			.unwrap()
 			.then((res) => {
-        console.log("GET AWARDS", res)
 				dispatch(setAwards(res))
 			})
 			.catch((e) => {
-				console.log("ERROR:", e)
 				const firstErrorMsg = Object.values(e.data)[0]
 				console.log(firstErrorMsg)
 			});
