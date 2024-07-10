@@ -37,7 +37,6 @@ export default function useRestaurantsCreate() {
 				dispatch(setIsLoadingFalse())
 			})
 			.catch((e) => {
-				console.log("ERROR:", e)
 				const firstErrorMsg = Object.values(e.data)[0]
 				toast.error('Failed to create a Restaurants' + '\n' + firstErrorMsg);
 				dispatch(setIsLoadingFalse())

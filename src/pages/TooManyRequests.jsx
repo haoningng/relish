@@ -12,10 +12,7 @@ export default function TooManyRequests() {
   const navigate = useNavigate();
   const { isThrottled, time } = useAppSelector(state => state.auth)
   const dispatch = useAppDispatch()
-  function handleBack(event) {
-    event.preventDefault();
-    navigate('/');
-  }
+
 
   const renderer = ({ minutes, seconds, completed }) => {
     const min = minutes ? <> {minutes} minute{minutes === 1 ? '' : 's'} <br /></> : ''
@@ -34,16 +31,13 @@ export default function TooManyRequests() {
       <h1 style={{ fontSize: '1.8rem' }}>429 Too Many Requests</h1>
       <div className="toomanyrequests-message" style={{ width: '100%', maxWidth: '500px', height: '200px' }}>
         <img src={notFoundImage} alt="toomanyrequests" className="notfound-emoji" />
-        <div style={{width:'70%', display:'flex', justifyContent:'center', alignItems:'center'}}>
+        <div style={{ width: '70%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <p className='toomanyrequests-label' style={{ fontSize: '1.3rem' }}>
             Take a breath...<br />
             <Countdown date={Date.now() + (time * 1000)} renderer={renderer} />
           </p>
         </div>
       </div>
-      {/* <button className="back-button" onClick={handleBack}>
-        Back To Finding Food
-      </button> */}
     </div>
     :
     // if not throttled / no 429 code then return to Homepage

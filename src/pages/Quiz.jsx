@@ -16,7 +16,6 @@ export default function Quiz() {
     setLoading,
     isFirstTime,
   } = useOutletContext(); //from Layout.jsx
-  console.log(lsLocationObj, selectedCuisine)
 
   const navigate = useNavigate();
 

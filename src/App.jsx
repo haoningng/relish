@@ -23,7 +23,6 @@ export const LocationDisplay = () => {
 
 function App() {
   const { isAuthenticated, isThrottled } = useAppSelector(state => state.auth)
-  console.log("isThrottled", isThrottled)
   return (
     <BrowserRouter>
       <Routes>
@@ -54,7 +53,7 @@ function App() {
               <Route path="password-reset/:uid/:token" element={<PasswordResetConfirmation />} />
               <Route path="activation/:uid/:token" element={<Activation />} />
             </Route>
-            <Route path="*" element={<Navigate to="/auth/login" replace state={{ key: 'from home' }} />} />
+            <Route path="*" element={<Navigate to="/auth/login" />} />
           </>}
       </Routes>
     </BrowserRouter>

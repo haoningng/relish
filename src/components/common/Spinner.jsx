@@ -39,7 +39,7 @@ export default function Spinner({
             animate={{ rotate: 360 }}
             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
           >
-            <ImSpinner3 {...(size ? spinnerSize() : "")} />
+            <ImSpinner3 {...(size ? spinnerSize() : "")} color='white' />
           </motion.div>
         </Box>
       </Center>
