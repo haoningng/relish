@@ -84,7 +84,7 @@ export default function Landing() {
         border='none'
         color="#ffffff"
         fontWeight="600"
-        fontSize="1em"
+        fontSize="1.2em"
         cursor='pointer'
         zIndex='1'
       >

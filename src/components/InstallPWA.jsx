@@ -45,7 +45,7 @@ const InstallPWA = () => {
         title="Install app"
         onClick={installPWA}
       >
-        <MdDownload /> <p style={{fontSize: '0.6em'}}>Download</p>
+        <MdDownload /> <p style={{fontSize: '1.2rem'}}>Download</p>
       </button>
     :
       <div style={{position: 'fixed', bottom:window.innerHeight * 0.05, zIndex:'2', display:'flex', justifyContent:'center', alignItems:'center', width:window.innerWidth * 0.95}}>
