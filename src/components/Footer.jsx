@@ -13,7 +13,7 @@ export default function Footer({ isFirstTime }) {
 
   const activeStyles = {
       fontWeight: 800,
-      color: '#9FE870',
+      color: '#BDFF72',
   }
 
   const hiddenStyle = {
