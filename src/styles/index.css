@@ -104,13 +104,13 @@ h6 {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  --primary-light-green: #9FE870;
+  --primary-light-green: #BDFF72;
   --primary-dark-green: #163300;
-  --secondary-green: #8DA656;
+  --secondary-green: #6FBD6E;
   --primary-red: #BF1E2C;
   --secondary-red: #D03238;
   --primary-white: #FFFFFF;
-  --secondary-white: #EDF1D6;
+  --secondary-white: #FFFFEB;
   --primary-light-grey: #eeeeee7c;
   --secondary-light-grey: #95A593;
   --primary-box-shadow: rgba(0, 0, 0, 0.25);
@@ -529,12 +529,12 @@ input[type="radio"] {
 
 input[type="radio"]:checked + .radio-label {
   /* Style when checked */
-  background-color: #ABC86C;
+  background-color: #AFE070;
 }
 
 .radio-label:hover {
   /* Style on hover */
-  background-color: #ABC86C;
+  background-color: #AFE070;
 }
 
 .radio-label:focus-within {

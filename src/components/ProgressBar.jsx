@@ -15,7 +15,7 @@ export default function StepProgressBar({ progress }) {
       height={width >= 865 ? '8px' :'5'}
       percent={progress}
       unfilledBackground="#8da656"
-      filledBackground="linear-gradient(to right, #9FE870, #65CF21)"
+      filledBackground="linear-gradient(to right, #BDFF72, #65CF21)"
     >
       <Step transition="scale">
         {({ accomplished }) => (
