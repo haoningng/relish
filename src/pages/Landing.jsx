@@ -86,6 +86,7 @@ export default function Landing() {
         fontWeight="600"
         fontSize="1em"
         cursor='pointer'
+        zIndex='1'
       >
         Login
       </Box>

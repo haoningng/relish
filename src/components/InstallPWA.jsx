@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import { MdDownload } from "react-icons/md";
 
 const InstallPWA = () => {
   const [click, setClick] = useState(false);
   const [showButton, setShowButton] = useState(true);
-
+  const location = useLocation();
   const deferredPrompt = useRef(null)
 
   useEffect(() => {
@@ -38,13 +39,13 @@ const InstallPWA = () => {
   return ( !click 
     ? showButton &&
       <button
-        className="pwa-install-button"
+        className={location.pathname === '/' ? 'home-pwa-install-button' :"pwa-install-button"}
         id="setup_button"
         aria-label="Install app"
         title="Install app"
         onClick={installPWA}
       >
-        <MdDownload />
+        <MdDownload /> <p style={{fontSize: '0.6em'}}>Download</p>
       </button>
     :
       <div style={{position: 'fixed', bottom:window.innerHeight * 0.05, zIndex:'2', display:'flex', justifyContent:'center', alignItems:'center', width:window.innerWidth * 0.95}}>
