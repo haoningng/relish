@@ -34,7 +34,7 @@ export default function AuthRestrictProvider({ children }) {
 				</>
 				:
 				<>
-					<div style={{ height: '100vh', width: '100vw', justifyContent: 'center', display: 'flex' }}>
+					<div style={{ height: window.innerHeight, width: window.innerWidth, justifyContent: 'center', display: 'flex', alignItems: 'center', overflow: 'hidden'}}>
 						<img className='logo-animation' src={'/Relish.svg'} />
 					</div>
 				</>
