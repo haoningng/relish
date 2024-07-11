@@ -14,13 +14,13 @@ export default function StepProgressBar({ progress }) {
       width={width >= 865 ? '380px' :'203px'}
       height={width >= 865 ? '8px' :'5'}
       percent={progress}
-      unfilledBackground="#8da656"
+      unfilledBackground="#5C8C67"
       filledBackground="linear-gradient(to right, #BDFF72, #65CF21)"
     >
       <Step transition="scale">
         {({ accomplished }) => (
           <img
-            style={{ marginTop: '5px', filter: `grayscale(${accomplished ? 0 : 80}%)` }}
+            style={{ marginTop: '7px', filter: `grayscale(${accomplished ? 0 : 80}%)` }}
             width={width >= 865 ? '70' :'50'}
             src="step.svg"
           />
@@ -56,7 +56,7 @@ export default function StepProgressBar({ progress }) {
       <Step transition="scale">
         {({ accomplished }) => (
           <img
-            style={{ marginTop: '5px', filter: `grayscale(${accomplished ? 0 : 100}%)` }}
+            style={{ marginTop: '7px', filter: `grayscale(${accomplished ? 0 : 100}%)` }}
             width={width >= 865 ? '70' :'50'}
             src="step.svg"
           />
