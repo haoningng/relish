@@ -1684,6 +1684,7 @@ input[type="radio"]:checked + .radio-label {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 94dvh;
   }
 
   .awards-title {
@@ -2345,6 +2346,9 @@ input[type="radio"]:checked + .radio-label {
     }
     .footer-btn {
       border: none;
+    }
+    .awards-page {
+      height: 100dvh;
     }
   }
 
