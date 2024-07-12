@@ -73,7 +73,7 @@ export default function Profile() {
     }
   }
 
-  const awardCard = newAwardList.reverse().slice(0, 4).reverse().map((awardObj) => {
+  const awardCard = newAwardList.map((awardObj) => {
     return ( awardObj?.user &&
       <div key={awardObj.id} className='profile-award-card'>
         <img width='53px' src={`/assets/${awardObj.cuisine_type}_${awardObj?.user ? '0' : '1'}.svg`} />
