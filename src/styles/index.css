@@ -2218,15 +2218,15 @@ input[type="radio"]:checked + .radio-label {
     }
   
     .award-emoji {
-      width: 180px; /* Further increase size for large screens */
-      height: 180px; /* Further increase size for large screens */
+      width: 150px; /* Further increase size for large screens */
+      height: 150px; /* Further increase size for large screens */
     }
   
     .award-name {
-      font-size: 1.4rem; 
+      font-size: 1.2rem; 
   
     .award-title {
-      font-size: 1.2rem; 
+      font-size: 1rem; 
     }
   }
 
