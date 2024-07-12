@@ -2190,6 +2190,8 @@ input[type="radio"]:checked + .radio-label {
     @media (min-width: 768px) {
     .awards-container {
       grid-template-columns: 1fr 2fr 1fr; /* More space on the side on larger screens */
+      height: calc(100vh * 0.75);
+      width: 600px;
       }
     }
 
@@ -2211,6 +2213,8 @@ input[type="radio"]:checked + .radio-label {
     @media (min-width: 1024px) {
     .awards-container {
       grid-template-columns: 1fr 1.8fr 1fr; /* Expand grid to utilize more space */
+      height: calc(100vh * 0.75);
+      width: 900px;
     }
   
     .award-emoji {
