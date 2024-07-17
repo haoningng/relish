@@ -13,6 +13,9 @@ Relish Restaurant Discovery App offers a one-stop-shop solution that enables pas
 
 ## Demo 📱💻🖥️
 
+Presentation Slides<br/>
+https://github.com/user-attachments/files/16264286/V3.Relish.App.pdf
+
 Click the thumbnail below to watch demo on Youtube <br/>
 [![Relish Demo Video](https://img.youtube.com/vi/1-m7ORKsye8/0.jpg)](https://www.youtube.com/watch?v=1-m7ORKsye8)
 
