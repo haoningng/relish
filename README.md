@@ -13,7 +13,10 @@ Relish Restaurant Discovery App offers a one-stop-shop solution that enables pas
 
 ## Demo 📱💻🖥️
 
-Click HERE -> [https://relish.quest](https://relish.quest/)
+Click the thumbnail below to watch demo on Youtube <br/>
+[![Relish Demo Video](https://img.youtube.com/vi/1-m7ORKsye8/0.jpg)](https://www.youtube.com/watch?v=1-m7ORKsye8)
+
+Click HERE to try the app yourself-> [https://relish.quest](https://relish.quest/) 
 
 The link is working as of July 18, 2024. However, as there is a 30 days free trial period associated with the Yelp Fusion API Key which powers the app, on top of that, Google Map API key (which powers location autocomplete and dynamic map) only comes with 90 days free trial, the app may no longer work optimally on this link. Please refer to the [Installation](#-installation) section below to learn more about how to set up locally.
 
